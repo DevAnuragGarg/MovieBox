@@ -14,6 +14,9 @@ import com.intact.filmireview.ui.model.ErrorDTO
 import com.intact.filmireview.ui.model.PopularMovieDTO
 import timber.log.Timber
 import javax.inject.Inject
+import com.microsoft.appcenter.crashes.Crashes
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.AppCenter
 
 class HomeActivity : BaseActivity() {
 
@@ -37,6 +40,12 @@ class HomeActivity : BaseActivity() {
 
         // initialize butterknife
         ButterKnife.bind(this)
+
+        // initializing app center for continous integration
+        AppCenter.start(
+            application, "5a8030df-7ef1-4007-a0f7-807d8d6dd058",
+            Analytics::class.java, Crashes::class.java
+        )
 
         // update empty UI
         updateUI()
