@@ -18,7 +18,7 @@ import javax.inject.Inject
  * 2) In below code we only need to initialize the module having the constructor, rest dagger
  * handles it
  *
- * 3) Scopes tell i belong to this instance and to this component. It is a special annotationIn
+ * 3) Scopes tell it belong to this instance and to this component. It is a special annotation in
  * Dagger 2. Scopes mechanism cares about keeping single instance of class as long as its scope
  * exists. In practice it means that instances scoped in @ApplicationScope lives as long as
  * Application object. @ActivityScope keeps references as long as Activity exists (for example we
