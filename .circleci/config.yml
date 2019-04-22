@@ -26,12 +26,6 @@ jobs:
           - ~/.gradle
           key: gradle-{{ checksum "build.gradle" }}-{{ checksum  "gradle/wrapper/gradle-wrapper.properties" }}
       - run:
-          name: Run Detekt
-          command: ./gradlew detekt
-      - run:
-          name: Run Ktlint
-          command: ./gradlew ktlint
-      - run:
           name: Run Lint
           command: ./gradlew lintDebug
       - run:
