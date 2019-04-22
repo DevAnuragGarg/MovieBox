@@ -1,7 +1,9 @@
 package com.intact.filmireview.di.module
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.intact.filmireview.di.scope.ViewModelKey
+import com.intact.filmireview.ui.CustomViewModelFactory
 import com.intact.filmireview.ui.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -33,6 +35,7 @@ import javax.inject.Singleton
  * Created by Anurag Garg on 25/03/19.
  */
 
+@Suppress("unused")
 @Module
 abstract class ViewModelModule {
 

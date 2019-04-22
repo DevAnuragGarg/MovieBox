@@ -17,5 +17,5 @@ import javax.inject.Singleton
 abstract class ViewModelFactoryModule {
 
     @Binds
-    abstract fun bindViewModelFactory(viewModelFactory: CustomViewModelFactory): ViewModelProvider.Factory
+    internal abstract fun bindViewModelFactory(viewModelFactory: CustomViewModelFactory): ViewModelProvider.Factory
 }
