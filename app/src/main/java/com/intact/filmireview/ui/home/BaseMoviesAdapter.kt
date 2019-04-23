@@ -10,28 +10,28 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.intact.filmireview.R
-import com.intact.filmireview.ui.model.PopularMovieDTO
+import com.intact.filmireview.ui.model.MovieDTO
 import com.intact.filmireview.util.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
-class PopularMoviesAdapter @Inject constructor(
+class BaseMoviesAdapter @Inject constructor(
     private val context: Context,
     private val picasso: Picasso
 ) :
-    RecyclerView.Adapter<PopularMoviesAdapter.PopularViewHolder>() {
+    RecyclerView.Adapter<BaseMoviesAdapter.PopularViewHolder>() {
 
-    private var popularMovies = ArrayList<PopularMovieDTO>()
+    private var moviesData = ArrayList<MovieDTO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         PopularViewHolder(LayoutInflater.from(context).inflate(R.layout.item_popular_movie, parent, false))
 
-    override fun getItemCount() = popularMovies.size
+    override fun getItemCount() = moviesData.size
 
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         with(holder) {
 
-            with(popularMovies[position]) {
+            with(moviesData[position]) {
                 movieNameTV.text = title
                 picasso.load(IMAGE_BASE_URL + posterPath).into(movieBannerImage)
             }
@@ -51,8 +51,8 @@ class PopularMoviesAdapter @Inject constructor(
         }
     }
 
-    fun setMoviesData(movies: ArrayList<PopularMovieDTO>) {
-        popularMovies = movies
+    fun setMoviesData(movies: ArrayList<MovieDTO>) {
+        moviesData = movies
         notifyDataSetChanged()
     }
 }

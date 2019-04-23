@@ -11,7 +11,7 @@ import com.intact.filmireview.extension.observeLiveData
 import com.intact.filmireview.ui.BaseActivity
 import com.intact.filmireview.ui.CustomViewModelFactory
 import com.intact.filmireview.ui.model.ErrorDTO
-import com.intact.filmireview.ui.model.PopularMovieDTO
+import com.intact.filmireview.ui.model.MovieDTO
 import timber.log.Timber
 import javax.inject.Inject
 import com.microsoft.appcenter.crashes.Crashes
@@ -23,8 +23,14 @@ class HomeActivity : BaseActivity() {
     @BindView(R.id.popularRecyclerView)
     lateinit var popularRecyclerView: RecyclerView
 
+    @BindView(R.id.topRatedMoviesRecyclerView)
+    lateinit var topRatedMoviesRecyclerView: RecyclerView
+
     @Inject
-    lateinit var popularMoviesAdapter: PopularMoviesAdapter
+    lateinit var popularMoviesAdapter: BaseMoviesAdapter
+
+    @Inject
+    lateinit var topRatedMoviesAdapter: BaseMoviesAdapter
 
     @Inject
     lateinit var viewModelFactory: CustomViewModelFactory
@@ -48,7 +54,8 @@ class HomeActivity : BaseActivity() {
         )
 
         // update empty UI
-        updateUI()
+        updatePopularMoviesUI()
+        updatedTopRatedMoviesUI()
 
         // get the view model
         val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory).get(HomeViewModel::class.java)
@@ -56,13 +63,25 @@ class HomeActivity : BaseActivity() {
         homeViewModel.getPopularMovies()
     }
 
-    private fun updateUI() {
-        popularMoviesAdapter.setMoviesData(ArrayList<PopularMovieDTO>())
+    // updating the popular movies UI
+    private fun updatePopularMoviesUI() {
+        popularMoviesAdapter.setMoviesData(ArrayList())
 
         with(popularRecyclerView) {
             layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = popularMoviesAdapter
             popularMoviesAdapter.notifyDataSetChanged()
+        }
+    }
+
+    // updating the top rated movies UI
+    private fun updatedTopRatedMoviesUI() {
+        topRatedMoviesAdapter.setMoviesData(ArrayList())
+
+        with(topRatedMoviesRecyclerView){
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = topRatedMoviesAdapter
+            topRatedMoviesAdapter.notifyDataSetChanged()
         }
     }
 
@@ -73,7 +92,7 @@ class HomeActivity : BaseActivity() {
     }
 
     // updating the popular movie list
-    private fun updateMovieList(list: ArrayList<PopularMovieDTO>) {
+    private fun updateMovieList(list: ArrayList<MovieDTO>) {
         Timber.d("Updating movies data")
         popularMoviesAdapter.setMoviesData(list)
     }

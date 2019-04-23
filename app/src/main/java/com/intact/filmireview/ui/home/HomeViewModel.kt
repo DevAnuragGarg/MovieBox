@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.intact.filmireview.data.BaseDataManager
 import com.intact.filmireview.ui.BaseViewModel
 import com.intact.filmireview.ui.model.ErrorDTO
-import com.intact.filmireview.ui.model.PopularMovieDTO
+import com.intact.filmireview.ui.model.MovieDTO
 import com.intact.filmireview.util.scheduler.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel(dataManager, compositeDisposable, schedulerProvider) {
 
     private val errorLiveData = MutableLiveData<ErrorDTO>()
-    private val popularMoviesLiveData = MutableLiveData<ArrayList<PopularMovieDTO>>()
+    private val popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
 
     // get the popular movies
     fun getPopularMovies() {
@@ -36,8 +36,8 @@ class HomeViewModel @Inject constructor(
                 .subscribeOn(getBaseSchedulerProvider().io())
                 .observeOn(getBaseSchedulerProvider().ui())
                 .subscribe({ it ->
-                    Timber.d("Success: Popular movies response received: ${it.popularMovies}")
-                    popularMoviesLiveData.value = it.popularMovies
+                    Timber.d("Success: Popular movies response received: ${it.movies}")
+                    popularMoviesLiveData.value = it.movies
                 }, {
                     val error = it as HttpException
                     Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")

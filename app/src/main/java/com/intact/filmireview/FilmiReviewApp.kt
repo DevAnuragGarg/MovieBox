@@ -5,6 +5,7 @@ import android.app.Application
 import android.app.Service
 import android.content.BroadcastReceiver
 import com.intact.filmireview.di.component.DaggerAppComponent
+import com.intact.filmireview.util.ReleaseLogTree
 import dagger.android.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -66,9 +67,11 @@ class FilmiReviewApp : Application(), HasActivityInjector, HasServiceInjector, H
                         "C:%s:%s",
                         super.createStackElementTag(element),
                         element.lineNumber
-                    );
+                    )
                 }
             })
+        } else {
+            Timber.plant(ReleaseLogTree())
         }
     }
 

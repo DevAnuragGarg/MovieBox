@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Anurag Garg on 26/03/19.
  */
 
-data class PopularMovieDTO(
+data class MovieDTO(
     @Expose @SerializedName("vote_count") val voteCount: String,
     @Expose @SerializedName("id") val id: String,
     @Expose @SerializedName("video") val video: String,

@@ -1,7 +1,7 @@
 package com.intact.filmireview.data.response
 
 import com.google.gson.annotations.SerializedName
-import com.intact.filmireview.ui.model.PopularMovieDTO
+import com.intact.filmireview.ui.model.MovieDTO
 
 /**
  *  created by Anurag on 19-Mar-2019
@@ -14,5 +14,5 @@ import com.intact.filmireview.ui.model.PopularMovieDTO
 data class PopularMovieResponse(
     @SerializedName("page") val pageNumber: String,
     @SerializedName("total_pages") val totalPages: String,
-    @SerializedName("results") val popularMovies: ArrayList<PopularMovieDTO>
+    @SerializedName("results") val movies: ArrayList<MovieDTO>
 )

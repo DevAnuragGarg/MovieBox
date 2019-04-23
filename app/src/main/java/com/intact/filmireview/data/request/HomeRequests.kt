@@ -18,4 +18,10 @@ interface HomeRequests {
         @Query("api_key") apiKey: String,
         @Query("page") pageNumber: String
     ): Single<PopularMovieResponse>
+
+    @GET("movie/top_rated/")
+    fun getTopRatedMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") pageNumber: String
+    ): Single<PopularMovieResponse>
 }
