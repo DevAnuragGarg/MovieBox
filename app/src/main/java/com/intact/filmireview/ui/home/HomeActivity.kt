@@ -11,12 +11,11 @@ import com.intact.filmireview.extension.observeLiveData
 import com.intact.filmireview.ui.BaseActivity
 import com.intact.filmireview.ui.CustomViewModelFactory
 import com.intact.filmireview.ui.model.ErrorDTO
-import com.intact.filmireview.ui.model.MovieDTO
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import timber.log.Timber
 import javax.inject.Inject
-import com.microsoft.appcenter.crashes.Crashes
-import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.AppCenter
 
 class HomeActivity : BaseActivity() {
 
@@ -61,6 +60,7 @@ class HomeActivity : BaseActivity() {
         val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory).get(HomeViewModel::class.java)
         setObservers(homeViewModel)
         homeViewModel.getPopularMovies()
+        homeViewModel.getTopRatedMovies()
     }
 
     // updating the popular movies UI
@@ -78,7 +78,7 @@ class HomeActivity : BaseActivity() {
     private fun updatedTopRatedMoviesUI() {
         topRatedMoviesAdapter.setMoviesData(ArrayList())
 
-        with(topRatedMoviesRecyclerView){
+        with(topRatedMoviesRecyclerView) {
             layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = topRatedMoviesAdapter
             topRatedMoviesAdapter.notifyDataSetChanged()
@@ -87,14 +87,17 @@ class HomeActivity : BaseActivity() {
 
     // setting the observers
     private fun setObservers(viewModel: HomeViewModel) {
-        observeLiveData(viewModel.getPopularMoviesLiveData()) { updateMovieList(it) }
-        observeLiveData(viewModel.getErrorLiveData()) { onError(it) }
-    }
-
-    // updating the popular movie list
-    private fun updateMovieList(list: ArrayList<MovieDTO>) {
-        Timber.d("Updating movies data")
-        popularMoviesAdapter.setMoviesData(list)
+        observeLiveData(viewModel.getPopularMoviesLiveData()) {
+            Timber.d("Updating popular movies data")
+            popularMoviesAdapter.setMoviesData(it)
+        }
+        observeLiveData(viewModel.getTopRatedMoviesLiveData()) {
+            Timber.d("Updating top rated movies data")
+            topRatedMoviesAdapter.setMoviesData(it)
+        }
+        observeLiveData(viewModel.getErrorLiveData()) {
+            onError(it)
+        }
     }
 
     // on error received

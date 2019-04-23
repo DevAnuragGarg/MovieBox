@@ -27,6 +27,7 @@ class HomeViewModel @Inject constructor(
 
     private val errorLiveData = MutableLiveData<ErrorDTO>()
     private val popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
 
     // get the popular movies
     fun getPopularMovies() {
@@ -46,8 +47,27 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    // get the popular movies
+    fun getTopRatedMovies() {
+        getLoadingLiveData().value = true
+        getCompositeDisposable().add(
+            getBaseDataManager().getTopRatedMovies("1")
+                .subscribeOn(getBaseSchedulerProvider().io())
+                .observeOn(getBaseSchedulerProvider().ui())
+                .subscribe({ it ->
+                    Timber.d("Success: Top rated movies response received: ${it.movies}")
+                    topRatedMoviesLiveData.value = it.movies
+                }, {
+                    val error = it as HttpException
+                    Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")
+                    errorLiveData.value = ErrorDTO(code = error.code(), message = error.localizedMessage)
+                })
+        )
+    }
+
     fun getErrorLiveData() = errorLiveData
     fun getPopularMoviesLiveData() = popularMoviesLiveData
+    fun getTopRatedMoviesLiveData() = topRatedMoviesLiveData
 
     override fun onCleared() {
         super.onCleared()

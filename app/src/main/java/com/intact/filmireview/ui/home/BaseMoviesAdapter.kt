@@ -19,16 +19,16 @@ class BaseMoviesAdapter @Inject constructor(
     private val context: Context,
     private val picasso: Picasso
 ) :
-    RecyclerView.Adapter<BaseMoviesAdapter.PopularViewHolder>() {
+    RecyclerView.Adapter<BaseMoviesAdapter.MovieViewHolder>() {
 
     private var moviesData = ArrayList<MovieDTO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        PopularViewHolder(LayoutInflater.from(context).inflate(R.layout.item_popular_movie, parent, false))
+        MovieViewHolder(LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false))
 
     override fun getItemCount() = moviesData.size
 
-    override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         with(holder) {
 
             with(moviesData[position]) {
@@ -38,7 +38,7 @@ class BaseMoviesAdapter @Inject constructor(
         }
     }
 
-    class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         @BindView(R.id.tvMovieName)
         lateinit var movieNameTV: TextView
@@ -47,7 +47,7 @@ class BaseMoviesAdapter @Inject constructor(
         lateinit var movieBannerImage: ImageView
 
         init {
-            ButterKnife.bind(this@PopularViewHolder, view)
+            ButterKnife.bind(this@MovieViewHolder, view)
         }
     }
 

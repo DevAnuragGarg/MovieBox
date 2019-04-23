@@ -11,4 +11,6 @@ import io.reactivex.Single
 interface BaseDataManager {
 
     fun getPopularMovies(pageNumber: String) : Single<PopularMovieResponse>
+
+    fun getTopRatedMovies(pageNumber: String): Single<PopularMovieResponse>
 }
