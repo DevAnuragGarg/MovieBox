@@ -1,6 +1,7 @@
 package com.intact.filmireview.ui.home
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
+
+    @BindView(R.id.toolbar)
+    lateinit var toolBar: Toolbar
 
     @BindView(R.id.popularRecyclerView)
     lateinit var popularRecyclerView: RecyclerView
@@ -45,6 +49,9 @@ class HomeActivity : BaseActivity() {
 
         // initialize butterknife
         ButterKnife.bind(this)
+
+        // set the action bar
+        setSupportActionBar(toolBar)
 
         // initializing app center for continous integration
         AppCenter.start(

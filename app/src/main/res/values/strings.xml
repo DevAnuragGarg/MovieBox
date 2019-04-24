@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">FilmiReview</string>
 
-    <!-- -->
-
+    <!--Home screen-->
+    <string name="popular_movies_title">Popular Movies</string>
+    <string name="top_rated_movies_title">Top Rated Movies</string>
 
     <!--Content description-->
     <string name="movie_image">movieImage</string>
