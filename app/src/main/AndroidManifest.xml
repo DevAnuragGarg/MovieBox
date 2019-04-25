@@ -17,8 +17,20 @@
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+
+                <!-- For enabling deep linking-->
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"
+                      android:host="www.filmireview.com"
+                      android:pathPrefix="/android"/>
+                <data android:scheme="filmireview"
+                      android:host="android"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.movieDetail.MovieDetailActivity"
+                  android:theme="@style/AppTheme.NoActionBar.DetailScreen"/>
     </application>
 
 </manifest>

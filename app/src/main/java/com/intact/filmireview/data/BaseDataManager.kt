@@ -1,6 +1,7 @@
 package com.intact.filmireview.data
 
-import com.intact.filmireview.data.response.PopularMovieResponse
+import com.intact.filmireview.data.response.MovieResponse
+import com.intact.filmireview.ui.model.MovieDetailDTO
 import io.reactivex.Single
 
 /**
@@ -10,7 +11,9 @@ import io.reactivex.Single
 
 interface BaseDataManager {
 
-    fun getPopularMovies(pageNumber: String) : Single<PopularMovieResponse>
+    fun getPopularMovies(pageNumber: String): Single<MovieResponse>
 
-    fun getTopRatedMovies(pageNumber: String): Single<PopularMovieResponse>
+    fun getTopRatedMovies(pageNumber: String): Single<MovieResponse>
+
+    fun getMovieDetails(movieId: String): Single<MovieDetailDTO>
 }

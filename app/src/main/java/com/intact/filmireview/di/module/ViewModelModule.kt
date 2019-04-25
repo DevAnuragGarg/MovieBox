@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.intact.filmireview.di.scope.ViewModelKey
 import com.intact.filmireview.ui.CustomViewModelFactory
 import com.intact.filmireview.ui.home.HomeViewModel
+import com.intact.filmireview.ui.movieDetail.MovieDetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -43,4 +44,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     internal abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieDetailViewModel::class)
+    internal abstract fun bindMovieDetailViewModel(movieDetailViewModel: MovieDetailViewModel): ViewModel
 }

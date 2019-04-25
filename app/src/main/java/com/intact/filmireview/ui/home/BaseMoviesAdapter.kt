@@ -1,6 +1,7 @@
 package com.intact.filmireview.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,9 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.intact.filmireview.R
 import com.intact.filmireview.ui.model.MovieDTO
-import com.intact.filmireview.util.IMAGE_BASE_URL
+import com.intact.filmireview.ui.movieDetail.MovieDetailActivity
+import com.intact.filmireview.util.IMAGE_BASE_URL_500
+import com.intact.filmireview.util.MOVIE_ID
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -33,7 +36,13 @@ class BaseMoviesAdapter @Inject constructor(
 
             with(moviesData[position]) {
                 movieNameTV.text = title
-                picasso.load(IMAGE_BASE_URL + posterPath).into(movieBannerImage)
+                picasso.load(IMAGE_BASE_URL_500 + posterPath).into(movieBannerImage)
+
+                itemView.setOnClickListener {
+                    val intent = Intent(context, MovieDetailActivity::class.java)
+                    intent.putExtra(MOVIE_ID, id)
+                    context.startActivity(intent)
+                }
             }
         }
     }

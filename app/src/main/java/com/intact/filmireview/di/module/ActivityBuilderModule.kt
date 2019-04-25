@@ -1,6 +1,9 @@
 package com.intact.filmireview.di.module
 
+import com.intact.filmireview.di.scope.ActivityScope
 import com.intact.filmireview.ui.home.HomeActivity
+import com.intact.filmireview.ui.movieDetail.MovieDetailActivity
+import com.intact.filmireview.ui.movieDetail.MovieDetailFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,6 +19,11 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilderModule {
 
+    @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeHomeActivity(): HomeActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [MovieDetailFragmentModule::class])
+    abstract fun contributeMovieDetailActivity(): MovieDetailActivity
 }

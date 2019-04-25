@@ -11,7 +11,7 @@ import com.intact.filmireview.ui.model.MovieDTO
  *  and deserialize. By default they're set to true.
  */
 
-data class PopularMovieResponse(
+data class MovieResponse(
     @SerializedName("page") val pageNumber: String,
     @SerializedName("total_pages") val totalPages: String,
     @SerializedName("results") val movies: ArrayList<MovieDTO>

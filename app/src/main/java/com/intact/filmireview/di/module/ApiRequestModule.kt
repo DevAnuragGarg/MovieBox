@@ -1,6 +1,6 @@
 package com.intact.filmireview.di.module
 
-import com.intact.filmireview.data.request.HomeRequests
+import com.intact.filmireview.data.request.MovieRequests
 import com.intact.filmireview.data.request.LoginRequests
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,7 @@ class ApiRequestModule {
 
     @Provides
     @Singleton
-    internal fun providesHomeApiRequests(retrofit: Retrofit) = retrofit.create(HomeRequests::class.java)
+    internal fun providesHomeApiRequests(retrofit: Retrofit) = retrofit.create(MovieRequests::class.java)
 
     @Provides
     @Singleton

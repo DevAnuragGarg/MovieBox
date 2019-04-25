@@ -13,10 +13,11 @@ import dagger.android.AndroidInjection
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
         // Activity should not know about how it is injected. So generic.
         // All the dependencies will be injected automatically
         AndroidInjection.inject(this)
+
+        super.onCreate(savedInstanceState)
     }
 }

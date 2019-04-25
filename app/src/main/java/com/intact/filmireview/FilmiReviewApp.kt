@@ -38,7 +38,8 @@ import javax.inject.Inject
  *
  * Created by Anurag Garg on 18-03-2019.
  */
-class FilmiReviewApp : Application(), HasActivityInjector, HasServiceInjector, HasBroadcastReceiverInjector {
+class FilmiReviewApp : Application(), HasActivityInjector, HasServiceInjector,
+    HasBroadcastReceiverInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
