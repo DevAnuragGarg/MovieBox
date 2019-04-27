@@ -14,8 +14,8 @@ import com.intact.filmireview.R
 import com.intact.filmireview.extension.observeLiveData
 import com.intact.filmireview.ui.BaseFragment
 import com.intact.filmireview.ui.CustomViewModelFactory
-import com.intact.filmireview.ui.model.ErrorDTO
-import com.intact.filmireview.ui.model.MovieDetailDTO
+import com.intact.filmireview.data.model.ErrorDTO
+import com.intact.filmireview.data.model.MovieDetailDTO
 import com.intact.filmireview.util.IMAGE_BASE_URL_ORIGINAL
 import com.intact.filmireview.util.MOVIE_ID
 import com.squareup.picasso.Picasso

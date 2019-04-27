@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.intact.filmireview.R
-import com.intact.filmireview.ui.model.MovieDTO
+import com.intact.filmireview.data.model.MovieDTO
 import com.intact.filmireview.ui.movieDetail.MovieDetailActivity
 import com.intact.filmireview.util.IMAGE_BASE_URL_500
 import com.intact.filmireview.util.MOVIE_ID

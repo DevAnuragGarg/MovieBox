@@ -1,4 +1,4 @@
-package com.intact.filmireview.ui.model
+package com.intact.filmireview.data.model
 
 
 /**

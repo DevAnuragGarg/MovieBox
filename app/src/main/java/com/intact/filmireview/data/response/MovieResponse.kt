@@ -1,7 +1,7 @@
 package com.intact.filmireview.data.response
 
 import com.google.gson.annotations.SerializedName
-import com.intact.filmireview.ui.model.MovieDTO
+import com.intact.filmireview.data.model.MovieDTO
 
 /**
  *  created by Anurag on 19-Mar-2019

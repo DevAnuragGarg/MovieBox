@@ -11,7 +11,7 @@ import com.intact.filmireview.R
 import com.intact.filmireview.extension.observeLiveData
 import com.intact.filmireview.ui.BaseActivity
 import com.intact.filmireview.ui.CustomViewModelFactory
-import com.intact.filmireview.ui.model.ErrorDTO
+import com.intact.filmireview.data.model.ErrorDTO
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
