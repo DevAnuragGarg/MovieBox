@@ -2,9 +2,9 @@ package com.intact.filmireview.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.intact.filmireview.data.BaseDataManager
-import com.intact.filmireview.ui.BaseViewModel
 import com.intact.filmireview.data.model.ErrorDTO
 import com.intact.filmireview.data.model.MovieDTO
+import com.intact.filmireview.ui.BaseViewModel
 import com.intact.filmireview.util.scheduler.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException

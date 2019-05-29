@@ -9,8 +9,8 @@ android {
         applicationId "com.intact.filmireview"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName '0.1'
+        versionCode 2
+        versionName '0.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.debug
@@ -19,6 +19,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            multiDexEnabled = true
         }
     }
     compileOptions {
@@ -32,7 +33,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // kotlin kx
-    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
     // butterknife
@@ -77,8 +78,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    // google services
-    implementation 'com.google.firebase:firebase-core:16.0.8'
+    // firebase
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+
+    // google play
+    implementation 'com.google.android.play:core:1.6.0'
 
     // testing
     testImplementation 'junit:junit:4.12'

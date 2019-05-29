@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FilmiReview-MVVM</string>
+    <string name="app_name">FilmiReview</string>
 
     <!--Home screen-->
     <string name="popular_movies_title">Popular Movies</string>
