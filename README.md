@@ -1,6 +1,13 @@
-# FilmiReview-Android-Architecture
-Android Architecture Components
+# FilmiReview
+A sample android application showing the data related to movies(latest, popular, all time grosser). The main focus on the app is to design and integrate the latest new features/recommendations provided/released by Google on MVVM design pattern.
 
-- Added CI and AppCenter (Hockey) for continous integration
-- MVVM model has been followed with all the latest updates
-- Whole code is being documented for better understanding
+## Contents
+- [MVVM Architecture] (https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) in [Kotlin](https://kotlinlang.org/)
+- [Jetpack](https://developer.android.com/jetpack) for Android
+- Latest [Retrofit](https://square.github.io/retrofit/), [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [Dagger](https://square.github.io/dagger/) for dependency injection
+- [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
+- [CircleCI](https://circleci.com/) for continous integration
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
