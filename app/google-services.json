@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "640303044023",
+    "firebase_url": "https://filmireview-b9194.firebaseio.com",
+    "project_id": "filmireview-b9194",
+    "storage_bucket": "filmireview-b9194.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640303044023:android:e62c837e39e062f9",
+        "android_client_info": {
+          "package_name": "com.intact.filmireview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640303044023-6l2f1l6p0am5nugrr082689p6tpq916d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.intact.filmireview",
+            "certificate_hash": "bbbbc62874294f6a3fa54bf8533df8564dc14ea3"
+          }
+        },
+        {
+          "client_id": "640303044023-f4152lvsvls0132sj3moje75pvqcpiqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkefJpdJuV98WIREa9LMXrJfyOnteUbTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640303044023-f4152lvsvls0132sj3moje75pvqcpiqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

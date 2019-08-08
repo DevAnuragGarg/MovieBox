@@ -5,9 +5,9 @@ buildscript {
     // Define versions in a single place
     ext {
         // Sdk and tools
-        compileSdkVersion = 28
         minSdkVersion = 19
         targetSdkVersion = 28
+        compileSdkVersion = 28
 
         // App dependencies
         appCompatVersion = '1.1.0-rc01'
@@ -20,7 +20,7 @@ buildscript {
         gradleVersion = '3.4.1'
         gsonVersion = '2.8.2'
         junitVersion = '4.12'
-        kotlinVersion = '1.3.21'
+        kotlinVersion = '1.3.41'
         ktlintVersion = '0.30.0'
         ktxVersion = '1.0.2'
         lifecycleVersion = '2.2.0-alpha01'
@@ -48,7 +48,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         // google
-        classpath 'com.google.gms:google-services:4.2.0'
+        classpath 'com.google.gms:google-services:4.3.0'
 
     }
 }

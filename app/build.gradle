@@ -81,15 +81,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.1'
 
     // google play
-    implementation 'com.google.android.play:core:1.6.0'
+    implementation 'com.google.android.play:core:1.6.1'
 
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation 'androidx.test:core:1.1.0' // roboelectric
+    testImplementation 'androidx.test:core:1.2.0' // roboelectric
     testImplementation 'org.mockito:mockito-inline:2.13.0'
     testImplementation 'android.arch.core:core-testing:1.1.1' // Test helpers for LiveData
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }
 
