@@ -71,7 +71,8 @@ dependencies {
 
     // helper files
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

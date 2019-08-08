@@ -12,4 +12,8 @@ dependencies {
     // testing
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.22.0'
+
+    // helper libraries
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 }

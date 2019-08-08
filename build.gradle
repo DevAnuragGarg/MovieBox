@@ -5,7 +5,7 @@ buildscript {
     // Define versions in a single place
     ext {
         // Sdk and tools
-        minSdkVersion = 19
+        minSdkVersion = 21
         targetSdkVersion = 28
         compileSdkVersion = 28
 
@@ -33,12 +33,14 @@ buildscript {
         testExtJunit = '1.1.0'
         uiAutomatorVersion = '2.2.0'
         workVersion = '2.1.0'
+        gsonVersion = '2.8.5'
+        timberVersion = '4.7.1'
     }
 
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         // gradle
@@ -57,7 +59,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
