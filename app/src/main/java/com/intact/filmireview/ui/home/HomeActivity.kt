@@ -188,6 +188,7 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE_UPDATE) {
             if (resultCode == Activity.RESULT_OK) {
