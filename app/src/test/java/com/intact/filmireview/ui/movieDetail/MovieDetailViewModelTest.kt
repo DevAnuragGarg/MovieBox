@@ -26,7 +26,7 @@ import timber.log.Timber
 /**
  * Created by Anurag Garg on 2019-05-31.
  */
-@RunWith(JUnit4::class)
+//@RunWith(JUnit4::class)
 class MovieDetailViewModelTest {
 
 //    // A JUnit Test Rule that swaps the background executor used by the Architecture
