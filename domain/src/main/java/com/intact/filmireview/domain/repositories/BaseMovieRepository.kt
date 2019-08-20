@@ -9,7 +9,7 @@ import io.reactivex.Single
  * listed to fetch the data from server or database
  */
 
-interface BaseRepository {
+interface BaseMovieRepository {
 
     fun getPopularMovies(pageNumber: String): Single<MovieResponseEntity>
 
