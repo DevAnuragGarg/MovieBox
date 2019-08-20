@@ -10,6 +10,7 @@ A sample android application showing the data related to movies(latest, popular,
 - [Dagger](https://square.github.io/dagger/) for dependency injection
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) for continous integration
+- [Mockito](https://site.mockito.org)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
