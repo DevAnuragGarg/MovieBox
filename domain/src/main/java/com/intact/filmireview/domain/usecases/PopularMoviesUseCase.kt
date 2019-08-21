@@ -1,27 +1,30 @@
 package com.intact.filmireview.domain.usecases
 
 import com.intact.filmireview.domain.entities.MovieResponseEntity
-import com.intact.filmireview.domain.repositories.BaseMovieRepository
-import com.intact.filmireview.domain.usecases.base.SingleObservableUseCase
+import com.intact.filmireview.domain.repositories.MovieRepository
+import com.intact.filmireview.domain.usecases.base.ObservableUseCase
+import io.reactivex.Observable
 import io.reactivex.Scheduler
-import io.reactivex.Single
 import javax.inject.Inject
 
 class PopularMoviesUseCase @Inject constructor(
-    private val baseMovieRepository: BaseMovieRepository,
+    private val movieRepository: MovieRepository,
     foregroundScheduler: Scheduler,
     backgroundScheduler: Scheduler
-) : SingleObservableUseCase<MovieResponseEntity, PopularMoviesUseCase.Param>(backgroundScheduler, foregroundScheduler) {
+) : ObservableUseCase<MovieResponseEntity, PopularMoviesUseCase.Param>(
+    backgroundScheduler,
+    foregroundScheduler
+) {
 
     /**
-     * implementing the base function to generate single observable
+     * implementing the base function to generate observable
      * an overriding function does not allow to provide default value to parameters
      */
-    override fun generateSingleObservable(params: Param?): Single<MovieResponseEntity> {
+    override fun generateObservable(params: Param?): Observable<MovieResponseEntity> {
         if (params == null) {
             throw IllegalArgumentException("PopularMoviesUseCase parameter can't be null")
         }
-        return baseMovieRepository.getPopularMovies(pageNumber = params.pageNumber)
+        return movieRepository.getPopularMovies(pageNumber = params.pageNumber)
     }
 
     data class Param(

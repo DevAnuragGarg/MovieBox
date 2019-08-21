@@ -1,0 +1,16 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation project(':domain')
+
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // react
+    implementation "io.reactivex.rxjava2:rxjava:$rxAndroid"
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+
+    // testing
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockito"
+}

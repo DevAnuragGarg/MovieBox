@@ -1,7 +1,8 @@
 package com.intact.filmireview.domain.usecases
 
-import com.intact.filmireview.domain.repositories.BaseMovieRepository
+import com.intact.filmireview.domain.repositories.MovieRepository
 import com.intact.filmireview.domain.util.TestDataGenerator
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
@@ -21,7 +22,7 @@ import org.mockito.MockitoAnnotations
 class GetPopularMoviesTest {
 
     @Mock
-    private lateinit var baseMovieRepository: BaseMovieRepository
+    private lateinit var movieRepository: MovieRepository
 
     private lateinit var popularMoviesUseCase: PopularMoviesUseCase
 
@@ -33,7 +34,7 @@ class GetPopularMoviesTest {
 
         // initializing use case
         popularMoviesUseCase =
-            PopularMoviesUseCase(baseMovieRepository, Schedulers.trampoline(), Schedulers.trampoline())
+            PopularMoviesUseCase(movieRepository, Schedulers.trampoline(), Schedulers.trampoline())
     }
 
     @Test
@@ -42,14 +43,14 @@ class GetPopularMoviesTest {
         val popularMoviesData = TestDataGenerator.getPopularMoviesList()
 
         // if the request is sent, dummy response to be returned
-        Mockito.`when`(baseMovieRepository.getPopularMovies("1"))
-            .thenReturn(Single.just(popularMoviesData))
+        Mockito.`when`(movieRepository.getPopularMovies("1"))
+            .thenReturn(Observable.just(popularMoviesData))
 
         // creating a use case test observable
         val testObserver = popularMoviesUseCase.buildUseCase(PopularMoviesUseCase.Param("1")).test()
 
         // running that test observable using mockito
-        Mockito.verify(baseMovieRepository, Mockito.times(1))
+        Mockito.verify(movieRepository, Mockito.times(1))
             .getPopularMovies("1")
 
         // check if the dummy data received using mockito is same as passed

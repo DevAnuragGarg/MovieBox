@@ -13,10 +13,11 @@ import javax.inject.Inject
 
 
 /**
- *
- * view model defined for the home screen
- *
- * Created by Anurag Garg on 25/03/19.
+ * view models don't care about the source of data. They are only
+ * dependable on the observables handed over by use cases. View models
+ * don't have any idea how to get and set the data. View models convert these
+ * observables into live data using live data reactive streams and expose
+ * only live data
  */
 
 class HomeViewModel @Inject constructor(
