@@ -1,4 +1,7 @@
 # FilmiReview
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0b4a437877e4578af4c33d44850d2db)](https://app.codacy.com/manual/DevAnuragGarg/FilmiReview-MVVM-Android-Architecture?utm_source=github.com&utm_medium=referral&utm_content=DevAnuragGarg/FilmiReview-MVVM-Android-Architecture&utm_campaign=Badge_Grade_Dashboard)
+
 A sample android application showing the data related to movies(latest, popular, all time grosser). The main focus on the app is to design and integrate the latest new features/recommendations provided/released by Google on MVVM design pattern.
 
 ## Contents
