@@ -72,23 +72,23 @@ dependencies {
     implementation 'com.microsoft.appcenter:appcenter-analytics:1.11.4'
 
     // coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
     // helper files
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // firebase
-    implementation 'com.google.firebase:firebase-core:17.2.0'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
 
     // google play
-    implementation 'com.google.android.play:core:1.6.1'
+    implementation 'com.google.android.play:core:1.6.5'
 
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
