@@ -19,8 +19,9 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import com.intact.moviesbox.R
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.extension.observeLiveData
-import com.intact.moviesbox.ui.BaseActivity
-import com.intact.moviesbox.ui.CustomViewModelFactory
+import com.intact.moviesbox.ui.base.BaseActivity
+import com.intact.moviesbox.ui.base.CustomViewModelFactory
+import com.intact.moviesbox.ui.base.BaseMoviesAdapter
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics

@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui
+package com.intact.moviesbox.ui.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

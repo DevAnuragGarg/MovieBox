@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui
+package com.intact.moviesbox.ui.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

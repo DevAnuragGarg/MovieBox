@@ -1,7 +1,7 @@
 package com.intact.moviesbox.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.intact.moviesbox.ui.CustomViewModelFactory
+import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import dagger.Binds
 import dagger.Module
 

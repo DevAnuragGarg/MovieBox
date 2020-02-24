@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.intact.moviesbox.R
-import com.intact.moviesbox.ui.BaseActivity
+import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.util.ActivityUtils
 import com.intact.moviesbox.util.MOVIE_ID
 import dagger.android.AndroidInjector

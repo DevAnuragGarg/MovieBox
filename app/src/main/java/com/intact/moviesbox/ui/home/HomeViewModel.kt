@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.data.BaseDataManager
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDTO
-import com.intact.moviesbox.ui.BaseViewModel
+import com.intact.moviesbox.ui.base.BaseViewModel
 import com.intact.moviesbox.util.scheduler.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException

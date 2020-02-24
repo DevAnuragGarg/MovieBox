@@ -12,8 +12,8 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.intact.moviesbox.R
 import com.intact.moviesbox.extension.observeLiveData
-import com.intact.moviesbox.ui.BaseFragment
-import com.intact.moviesbox.ui.CustomViewModelFactory
+import com.intact.moviesbox.ui.base.BaseFragment
+import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDetailDTO
 import com.intact.moviesbox.util.IMAGE_BASE_URL_ORIGINAL

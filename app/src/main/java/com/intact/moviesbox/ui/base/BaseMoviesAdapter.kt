@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui.home
+package com.intact.moviesbox.ui.base
 
 import android.content.Context
 import android.content.Intent
@@ -27,7 +27,9 @@ class BaseMoviesAdapter @Inject constructor(
     private var moviesData = ArrayList<MovieDTO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MovieViewHolder(LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false))
+        MovieViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
+        )
 
     override fun getItemCount() = moviesData.size
 
