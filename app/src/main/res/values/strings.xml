@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FilmiReview</string>
+    <string name="app_name">MoviesBox</string>
 
     <!--Home screen-->
     <string name="popular_movies_title">Popular Movies</string>

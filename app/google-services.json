@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "640303044023",
-    "firebase_url": "https://filmireview-b9194.firebaseio.com",
-    "project_id": "filmireview-b9194",
-    "storage_bucket": "filmireview-b9194.appspot.com"
+    "project_number": "756482141536",
+    "firebase_url": "https://moviebox-intact.firebaseio.com",
+    "project_id": "moviebox-intact",
+    "storage_bucket": "moviebox-intact.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:640303044023:android:e62c837e39e062f9",
+        "mobilesdk_app_id": "1:756482141536:android:89425ec506999246eb8205",
         "android_client_info": {
-          "package_name": "com.intact.filmireview"
+          "package_name": "com.intact.moviesbox"
         }
       },
       "oauth_client": [
         {
-          "client_id": "640303044023-6l2f1l6p0am5nugrr082689p6tpq916d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.intact.filmireview",
-            "certificate_hash": "bbbbc62874294f6a3fa54bf8533df8564dc14ea3"
-          }
-        },
-        {
-          "client_id": "640303044023-f4152lvsvls0132sj3moje75pvqcpiqu.apps.googleusercontent.com",
+          "client_id": "756482141536-8akqfn7g2t4jrknhafhe6ma007q34s2v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDkefJpdJuV98WIREa9LMXrJfyOnteUbTg"
+          "current_key": "AIzaSyBxAe8y6ymEBnGKDq48pZXY8RBFOb-HB1s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "640303044023-f4152lvsvls0132sj3moje75pvqcpiqu.apps.googleusercontent.com",
+              "client_id": "756482141536-8akqfn7g2t4jrknhafhe6ma007q34s2v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

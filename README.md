@@ -1,4 +1,4 @@
-# MovieBox
+# MoviesBox
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0b4a437877e4578af4c33d44850d2db)](https://app.codacy.com/manual/DevAnuragGarg/FilmiReview-MVVM-Android-Architecture?utm_source=github.com&utm_medium=referral&utm_content=DevAnuragGarg/FilmiReview-MVVM-Android-Architecture&utm_campaign=Badge_Grade_Dashboard)
 
