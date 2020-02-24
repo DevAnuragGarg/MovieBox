@@ -46,7 +46,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
 
     // ReactiveStreams support for LiveData
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$rootProject.lifecycleVersion"
 
     // lifecycle
     implementation "android.arch.lifecycle:extensions:1.1.1"
@@ -77,16 +77,16 @@ dependencies {
 
     // helper files
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
 
     // firebase
-    implementation "com.google.firebase:firebase-core:$firebaseVersion"
-    implementation "com.google.firebase:firebase-analytics:$firebaseVersion"
+    implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
+    implementation "com.google.firebase:firebase-analytics:$rootProject.firebaseVersion"
 
     // google play
     implementation 'com.google.android.play:core:1.6.5'
