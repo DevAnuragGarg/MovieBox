@@ -6,6 +6,4 @@ import androidx.lifecycle.ViewModel
 /**
  * Created by Anurag Garg on 25/03/19.
  */
-abstract class BaseViewModel() : ViewModel() {
-
-}
+abstract class BaseViewModel: ViewModel()
