@@ -5,6 +5,8 @@ import io.reactivex.Scheduler
 
 /**
  * base class for use case to create completable observables
+ * this kind of use case is just to know the completable
+ * status of the operation
  */
 abstract class CompletableUseCase<in Param> constructor(
     private val backgroundScheduler: Scheduler,

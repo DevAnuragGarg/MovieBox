@@ -8,6 +8,7 @@ import io.reactivex.Single
 /**
  * Base data repository interface having all the functions
  * listed to fetch the data from server or database
+ * this is the contract set by domain layer for the data layer
  */
 
 interface MovieRepository {

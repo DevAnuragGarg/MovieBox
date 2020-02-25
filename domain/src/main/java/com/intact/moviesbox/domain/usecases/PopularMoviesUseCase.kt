@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class PopularMoviesUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
-    foregroundScheduler: Scheduler,
-    backgroundScheduler: Scheduler
+    backgroundScheduler: Scheduler,
+    foregroundScheduler: Scheduler
 ) : ObservableUseCase<MovieResponseEntity, PopularMoviesUseCase.Param>(
     backgroundScheduler,
     foregroundScheduler
@@ -27,6 +27,9 @@ class PopularMoviesUseCase @Inject constructor(
         return movieRepository.getPopularMovies(pageNumber = params.pageNumber)
     }
 
+    /**
+     * data class used as a input to fetch the list of popular movies
+     */
     data class Param(
         val pageNumber: String
     )

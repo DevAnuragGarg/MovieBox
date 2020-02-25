@@ -3,7 +3,7 @@ apply plugin: 'kotlin'
 dependencies {
 
     // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
 
     // rx-android
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
@@ -14,6 +14,6 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$rootProject.mockito"
 
     // helper libraries
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 }
