@@ -4,13 +4,13 @@ dependencies {
     implementation project(':domain')
 
     // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinVersion"
 
     // react
-    implementation "io.reactivex.rxjava2:rxjava:$rxAndroid"
-    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxAndroid"
+    implementation "javax.inject:javax.inject:$rootProject.javaxInjectVersion"
 
     // testing
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockito"
 }

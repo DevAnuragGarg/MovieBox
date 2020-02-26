@@ -38,7 +38,7 @@ class BaseMoviesAdapter @Inject constructor(
 
             with(moviesData[position]) {
                 movieNameTV.text = title
-                picasso.load(IMAGE_BASE_URL_500 + posterPath).into(movieBannerImage)
+                picasso.load(IMAGE_BASE_URL_500 + posterPath).placeholder(R.drawable.ic_video_camera).into(movieBannerImage)
 
                 itemView.setOnClickListener {
                     val intent = Intent(context, MovieDetailActivity::class.java)
