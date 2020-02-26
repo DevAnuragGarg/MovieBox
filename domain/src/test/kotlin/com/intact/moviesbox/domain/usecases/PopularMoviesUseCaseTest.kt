@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations
  * the code block on the queue of main thread
  */
 @RunWith(JUnit4::class) // add with @RunWith to mark it as jUnit test case
-class GetPopularMoviesTest {
+class PopularMoviesUseCaseTest {
 
     @Mock
     private lateinit var movieRepository: MovieRepository
@@ -74,10 +74,14 @@ class GetPopularMoviesTest {
         val testObservable =
             popularMoviesUseCase.buildUseCase(PopularMoviesUseCase.Param("1")).test()
 
-        // verifying
+        // verify get popular movies method of movie
+        // repository with calling this method only one time
         Mockito.verify(movieRepository, Mockito.times(1)).getPopularMovies("1")
 
-        // checking now
+        // we are subscribing to the observable using assertSubscribed
+        // and checking if we are getting error and comparing the error message
+        // also checking that this observable is not giving a single value
+        // using assertNotComplete
         testObservable.assertSubscribed().assertError { it.message?.equals(errorMessage) ?: false }
             .assertNotComplete()
     }
