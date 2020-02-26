@@ -2,7 +2,6 @@ package com.intact.moviesbox.presentation.viewmodels
 
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import com.intact.moviesbox.domain.usecases.PopularMoviesUseCase
-import com.intact.moviesbox.domain.util.TestDataGenerator
 import com.intact.moviesbox.presentation.mapper.MovieDataEntityMapper
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
@@ -19,7 +18,7 @@ class HomeViewModelTest {
 
     private lateinit var homeViewModel: HomeViewModel
     private val movieDataEntityMapper = MovieDataEntityMapper()
-    private val usr = TestDataGenerator
+    //private val usr = TestDataGenerator
 
     @Before
     fun setUp() {
