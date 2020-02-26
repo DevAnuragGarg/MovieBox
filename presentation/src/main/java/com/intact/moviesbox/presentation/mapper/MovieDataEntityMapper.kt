@@ -23,14 +23,12 @@ class MovieDataEntityMapper : Mapper<MovieResponseEntity, MovieDataResponseModel
     }
 
     override fun to(t: MovieResponseEntity): MovieDataResponseModel {
-
         val movieList = ArrayList<MovieDetailModel>()
         val mapper = MovieDetailEntityMapper()
 
         for (movieModel in t.movies) {
             movieList.add(mapper.to(movieModel))
         }
-
         return MovieDataResponseModel(
             pageNumber = t.pageNumber,
             totalPages = t.totalPages,

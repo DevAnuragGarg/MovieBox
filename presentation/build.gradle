@@ -30,8 +30,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     // dependency on domain module
     implementation project(path: ':domain')
 
@@ -41,6 +39,7 @@ dependencies {
 
     // rx android
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+    implementation "javax.inject:javax.inject:$rootProject.javaxInjectVersion"
 
     // ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$rootProject.lifecycleVersion"
