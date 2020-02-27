@@ -1,7 +1,7 @@
 package com.intact.moviesbox.data.request
 
-import com.intact.moviesbox.data.response.MovieResponse
 import com.intact.moviesbox.data.model.MovieDetailDTO
+import com.intact.moviesbox.data.response.MovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

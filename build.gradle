@@ -45,6 +45,7 @@ buildscript {
         butterKnife = '10.1.0'
         timberVersion = '4.7.1'
         javaxInjectVersion = '1'
+        retrofitVersion = '2.7.2'
         firebaseVersion = '17.2.2'
         recyclerviewVersion = '1.1.0'
         crashlyticsGradleVersion = '2.0.0-beta02'
