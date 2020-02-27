@@ -2,7 +2,7 @@ package com.intact.moviesbox.di.module
 
 import androidx.lifecycle.ViewModel
 import com.intact.moviesbox.di.scope.ViewModelKey
-import com.intact.moviesbox.ui.home.HomeViewModel
+import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.movieDetail.MovieDetailViewModel
 import dagger.Binds
 import dagger.Module

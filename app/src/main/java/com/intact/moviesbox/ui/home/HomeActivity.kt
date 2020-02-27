@@ -17,8 +17,9 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.intact.moviesbox.R
-import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.extension.observeLiveData
+import com.intact.moviesbox.presentation.model.ErrorDTO
+import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.base.BaseMoviesAdapter
@@ -88,9 +89,9 @@ class HomeActivity : BaseActivity() {
         updatedTopRatedMoviesUI()
 
         // get the view model
-        val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory).get(HomeViewModel::class.java)
+        val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory).get(com.intact.moviesbox.presentation.viewmodels.HomeViewModel::class.java)
         setObservers(homeViewModel)
-        homeViewModel.getPopularMovies()
+        homeViewModel.getNowPlayingMovies()
         homeViewModel.getTopRatedMovies()
     }
 
@@ -129,8 +130,8 @@ class HomeActivity : BaseActivity() {
 
     // setting the observers
     private fun setObservers(viewModel: HomeViewModel) {
-        observeLiveData(viewModel.getPopularMoviesLiveData()) {
-            Timber.d("Updating popular movies data")
+        observeLiveData(viewModel.getNowPlayingMoviesLiveData()) {
+            Timber.d("Updating playing now movies data")
             popularMoviesAdapter.setMoviesData(it)
         }
         observeLiveData(viewModel.getTopRatedMoviesLiveData()) {

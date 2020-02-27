@@ -9,8 +9,12 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
+/**
+ * Repository @MovieRepository implementation. It will fetch the local and remote
+ * source and get the data as per the requirement
+ */
 class MovieRepositoryImpl @Inject constructor(
-    private val localDataSource: LocalDataSource,
+//    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
     private val movieDomainDataMapper: MovieDomainDataMapper,
     private val nowPlayingDomainDataMapper: NowPlayingDomainDataMapper
@@ -34,6 +38,6 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getMovieDetails(movieId: Long): Single<MovieEntity> {
         // need to check for single
         return remoteDataSource.getMovieDetails(movieId = movieId)
-            .map { movieDomainDataMapper.from(it) }.doOnError {  }
+            .map { movieDomainDataMapper.from(it) }.doOnError { }
     }
 }

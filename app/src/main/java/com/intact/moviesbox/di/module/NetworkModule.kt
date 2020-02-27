@@ -1,7 +1,7 @@
 package com.intact.moviesbox.di.module
 
 import com.intact.moviesbox.BuildConfig
-import com.intact.moviesbox.data.interceptor.APIInterceptor
+import com.intact.moviesbox.data.interceptors.APIInterceptor
 import com.intact.moviesbox.util.BASE_URL
 import com.intact.moviesbox.util.CONNECTION_TIME_OUT
 import com.intact.moviesbox.util.READ_TIME_OUT
@@ -17,7 +17,6 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-
     @Provides
     @Singleton
     internal fun providesOkHttp(): OkHttpClient {

@@ -1,6 +1,6 @@
 package com.intact.moviesbox.presentation.model
 
-data class MovieDetailModel(
+data class MovieDTO(
     val id: Long,
     val runtime: Int?,
     val budget: Long?,

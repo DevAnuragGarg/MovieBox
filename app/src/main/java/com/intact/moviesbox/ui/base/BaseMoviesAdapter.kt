@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.intact.moviesbox.R
-import com.intact.moviesbox.data.model.MovieDTO
+import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
 import com.intact.moviesbox.util.MOVIE_ID
@@ -38,7 +38,8 @@ class BaseMoviesAdapter @Inject constructor(
 
             with(moviesData[position]) {
                 movieNameTV.text = title
-                picasso.load(IMAGE_BASE_URL_500 + posterPath).placeholder(R.drawable.ic_video_camera).into(movieBannerImage)
+                picasso.load(IMAGE_BASE_URL_500 + posterPath)
+                    .placeholder(R.drawable.ic_video_camera).into(movieBannerImage)
 
                 itemView.setOnClickListener {
                     val intent = Intent(context, MovieDetailActivity::class.java)

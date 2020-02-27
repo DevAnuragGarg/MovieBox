@@ -1,7 +1,7 @@
 package com.intact.moviesbox.presentation.model
 
-data class MovieDataResponseModel(
+data class NowPlayingMoviesDTO(
     val pageNumber: String,
     val totalPages: String,
-    val movies: ArrayList<MovieDetailModel>
+    val movies: ArrayList<MovieDTO>
 )

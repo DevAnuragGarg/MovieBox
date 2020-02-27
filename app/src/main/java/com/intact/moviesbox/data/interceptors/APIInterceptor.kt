@@ -1,16 +1,14 @@
-package com.intact.moviesbox.data.interceptor
+package com.intact.moviesbox.data.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Response
 import timber.log.Timber
 import java.io.IOException
 
-/*
-* Created by Anurag on 18-March-2019
-*
-* Interceptor file to print the
-*
-*/
+/**
+ * Interceptor file to print the logs for the api hit
+ *
+ */
 
 class APIInterceptor : Interceptor {
 

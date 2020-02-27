@@ -7,6 +7,11 @@ import com.intact.moviesbox.domain.usecases.base.ObservableUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
+/**
+ * Now playing movies use case to fetch the playing now movies
+ * Extending the {@ObservableUseCase} and implementing the
+ * generateObservable using the @MovieRepository interface
+ */
 class NowPlayingMoviesUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
     schedulerProvider: BaseSchedulerProvider

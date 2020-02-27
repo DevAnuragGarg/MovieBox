@@ -1,12 +1,13 @@
 package com.intact.moviesbox.remote.mapper
 
-import com.intact.moviesbox.data.model.MovieDTONetwork
 import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.NowPlayingMoviesDTONetwork
 import com.intact.moviesbox.data.model.NowPlayingMoviesData
+import com.intact.moviesbox.remote.model.MovieDTONetwork
+import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
 import javax.inject.Inject
 
-class NowPlayingDataNetworkMapper @Inject constructor(): Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork> {
+class NowPlayingDataNetworkMapper @Inject constructor() :
+    Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork> {
     override fun from(e: NowPlayingMoviesDTONetwork): NowPlayingMoviesData {
         val nowPlayingMovies = ArrayList<MovieData>()
 

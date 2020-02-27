@@ -1,4 +1,4 @@
-package com.intact.moviesbox.data.model
+package com.intact.moviesbox.remote.model
 
 import com.google.gson.annotations.SerializedName
 

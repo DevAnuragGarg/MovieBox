@@ -5,6 +5,9 @@ package com.intact.moviesbox.presentation.model
  * either loading, completed successfully or error. We don't want to
  * supply individual state. Live data can hold only one type of data.
  * This class is a representation of UI state at any point of time.
+ *
+ * We have created static functions success, error and loading which
+ * returns the Resource object having different status SUCCESS, ERROR, LOADING
  */
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {

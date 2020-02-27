@@ -1,29 +1,30 @@
 package com.intact.moviesbox.remote.mapper
 
-import com.intact.moviesbox.data.model.MovieDTONetwork
 import com.intact.moviesbox.data.model.MovieData
+import com.intact.moviesbox.remote.model.MovieDTONetwork
+import javax.inject.Inject
 
-class MovieDataNetworkMapper : Mapper<MovieData, MovieDTONetwork> {
+class MovieDataNetworkMapper @Inject constructor() : Mapper<MovieData, MovieDTONetwork> {
     override fun from(e: MovieDTONetwork): MovieData {
         return MovieData(
-            voteCount = e.voteCount,
             id = e.id,
-            voteAverage = e.voteAverage,
             title = e.title,
-            popularity = e.popularity,
-            posterPath = e.posterPath,
-            originalLanguage = e.originalLanguage,
-            originalTitle = e.originalTitle,
-            backdropPath = e.backdropPath,
             adult = e.adult,
-            overview = e.overview,
-            releaseDate = e.releaseDate,
-            tagLine = e.tagLine,
             budget = e.budget,
             imdbId = e.imdbId,
+            status = e.status,
+            tagLine = e.tagLine,
             revenue = e.revenue,
             runtime = e.runtime,
-            status = e.status
+            overview = e.overview,
+            voteCount = e.voteCount,
+            posterPath = e.posterPath,
+            popularity = e.popularity,
+            voteAverage = e.voteAverage,
+            releaseDate = e.releaseDate,
+            backdropPath = e.backdropPath,
+            originalTitle = e.originalTitle,
+            originalLanguage = e.originalLanguage
         )
     }
 

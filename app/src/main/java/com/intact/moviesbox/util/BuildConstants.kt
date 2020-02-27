@@ -1,6 +1,5 @@
 package com.intact.moviesbox.util
 
-
 // urls
 const val BASE_URL = "https://api.themoviedb.org/3/"
 const val IMAGE_BASE_URL_ORIGINAL = "https://image.tmdb.org/t/p/original/"

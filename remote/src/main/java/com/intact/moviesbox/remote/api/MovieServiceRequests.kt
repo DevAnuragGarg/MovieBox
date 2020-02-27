@@ -1,7 +1,7 @@
 package com.intact.moviesbox.remote.api
 
-import com.intact.moviesbox.data.model.MovieDTONetwork
-import com.intact.moviesbox.data.model.NowPlayingMoviesDTONetwork
+import com.intact.moviesbox.remote.model.MovieDTONetwork
+import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET

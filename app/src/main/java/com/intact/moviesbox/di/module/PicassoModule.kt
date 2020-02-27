@@ -8,7 +8,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
-@Module(includes = [(NetworkModule::class)])
+@Module(includes = [(RemoteRequestModule::class)])
 class PicassoModule {
 
     @Provides

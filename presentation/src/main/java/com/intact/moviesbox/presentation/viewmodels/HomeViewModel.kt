@@ -1,17 +1,15 @@
 package com.intact.moviesbox.presentation.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.toLiveData
+import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
-import com.intact.moviesbox.domain.usecases.PopularMoviesUseCase
-import com.intact.moviesbox.domain.usecases.TopRatedMoviesUseCase
+import com.intact.moviesbox.domain.usecases.NowPlayingMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
-import com.intact.moviesbox.presentation.model.MovieDataResponseModel
-import com.intact.moviesbox.presentation.model.Resource
+import com.intact.moviesbox.presentation.model.ErrorDTO
+import com.intact.moviesbox.presentation.model.MovieDTO
+import com.intact.moviesbox.presentation.model.NowPlayingMoviesDTO
 import com.intact.moviesbox.presentation.viewmodels.base.BaseViewModel
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
-import io.reactivex.functions.Function
+import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -32,29 +30,66 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
-    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, MovieDataResponseModel>,
-    private val popularMoviesUseCase: PopularMoviesUseCase,
-    private val topRatedMoviesUseCase: TopRatedMoviesUseCase
+    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, NowPlayingMoviesDTO>,
+    private val nowPlayingMoviesUseCase: NowPlayingMoviesUseCase
 ) : BaseViewModel() {
 
-    val popularMovieLiveData: LiveData<Resource<MovieDataResponseModel>>
-        get() = popularMoviesUseCase
-            .buildUseCase(PopularMoviesUseCase.Param("1"))
-            .map { nowPlayingMoviesMapper.to(it) }
-            .map { Resource.success(it) }
-            .startWith(Resource.loading())
-            .onErrorResumeNext(
-                Function {
-                    Observable.just(Resource.error(it.localizedMessage))
-                }
-            )
-            .toFlowable(BackpressureStrategy.LATEST)    // not working with single observable
-            .toLiveData()
+    private val isLoading = MutableLiveData<Boolean>()
+    private val errorLiveData = MutableLiveData<ErrorDTO>()
+    private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private fun getCompositeDisposable() = CompositeDisposable()
 
-//    val topRatedMovies: LiveData<Resource<MovieDataResponseModel>>
-//        get() = topRatedMoviesUseCase
-//            .buildUseCase(TopRatedMoviesUseCase.Param("1"))
-//            .map { movieDataResponseMapper.to(it) }
+    // get now playing movies
+    fun getNowPlayingMovies() {
+        isLoading.value = true
+        getCompositeDisposable().add(
+            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param("1"))
+                .map { nowPlayingMoviesMapper.to(it) }
+                .subscribe({ it ->
+                    Timber.d("Success: Now playing movies response received: ${it.movies}")
+                    nowPlayingMoviesLiveData.value = it.movies
+                }, {
+                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                })
+        )
+    }
+
+    // get the top rated movies
+    fun getTopRatedMovies() {
+        isLoading.value = true
+        getCompositeDisposable().add(
+            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param("1"))
+                .map { nowPlayingMoviesMapper.to(it) }
+                .subscribe({ it ->
+                    Timber.d("Success: Top rated movies response received: ${it.movies}")
+                    topRatedMoviesLiveData.value = it.movies
+                }, {
+                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                })
+        )
+    }
+
+    fun getErrorLiveData() = errorLiveData
+    fun getNowPlayingMoviesLiveData() = nowPlayingMoviesLiveData
+    fun getTopRatedMoviesLiveData() = topRatedMoviesLiveData
+
+    override fun onCleared() {
+        super.onCleared()
+        getCompositeDisposable().clear()
+    }
+
+//    val topRatedMoviesLiveData: LiveData<Resource<NowPlayingMoviesModel>>
+//        get() = nowPlayingMoviesUseCase
+//            .buildUseCase(NowPlayingMoviesUseCase.Param("1"))
+//            .map { nowPlayingMoviesMapper.to(it) }
 //            .map { Resource.success(it) }
-
+//            .startWith(Resource.loading())
+//            .onErrorResumeNext(
+//                Function {
+//                    Observable.just(Resource.error(it.localizedMessage))
+//                }
+//            )
+//            .toFlowable(BackpressureStrategy.LATEST)    // not working with single observable
+//            .toLiveData()
 }
