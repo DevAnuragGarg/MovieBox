@@ -1,7 +1,7 @@
 package com.intact.moviesbox.domain.repositories
 
-import com.intact.moviesbox.domain.entities.MovieDetailEntity
-import com.intact.moviesbox.domain.entities.MovieResponseEntity
+import com.intact.moviesbox.domain.entities.MovieEntity
+import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -13,9 +13,11 @@ import io.reactivex.Single
 
 interface MovieRepository {
 
-    fun getPopularMovies(pageNumber: String): Observable<MovieResponseEntity>
+    fun getPlayingNowMovies(pageNumber: String): Observable<NowPlayingMoviesEntity>
 
-    fun getTopRatedMovies(pageNumber: String): Single<MovieResponseEntity>
+    fun getPopularMovies(pageNumber: String): Observable<NowPlayingMoviesEntity>
 
-    fun getMovieDetails(movieId: String): Single<MovieDetailEntity>
+    fun getTopRatedMovies(pageNumber: String): Observable<NowPlayingMoviesEntity>
+
+    fun getMovieDetails(movieId: Long): Single<MovieEntity>
 }

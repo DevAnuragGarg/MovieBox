@@ -1,6 +1,9 @@
-package com.intact.moviesbox.presentation.model
+package com.intact.moviesbox.domain.entities
 
-data class MovieDetailModel(
+/**
+ * entity class having the data taken from the data layer
+ */
+data class MovieEntity(
     val id: Long,
     val runtime: Int?,
     val budget: Long?,

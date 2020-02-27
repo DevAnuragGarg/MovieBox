@@ -3,15 +3,17 @@ package com.intact.moviesbox.domain.usecases
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import com.intact.moviesbox.domain.usecases.base.ObservableUseCase
+import com.intact.moviesbox.domain.usecases.base.SingleObservableUseCase
 import io.reactivex.Observable
 import io.reactivex.Scheduler
+import io.reactivex.Single
 import javax.inject.Inject
 
-class TopRatedMoviesUseCase constructor(
+class NowPlayingMoviesUseCase constructor(
     @Inject private val movieRepository: MovieRepository, backgroundScheduler: Scheduler,
     foregroundScheduler: Scheduler
 ) :
-    ObservableUseCase<NowPlayingMoviesEntity, TopRatedMoviesUseCase.Param>(
+    ObservableUseCase<NowPlayingMoviesEntity, NowPlayingMoviesUseCase.Param>(
         backgroundScheduler,
         foregroundScheduler
     ) {
@@ -21,7 +23,7 @@ class TopRatedMoviesUseCase constructor(
 
     override fun generateObservable(params: Param?): Observable<NowPlayingMoviesEntity> {
         if (params == null) {
-            throw IllegalArgumentException("PopularMoviesUseCase parameter can't be null")
+            throw IllegalArgumentException("NowPlayingMoviesUseCase parameter can't be null")
         }
         return movieRepository.getTopRatedMovies(pageNumber = params.pageNumber)
     }

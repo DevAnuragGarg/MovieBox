@@ -1,6 +1,6 @@
 package com.intact.moviesbox.domain.usecases
 
-import com.intact.moviesbox.domain.entities.MovieResponseEntity
+import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import com.intact.moviesbox.domain.usecases.base.ObservableUseCase
 import io.reactivex.Observable
@@ -11,7 +11,7 @@ class PopularMoviesUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
     backgroundScheduler: Scheduler,
     foregroundScheduler: Scheduler
-) : ObservableUseCase<MovieResponseEntity, PopularMoviesUseCase.Param>(
+) : ObservableUseCase<NowPlayingMoviesEntity, PopularMoviesUseCase.Param>(
     backgroundScheduler,
     foregroundScheduler
 ) {
@@ -20,7 +20,7 @@ class PopularMoviesUseCase @Inject constructor(
      * implementing the base function to generate observable
      * an overriding function does not allow to provide default value to parameters
      */
-    override fun generateObservable(params: Param?): Observable<MovieResponseEntity> {
+    override fun generateObservable(params: Param?): Observable<NowPlayingMoviesEntity> {
         if (params == null) {
             throw IllegalArgumentException("PopularMoviesUseCase parameter can't be null")
         }

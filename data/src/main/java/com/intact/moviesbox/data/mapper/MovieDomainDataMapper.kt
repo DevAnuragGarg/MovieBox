@@ -1,39 +1,40 @@
-package com.intact.moviesbox.presentation.mapper
+package com.intact.moviesbox.data.mapper
 
+import com.intact.moviesbox.data.model.MovieData
 import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.presentation.model.MovieDetailModel
+import javax.inject.Inject
 
 /**
- * helper class to convert the domain layer data to presentation layer data
+ * mapper file to map the values from or to MovieEntity and MovieData
  */
 
-class MovieDetailEntityMapper : Mapper<MovieEntity, MovieDetailModel> {
+class MovieDomainDataMapper @Inject constructor() : Mapper<MovieEntity, MovieData> {
 
-    override fun from(e: MovieDetailModel): MovieEntity {
+    override fun from(e: MovieData): MovieEntity {
         return MovieEntity(
-            voteCount = e.voteCount,
             id = e.id,
-            voteAverage = e.voteAverage,
+            runtime = e.runtime,
+            budget = e.budget,
             title = e.title,
+            revenue = e.revenue,
+            adult = e.adult,
+            status = e.status,
+            imdbId = e.imdbId,
+            tagLine = e.tagLine,
+            voteCount = e.voteCount,
+            overview = e.overview,
             popularity = e.popularity,
             posterPath = e.posterPath,
-            originalLanguage = e.originalLanguage,
-            originalTitle = e.originalTitle,
-            backdropPath = e.backdropPath,
-            adult = e.adult,
-            overview = e.overview,
+            voteAverage = e.voteAverage,
             releaseDate = e.releaseDate,
-            tagLine = e.tagLine,
-            budget = e.budget,
-            imdbId = e.imdbId,
-            revenue = e.revenue,
-            runtime = e.runtime,
-            status = e.status
+            backdropPath = e.backdropPath,
+            originalTitle = e.originalTitle,
+            originalLanguage = e.originalLanguage
         )
     }
 
-    override fun to(t: MovieEntity): MovieDetailModel {
-        return MovieDetailModel(
+    override fun to(t: MovieEntity): MovieData {
+        return MovieData(
             id = t.id,
             title = t.title,
             adult = t.adult,

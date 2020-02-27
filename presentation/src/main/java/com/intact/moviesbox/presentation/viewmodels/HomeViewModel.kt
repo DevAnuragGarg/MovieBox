@@ -2,7 +2,7 @@ package com.intact.moviesbox.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.toLiveData
-import com.intact.moviesbox.domain.entities.MovieResponseEntity
+import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
 import com.intact.moviesbox.domain.usecases.PopularMoviesUseCase
 import com.intact.moviesbox.domain.usecases.TopRatedMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
@@ -32,7 +32,7 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
-    private val movieDataResponseMapper: Mapper<MovieResponseEntity, MovieDataResponseModel>,
+    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, MovieDataResponseModel>,
     private val popularMoviesUseCase: PopularMoviesUseCase,
     private val topRatedMoviesUseCase: TopRatedMoviesUseCase
 ) : BaseViewModel() {
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
     val popularMovieLiveData: LiveData<Resource<MovieDataResponseModel>>
         get() = popularMoviesUseCase
             .buildUseCase(PopularMoviesUseCase.Param("1"))
-            .map { movieDataResponseMapper.to(it) }
+            .map { nowPlayingMoviesMapper.to(it) }
             .map { Resource.success(it) }
             .startWith(Resource.loading())
             .onErrorResumeNext(
