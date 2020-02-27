@@ -1,18 +1,13 @@
 package com.intact.moviesbox.domain.usecases.base
 
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.Completable
-import io.reactivex.Scheduler
 
 /**
- * base class for use case to create completable observables
- * this kind of use case is just to know the completable
- * status of the operation
+ * base class for use case to create completable observables.
+ * this kind of use case is just to know the completable status of the operation
  */
-abstract class CompletableUseCase<in Param> constructor(
-    private val backgroundScheduler: Scheduler,
-    private val foregroundScheduler: Scheduler
-) {
-
+abstract class CompletableUseCase<in Param> constructor(private val schedulerProvider: BaseSchedulerProvider) {
     protected abstract fun generateCompletable(params: Param? = null): Completable
 
     /**
@@ -23,6 +18,6 @@ abstract class CompletableUseCase<in Param> constructor(
      */
     fun buildUseCase(params: Param? = null) =
         generateCompletable(params)
-            .subscribeOn(backgroundScheduler)
-            .observeOn(foregroundScheduler)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
 }

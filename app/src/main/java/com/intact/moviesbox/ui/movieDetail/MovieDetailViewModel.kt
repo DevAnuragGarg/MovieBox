@@ -5,7 +5,7 @@ import com.intact.moviesbox.data.BaseDataManager
 import com.intact.moviesbox.ui.base.BaseViewModel
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDetailDTO
-import com.intact.moviesbox.util.scheduler.BaseSchedulerProvider
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
 import timber.log.Timber

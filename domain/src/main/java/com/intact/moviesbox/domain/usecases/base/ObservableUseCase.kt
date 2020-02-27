@@ -1,13 +1,13 @@
 package com.intact.moviesbox.domain.usecases.base
 
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 
-abstract class ObservableUseCase<T, in Param> constructor(
-    private val backgroundScheduler: Scheduler,
-    private val foregroundScheduler: Scheduler
-) {
-
+/**
+ * base class for use case to create Single observables.
+ * this kind of use case is just to return one time observable i.e. SingleObservable
+ */
+abstract class ObservableUseCase<T, in Param> constructor(private val schedulerProvider: BaseSchedulerProvider) {
     protected abstract fun generateObservable(params: Param? = null): Observable<T>
 
     /**
@@ -16,8 +16,8 @@ abstract class ObservableUseCase<T, in Param> constructor(
      * subscribing on background scheduler
      * observing on foreground scheduler
      */
-    fun buildUseCase(params: Param? = null) =
+    fun buildUseCase(params: Param? = null): Observable<T> =
         generateObservable(params)
-            .subscribeOn(backgroundScheduler)
-            .observeOn(foregroundScheduler)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
 }

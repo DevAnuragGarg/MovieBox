@@ -1,5 +1,6 @@
 package com.intact.moviesbox.util.scheduler
 
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors

@@ -3,7 +3,7 @@ package com.intact.moviesbox.ui.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.intact.moviesbox.data.BaseDataManager
-import com.intact.moviesbox.util.scheduler.BaseSchedulerProvider
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 
 

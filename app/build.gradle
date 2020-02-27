@@ -34,8 +34,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // dependency on domain module
+    // we could have used only the presentation layer through which app module can
+    // interact, but to fill the dependencies using the dagger2, all the implementations
+    // are written in the di folder of the app module.
     implementation project(path: ':domain')
+    implementation project(path: ':presentation')
+    implementation project(path: ':data')
+    implementation project(path: ':remote')
 
     // kotlin kx
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
@@ -101,6 +106,7 @@ dependencies {
     testImplementation 'android.arch.core:core-testing:1.1.1' // Test helpers for LiveData
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
