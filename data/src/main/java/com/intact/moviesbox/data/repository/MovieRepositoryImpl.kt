@@ -2,8 +2,10 @@ package com.intact.moviesbox.data.repository
 
 import com.intact.moviesbox.data.mapper.MovieDomainDataMapper
 import com.intact.moviesbox.data.mapper.NowPlayingDomainDataMapper
+import com.intact.moviesbox.data.mapper.TopRatedDomainDataMapper
 import com.intact.moviesbox.domain.entities.MovieEntity
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
+import com.intact.moviesbox.domain.entities.TopRatedMoviesEntity
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -17,6 +19,7 @@ class MovieRepositoryImpl @Inject constructor(
 //    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
     private val movieDomainDataMapper: MovieDomainDataMapper,
+    private val topRatedDomainDataMapper: TopRatedDomainDataMapper,
     private val nowPlayingDomainDataMapper: NowPlayingDomainDataMapper
 ) : MovieRepository {
 
@@ -30,9 +33,9 @@ class MovieRepositoryImpl @Inject constructor(
             .map { nowPlayingDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
     }
 
-    override fun getTopRatedMovies(pageNumber: String): Observable<NowPlayingMoviesEntity> {
+    override fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesEntity> {
         return remoteDataSource.getTopRatedMovies(pageNumber = pageNumber)
-            .map { nowPlayingDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { topRatedDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
     }
 
     override fun getMovieDetails(movieId: Long): Single<MovieEntity> {

@@ -2,11 +2,14 @@ package com.intact.moviesbox.remote.source
 
 import com.intact.moviesbox.data.model.MovieData
 import com.intact.moviesbox.data.model.NowPlayingMoviesData
+import com.intact.moviesbox.data.model.TopRatedMoviesData
 import com.intact.moviesbox.data.repository.RemoteDataSource
 import com.intact.moviesbox.remote.api.MovieServiceRequests
 import com.intact.moviesbox.remote.mapper.Mapper
+import com.intact.moviesbox.remote.mapper.TopRatedDataNetworkMapper
 import com.intact.moviesbox.remote.model.MovieDTONetwork
 import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
+import com.intact.moviesbox.remote.model.TopRatedMoviesDTONetwork
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -14,6 +17,7 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(
     private val movieServiceRequests: MovieServiceRequests,
     private val movieDataNetworkMapper: Mapper<MovieData, MovieDTONetwork>,
+    private val topRatedDataNetworkMapper: Mapper<TopRatedMoviesData, TopRatedMoviesDTONetwork>,
     private val nowPlayingDataNetworkMapper: Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork>
 ) : RemoteDataSource {
 
@@ -25,12 +29,12 @@ class RemoteDataSourceImpl @Inject constructor(
             .map { nowPlayingDataNetworkMapper.from(it) }
     }
 
-    override fun getTopRatedMovies(pageNumber: String): Observable<NowPlayingMoviesData> {
+    override fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesData> {
         return movieServiceRequests.getTopRatedMovies(
             apiKey = "e254cf574a28681bc9e82ec1719360b5",
             pageNumber = pageNumber
         )
-            .map { nowPlayingDataNetworkMapper.from(it) }
+            .map { topRatedDataNetworkMapper.from(it) }
     }
 
     override fun getUpcomingMovies() {

@@ -12,7 +12,7 @@
         android:layout_height="@dimen/dimen_300">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/bannerIV"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_250"
             android:contentDescription="@string/movie_image"
@@ -36,6 +36,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/bannerIV" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -2,7 +2,6 @@ package com.intact.moviesbox.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.intact.moviesbox.data.BaseDataManager
 import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 
@@ -11,7 +10,6 @@ import io.reactivex.disposables.CompositeDisposable
  * Created by Anurag Garg on 25/03/19.
  */
 abstract class BaseViewModel(
-    private val dataManager: BaseDataManager,
     private val disposable: CompositeDisposable,
     private val schedulerProvider: BaseSchedulerProvider
 ) : ViewModel() {
@@ -24,7 +22,6 @@ abstract class BaseViewModel(
     }
 
     fun getLoadingLiveData() = isLoading
-    fun getBaseDataManager() = dataManager
     fun getCompositeDisposable() = disposable
     fun getBaseSchedulerProvider() = schedulerProvider
 }

@@ -16,6 +16,7 @@ import com.intact.moviesbox.ui.base.BaseFragment
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDetailDTO
+import com.intact.moviesbox.databinding.FragmentMovieDetailBinding
 import com.intact.moviesbox.util.IMAGE_BASE_URL_ORIGINAL
 import com.intact.moviesbox.util.MOVIE_ID
 import com.squareup.picasso.Picasso
@@ -28,9 +29,6 @@ import javax.inject.Inject
  */
 class MovieDetailFragment : BaseFragment() {
 
-    @BindView(R.id.movieBanner)
-    lateinit var movieBannerImage: ImageView
-
     @Inject
     lateinit var picasso: Picasso
 
@@ -39,6 +37,7 @@ class MovieDetailFragment : BaseFragment() {
 
     private lateinit var movieId: String
     private lateinit var unBinder: Unbinder
+    private lateinit var binding: FragmentMovieDetailBinding
     private lateinit var movieDetailViewModel: MovieDetailViewModel
 
     // creating new instance using static function
@@ -69,16 +68,14 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
+        binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
+        val view = binding.root
         initializeVariables(view)
         return view
     }
 
     private fun initializeVariables(view: View) {
         Timber.d("Initialize variables")
-
-        // initialize butterknife
-        unBinder = ButterKnife.bind(this@MovieDetailFragment, view)
     }
 
     // setting the observers
@@ -96,7 +93,7 @@ class MovieDetailFragment : BaseFragment() {
     private fun updateUI(movieDetailDTO: MovieDetailDTO) {
 
         movieDetailDTO.apply {
-            picasso.load(IMAGE_BASE_URL_ORIGINAL + backdrop_path).into(movieBannerImage)
+            picasso.load(IMAGE_BASE_URL_ORIGINAL + backdrop_path).into(binding.movieBanner)
         }
     }
 

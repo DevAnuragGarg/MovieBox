@@ -3,11 +3,8 @@ package com.intact.moviesbox.ui.home
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -16,13 +13,13 @@ import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.intact.moviesbox.R
+import com.intact.moviesbox.databinding.ActivityHomeBinding
 import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
-import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.base.BaseMoviesAdapter
+import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
@@ -32,38 +29,34 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
-    @BindView(R.id.toolbar)
-    lateinit var toolBar: Toolbar
-
-    @BindView(R.id.popularRecyclerView)
-    lateinit var popularRecyclerView: RecyclerView
-
-    @BindView(R.id.topRatedMoviesRecyclerView)
-    lateinit var topRatedMoviesRecyclerView: RecyclerView
-
     @Inject
-    lateinit var popularMoviesAdapter: BaseMoviesAdapter
+    lateinit var nowPlayingMoviesAdapter: BaseMoviesAdapter
 
     @Inject
     lateinit var topRatedMoviesAdapter: BaseMoviesAdapter
 
     @Inject
+    lateinit var upcomingMoviesAdapter: BaseMoviesAdapter
+
+    @Inject
     lateinit var viewModelFactory: CustomViewModelFactory
 
+    private lateinit var binding: ActivityHomeBinding              // view binding jetpack
     private lateinit var appUpdateManager: AppUpdateManager
-    private val installUpdateListener: InstallStateUpdatedListener = InstallStateUpdatedListener { state ->
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            Timber.d("Download update is complete")
-            popupSnackbarForCompleteUpdate()
-        } else {
-            Timber.d("Download status: ${state.installStatus()} and Error code: ${state.installErrorCode()}")
+    private val installUpdateListener: InstallStateUpdatedListener =
+        InstallStateUpdatedListener { state ->
+            if (state.installStatus() == InstallStatus.DOWNLOADED) {
+                Timber.d("Download update is complete")
+                popupSnackbarForCompleteUpdate()
+            } else {
+                Timber.d("Download status: ${state.installStatus()} and Error code: ${state.installErrorCode()}")
+            }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initializeVariables()
     }
 
@@ -76,7 +69,7 @@ class HomeActivity : BaseActivity() {
         ButterKnife.bind(this)
 
         // set the action bar
-        setSupportActionBar(toolBar)
+        setSupportActionBar(binding.toolbar)
 
         // initializing app center for continous integration
         AppCenter.start(
@@ -85,14 +78,16 @@ class HomeActivity : BaseActivity() {
         )
 
         // update empty UI
-        updatePopularMoviesUI()
+        updateNowPlayingMoviesUI()
         updatedTopRatedMoviesUI()
+        updateUpcomingMoviesUI()
 
         // get the view model
-        val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory).get(com.intact.moviesbox.presentation.viewmodels.HomeViewModel::class.java)
+        val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory)
+            .get(HomeViewModel::class.java)
         setObservers(homeViewModel)
-        homeViewModel.getNowPlayingMovies()
-        homeViewModel.getTopRatedMovies()
+        homeViewModel.getNowPlayingMovies("1")
+        homeViewModel.getTopRatedMovies("1")
     }
 
     // Checks that the update is not stalled during 'onResume()'.
@@ -106,14 +101,27 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    // updating the popular movies UI
-    private fun updatePopularMoviesUI() {
-        popularMoviesAdapter.setMoviesData(ArrayList())
+    // updating the now playing movies UI
+    private fun updateNowPlayingMoviesUI() {
+        nowPlayingMoviesAdapter.setMoviesData(ArrayList())
 
-        with(popularRecyclerView) {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = popularMoviesAdapter
-            popularMoviesAdapter.notifyDataSetChanged()
+        with(binding.nowPlayingRecyclerView) {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = nowPlayingMoviesAdapter
+            nowPlayingMoviesAdapter.notifyDataSetChanged()
+        }
+    }
+
+    // updating the upcoming movies UI
+    private fun updateUpcomingMoviesUI() {
+        upcomingMoviesAdapter.setMoviesData(ArrayList())
+
+        with(binding.upcomingMoviesRecyclerView) {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = upcomingMoviesAdapter
+            upcomingMoviesAdapter.notifyDataSetChanged()
         }
     }
 
@@ -121,8 +129,9 @@ class HomeActivity : BaseActivity() {
     private fun updatedTopRatedMoviesUI() {
         topRatedMoviesAdapter.setMoviesData(ArrayList())
 
-        with(topRatedMoviesRecyclerView) {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
+        with(binding.topRatedMoviesRecyclerView) {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = topRatedMoviesAdapter
             topRatedMoviesAdapter.notifyDataSetChanged()
         }
@@ -132,11 +141,15 @@ class HomeActivity : BaseActivity() {
     private fun setObservers(viewModel: HomeViewModel) {
         observeLiveData(viewModel.getNowPlayingMoviesLiveData()) {
             Timber.d("Updating playing now movies data")
-            popularMoviesAdapter.setMoviesData(it)
+            nowPlayingMoviesAdapter.setMoviesData(it)
         }
         observeLiveData(viewModel.getTopRatedMoviesLiveData()) {
             Timber.d("Updating top rated movies data")
             topRatedMoviesAdapter.setMoviesData(it)
+        }
+        observeLiveData(viewModel.getTopRatedMoviesLiveData()) {
+            Timber.d("Updating upcoming movies data")
+            upcomingMoviesAdapter.setMoviesData(it)
         }
         observeLiveData(viewModel.getErrorLiveData()) {
             onError(it)
@@ -207,7 +220,7 @@ class HomeActivity : BaseActivity() {
         super.onDestroy()
 
         // When status updates are no longer needed, unregister the listener.
-        appUpdateManager.unregisterListener(installUpdateListener);
+        appUpdateManager.unregisterListener(installUpdateListener)
     }
 }
 

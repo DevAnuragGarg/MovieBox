@@ -12,12 +12,25 @@ A sample android application showing the data related to movies(latest, popular,
 
 <h2 align="center">Contents</h2>
 
-- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) with SOLID principles
-- [MVVM Architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) in [Kotlin](https://kotlinlang.org/)
-- [Jetpack](https://developer.android.com/jetpack) for Android
-- [Retrofit](https://square.github.io/retrofit/)
+## Tech stack & Open-source libraries
+- Minimum SDK level 21
+- 100% [Kotlin](https://kotlinlang.org/) based
+- JetPack
+  - LiveData - notify domain layer data to views.
+  - ViewModel - UI related data holder, lifecycle aware.
+  - Room Persistence - construct database.
+  - View Binding - removed butter knife, kotlin synthetic, findViewById  
+- Architecture
+  - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - Repository pattern
+  - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) with SOLID principles
+  - [Dagger2](https://github.com/google/dagger) - dependency injection
+- Material Design & Animations
+- [Retrofit2 & Gson](https://github.com/square/retrofit) - constructing the REST API
+- [OkHttp3](https://github.com/square/okhttp) - implementing interceptor, logging and mocking web server
+- [Picasso](hhttps://github.com/square/picasso) - loading images
+- [Timber](https://github.com/JakeWharton/timber) - logging
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
-- [Dagger](https://square.github.io/dagger/) for dependency injection
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) for continous integration
 - [Mockito](https://site.mockito.org)

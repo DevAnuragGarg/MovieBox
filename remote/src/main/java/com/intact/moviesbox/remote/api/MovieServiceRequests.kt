@@ -2,6 +2,7 @@ package com.intact.moviesbox.remote.api
 
 import com.intact.moviesbox.remote.model.MovieDTONetwork
 import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
+import com.intact.moviesbox.remote.model.TopRatedMoviesDTONetwork
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -30,7 +31,7 @@ interface MovieServiceRequests {
     fun getTopRatedMovies(
         @Query("api_key") apiKey: String,
         @Query("page") pageNumber: String
-    ): Observable<NowPlayingMoviesDTONetwork>
+    ): Observable<TopRatedMoviesDTONetwork>
 
     @GET("movie/{movieId}")
     fun getMovieDetails(

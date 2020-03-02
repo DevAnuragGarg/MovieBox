@@ -24,6 +24,6 @@ class NowPlayingMoviesUseCase @Inject constructor(
         if (params == null) {
             throw IllegalArgumentException("NowPlayingMoviesUseCase parameter can't be null")
         }
-        return movieRepository.getTopRatedMovies(pageNumber = params.pageNumber)
+        return movieRepository.getPlayingNowMovies(pageNumber = params.pageNumber)
     }
 }

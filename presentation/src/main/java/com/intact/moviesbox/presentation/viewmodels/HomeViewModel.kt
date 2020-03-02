@@ -2,11 +2,14 @@ package com.intact.moviesbox.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
+import com.intact.moviesbox.domain.entities.TopRatedMoviesEntity
 import com.intact.moviesbox.domain.usecases.NowPlayingMoviesUseCase
+import com.intact.moviesbox.domain.usecases.TopRatedMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.model.NowPlayingMoviesDTO
+import com.intact.moviesbox.presentation.model.TopRatedMoviesDTO
 import com.intact.moviesbox.presentation.viewmodels.base.BaseViewModel
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
@@ -31,7 +34,9 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, NowPlayingMoviesDTO>,
-    private val nowPlayingMoviesUseCase: NowPlayingMoviesUseCase
+    private val topRatedMoviesMapper: Mapper<TopRatedMoviesEntity, TopRatedMoviesDTO>,
+    private val nowPlayingMoviesUseCase: NowPlayingMoviesUseCase,
+    private val topRatedMoviesUseCase: TopRatedMoviesUseCase
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
@@ -41,10 +46,10 @@ class HomeViewModel @Inject constructor(
     private fun getCompositeDisposable() = CompositeDisposable()
 
     // get now playing movies
-    fun getNowPlayingMovies() {
+    fun getNowPlayingMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param("1"))
+            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { nowPlayingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
@@ -56,11 +61,11 @@ class HomeViewModel @Inject constructor(
     }
 
     // get the top rated movies
-    fun getTopRatedMovies() {
+    fun getTopRatedMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param("1"))
-                .map { nowPlayingMoviesMapper.to(it) }
+            topRatedMoviesUseCase.buildUseCase(TopRatedMoviesUseCase.Param(pageNumber = pageNumber))
+                .map { topRatedMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Top rated movies response received: ${it.movies}")
                     topRatedMoviesLiveData.value = it.movies

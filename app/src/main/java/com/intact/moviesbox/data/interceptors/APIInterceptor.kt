@@ -1,6 +1,7 @@
 package com.intact.moviesbox.data.interceptors
 
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 import timber.log.Timber
 import java.io.IOException
@@ -16,12 +17,12 @@ class APIInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         // generate the request
-        val request = chain.request()
+        val request: Request = chain.request()
 
         // print the request
         Timber.d("**********************       REQUEST INITIATED     **********************")
-        Timber.d("REQUEST URL -> %s", request.url())
-        Timber.d("REQUEST HEADERS -> %s", request.headers())
+        Timber.d("REQUEST URL -> %s", request.url)
+        Timber.d("REQUEST HEADERS -> %s", request.headers)
         Timber.d("**********************       REQUEST FINISHED     **********************")
 
         // generate the response
@@ -29,8 +30,8 @@ class APIInterceptor : Interceptor {
 
         // print the response
         Timber.d("**********************       RESPONSE INITIATED     **********************")
-        Timber.d("RESPONSE CODE -> %s", response.code())
-        Timber.d("RESPONSE HEADERS -> %s", response.headers())
+        Timber.d("RESPONSE CODE -> %s", response.code)
+        Timber.d("RESPONSE HEADERS -> %s", response.headers)
         Timber.d("**********************       RESPONSE FINISHED     **********************")
 
         // returning the response object

@@ -3,14 +3,10 @@ package com.intact.moviesbox.ui.base
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.intact.moviesbox.R
+import com.intact.moviesbox.databinding.ItemMovieBinding
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
@@ -26,10 +22,10 @@ class BaseMoviesAdapter @Inject constructor(
 
     private var moviesData = ArrayList<MovieDTO>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MovieViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val binding = ItemMovieBinding.inflate(LayoutInflater.from(context), parent, false)
+        return MovieViewHolder(binding)
+    }
 
     override fun getItemCount() = moviesData.size
 
@@ -37,9 +33,9 @@ class BaseMoviesAdapter @Inject constructor(
         with(holder) {
 
             with(moviesData[position]) {
-                movieNameTV.text = title
+                binding.tvMovieName.text = title
                 picasso.load(IMAGE_BASE_URL_500 + posterPath)
-                    .placeholder(R.drawable.ic_video_camera).into(movieBannerImage)
+                    .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                 itemView.setOnClickListener {
                     val intent = Intent(context, MovieDetailActivity::class.java)
@@ -50,18 +46,8 @@ class BaseMoviesAdapter @Inject constructor(
         }
     }
 
-    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        @BindView(R.id.tvMovieName)
-        lateinit var movieNameTV: TextView
-
-        @BindView(R.id.imageView)
-        lateinit var movieBannerImage: ImageView
-
-        init {
-            ButterKnife.bind(this@MovieViewHolder, view)
-        }
-    }
+    class MovieViewHolder(val binding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     fun setMoviesData(movies: ArrayList<MovieDTO>) {
         moviesData = movies

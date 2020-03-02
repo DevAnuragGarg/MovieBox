@@ -1,11 +1,9 @@
 package com.intact.moviesbox.ui.movieDetail
 
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.intact.moviesbox.R
+import com.intact.moviesbox.databinding.ActivityMovieDetailBinding
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.util.ActivityUtils
 import com.intact.moviesbox.util.MOVIE_ID
@@ -22,28 +20,24 @@ import javax.inject.Inject
  */
 class MovieDetailActivity : BaseActivity(), HasSupportFragmentInjector {
 
-    @BindView(R.id.toolbar)
-    lateinit var toolbar: Toolbar
-
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
+    private lateinit var binding: ActivityMovieDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_detail)
+        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initializeVariables()
     }
 
     private fun initializeVariables() {
-        //initialize butterknife
-        ButterKnife.bind(this)
-
         // set up action bar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         actionBar?.run {
             this.setDisplayHomeAsUpEnabled(true)
         }
-
         showMovieDetailFrag(intent!!.extras!!.getString(MOVIE_ID)!!)
     }
 
@@ -53,8 +47,13 @@ class MovieDetailActivity : BaseActivity(), HasSupportFragmentInjector {
         val fragment = MovieDetailFragment.newInstance(movieId)
 
         // replace fragment
-        ActivityUtils.replaceFragmentInActivity(supportFragmentManager, fragment, R.id.fragment_container)
+        ActivityUtils.replaceFragmentInActivity(
+            supportFragmentManager,
+            fragment,
+            R.id.fragment_container
+        )
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> =
+        fragmentDispatchingAndroidInjector
 }

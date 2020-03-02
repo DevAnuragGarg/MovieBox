@@ -1,14 +1,11 @@
 package com.intact.moviesbox.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import com.intact.moviesbox.data.BaseDataManager
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDTO
-import com.intact.moviesbox.ui.base.BaseViewModel
 import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
+import com.intact.moviesbox.ui.base.BaseViewModel
 import io.reactivex.disposables.CompositeDisposable
-import retrofit2.HttpException
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -21,10 +18,9 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
-    dataManager: BaseDataManager,
     compositeDisposable: CompositeDisposable,
     schedulerProvider: BaseSchedulerProvider
-) : BaseViewModel(dataManager, compositeDisposable, schedulerProvider) {
+) : BaseViewModel(compositeDisposable, schedulerProvider) {
 
     private val errorLiveData = MutableLiveData<ErrorDTO>()
     private val popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
@@ -33,37 +29,39 @@ class HomeViewModel @Inject constructor(
     // get the popular movies
     fun getPopularMovies() {
         getLoadingLiveData().value = true
-        getCompositeDisposable().add(
-            getBaseDataManager().getPopularMovies("1")
-                .subscribeOn(getBaseSchedulerProvider().io())
-                .observeOn(getBaseSchedulerProvider().ui())
-                .subscribe({ it ->
-                    Timber.d("Success: Popular movies response received: ${it.movies}")
-                    popularMoviesLiveData.value = it.movies
-                }, {
-                    val error = it as HttpException
-                    Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")
-                    errorLiveData.value = ErrorDTO(code = error.code(), message = error.localizedMessage)
-                })
-        )
+//        getCompositeDisposable().add(
+//            getBaseDataManager().getPopularMovies("1")
+//                .subscribeOn(getBaseSchedulerProvider().io())
+//                .observeOn(getBaseSchedulerProvider().ui())
+//                .subscribe({ it ->
+//                    Timber.d("Success: Popular movies response received: ${it.movies}")
+//                    popularMoviesLiveData.value = it.movies
+//                }, {
+//                    val error = it as HttpException
+//                    Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")
+//                    errorLiveData.value =
+//                        ErrorDTO(code = error.code(), message = error.localizedMessage)
+//                })
+//        )
     }
 
     // get the popular movies
     fun getTopRatedMovies() {
         getLoadingLiveData().value = true
-        getCompositeDisposable().add(
-            getBaseDataManager().getTopRatedMovies("1")
-                .subscribeOn(getBaseSchedulerProvider().io())
-                .observeOn(getBaseSchedulerProvider().ui())
-                .subscribe({ it ->
-                    Timber.d("Success: Top rated movies response received: ${it.movies}")
-                    topRatedMoviesLiveData.value = it.movies
-                }, {
-                    val error = it as HttpException
-                    Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")
-                    errorLiveData.value = ErrorDTO(code = error.code(), message = error.localizedMessage)
-                })
-        )
+//        getCompositeDisposable().add(
+//            getBaseDataManager().getTopRatedMovies("1")
+//                .subscribeOn(getBaseSchedulerProvider().io())
+//                .observeOn(getBaseSchedulerProvider().ui())
+//                .subscribe({ it ->
+//                    Timber.d("Success: Top rated movies response received: ${it.movies}")
+//                    topRatedMoviesLiveData.value = it.movies
+//                }, {
+//                    val error = it as HttpException
+//                    Timber.d("ErrorCode: ${error.code()} & Failure: ${error.localizedMessage}")
+//                    errorLiveData.value =
+//                        ErrorDTO(code = error.code(), message = error.localizedMessage)
+//                })
+//        )
     }
 
     fun getErrorLiveData() = errorLiveData

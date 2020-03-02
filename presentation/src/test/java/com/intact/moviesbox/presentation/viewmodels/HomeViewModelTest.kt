@@ -28,7 +28,7 @@ class HomeViewModelTest {
         // Mocking all the required variables
         MockitoAnnotations.initMocks(this)
 
-        val popularMoviesUseCase =
-            PopularMoviesUseCase(movieRepository, baseSchedulerProvider)
+//        val popularMoviesUseCase =
+//            PopularMoviesUseCase(movieRepository, baseSchedulerProvider)
     }
 }

@@ -42,7 +42,7 @@ dependencies {
     implementation "javax.inject:javax.inject:$rootProject.javaxInjectVersion"
 
     // ReactiveStreams support for LiveData
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$rootProject.lifecycleReactiveStreamVersion"
 
     // helper files
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
