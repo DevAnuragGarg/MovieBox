@@ -1,5 +1,7 @@
 <h1 align="center">MoviesBox</h1><br>
 
+An android application showing movies related stuff. The main focus of the app is to design and integrate the latest new features/recommendations provided/changes released by Google. The app follows MVVM with Clean architecture. Follow me at [Anurag Garg](https://github.com/DevAnuragGarg) to get all the new updates.<br>
+
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
@@ -8,11 +10,10 @@
   <a href="https://app.codacy.com/manual/DevAnuragGarg/MovieBox?utm_source=github.com&utm_medium=referral&utm_content=DevAnuragGarg/MovieBox&utm_campaign=Badge_Grade_Dashboard"><img alt="Code Quality" src="https://api.codacy.com/project/badge/Grade/f001fda745ed4f918e16f27b9594c9fa"/></a> 
 </p><br>
 
-A sample android application showing the data related to movies(latest, popular, all time grosser). The main focus on the app is to design and integrate the latest new features/recommendations provided/released by Google on MVVM design pattern.<br>
+## Releases
+Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the lastest APK.
 
-<h2 align="center">Contents</h2>
-
-## Tech stack & Open-source libraries
+## Contents
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based
 - JetPack
@@ -34,3 +35,20 @@ A sample android application showing the data related to movies(latest, popular,
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) for continous integration
 - [Mockito](https://site.mockito.org)
+
+## License
+```
+Designed and developed by 2020 devanuraggarg (Anurag Garg)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
