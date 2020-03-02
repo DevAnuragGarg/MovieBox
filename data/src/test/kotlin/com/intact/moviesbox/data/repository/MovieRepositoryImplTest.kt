@@ -2,6 +2,7 @@ package com.intact.moviesbox.data.repository
 
 import com.intact.moviesbox.data.mapper.MovieDomainDataMapper
 import com.intact.moviesbox.data.mapper.NowPlayingDomainDataMapper
+import com.intact.moviesbox.data.mapper.TopRatedDomainDataMapper
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import org.junit.Before
 import org.junit.Test
@@ -14,22 +15,20 @@ import org.mockito.MockitoAnnotations
 class MovieRepositoryImplTest {
 
     @Mock
-    private lateinit var localDataSource: LocalDataSource
-
-    @Mock
     private lateinit var remoteDataSource: RemoteDataSource
 
     private lateinit var movieRepository: MovieRepository
     private val movieDomainDataMapper = MovieDomainDataMapper()
+    private val topRatedDomainDataMapper = TopRatedDomainDataMapper()
     private val nowPlayingDomainDataMapper = NowPlayingDomainDataMapper()
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
         movieRepository = MovieRepositoryImpl(
-            localDataSource = localDataSource,
             remoteDataSource = remoteDataSource,
             movieDomainDataMapper = movieDomainDataMapper,
+            topRatedDomainDataMapper = topRatedDomainDataMapper,
             nowPlayingDomainDataMapper = nowPlayingDomainDataMapper
         )
     }
