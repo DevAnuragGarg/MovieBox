@@ -1,9 +1,9 @@
 package com.intact.moviesbox.domain.usecases
 
 import com.intact.moviesbox.domain.repositories.MovieRepository
+import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import com.intact.moviesbox.domain.util.TestDataGenerator
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +23,9 @@ class PopularMoviesUseCaseTest {
     @Mock
     private lateinit var movieRepository: MovieRepository
 
+    @Mock
+    private lateinit var baseSchedulerProvider: BaseSchedulerProvider
+
     private lateinit var popularMoviesUseCase: PopularMoviesUseCase
 
     /**
@@ -36,7 +39,7 @@ class PopularMoviesUseCaseTest {
 
         // initializing use case
         popularMoviesUseCase =
-            PopularMoviesUseCase(movieRepository, Schedulers.trampoline(), Schedulers.trampoline())
+            PopularMoviesUseCase(movieRepository, baseSchedulerProvider)
     }
 
     @Test
