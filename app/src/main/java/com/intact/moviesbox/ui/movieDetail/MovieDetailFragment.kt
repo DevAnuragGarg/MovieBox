@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.Unbinder
-import com.intact.moviesbox.R
-import com.intact.moviesbox.extension.observeLiveData
-import com.intact.moviesbox.ui.base.BaseFragment
-import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.data.model.ErrorDTO
 import com.intact.moviesbox.data.model.MovieDetailDTO
 import com.intact.moviesbox.databinding.FragmentMovieDetailBinding
+import com.intact.moviesbox.extension.observeLiveData
+import com.intact.moviesbox.ui.base.BaseFragment
+import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.IMAGE_BASE_URL_ORIGINAL
 import com.intact.moviesbox.util.MOVIE_ID
 import com.squareup.picasso.Picasso
@@ -36,7 +31,6 @@ class MovieDetailFragment : BaseFragment() {
     lateinit var viewModelFactory: CustomViewModelFactory
 
     private lateinit var movieId: String
-    private lateinit var unBinder: Unbinder
     private lateinit var binding: FragmentMovieDetailBinding
     private lateinit var movieDetailViewModel: MovieDetailViewModel
 
@@ -60,14 +54,19 @@ class MovieDetailFragment : BaseFragment() {
 
         // get the view model
         movieDetailViewModel =
-            ViewModelProviders.of(this@MovieDetailFragment, viewModelFactory).get(MovieDetailViewModel::class.java)
+            ViewModelProviders.of(this@MovieDetailFragment, viewModelFactory)
+                .get(MovieDetailViewModel::class.java)
         setObservers(movieDetailViewModel)
 
         // get the movie details
         movieDetailViewModel.getMovieDetails(movieId)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         initializeVariables(view)
@@ -100,10 +99,5 @@ class MovieDetailFragment : BaseFragment() {
     // on error received
     private fun onError(dto: ErrorDTO) {
         Timber.d("onError: $dto")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        unBinder.unbind()
     }
 }

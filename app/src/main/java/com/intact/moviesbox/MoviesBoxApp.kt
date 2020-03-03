@@ -1,12 +1,11 @@
 package com.intact.moviesbox
 
-import android.app.Activity
 import android.app.Application
-import android.app.Service
-import android.content.BroadcastReceiver
 import com.intact.moviesbox.di.component.DaggerAppComponent
 import com.intact.moviesbox.util.ReleaseLogTree
-import dagger.android.*
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -38,15 +37,10 @@ import javax.inject.Inject
  *
  * Created by Anurag Garg on 18-03-2019.
  */
-class MoviesBoxApp : Application(), HasActivityInjector, HasServiceInjector,
-    HasBroadcastReceiverInjector {
+class MoviesBoxApp : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
-    @Inject
-    lateinit var serviceDispatchingAndroidInjector: DispatchingAndroidInjector<Service>
-    @Inject
-    lateinit var broadcastDispatchingAndroidInjector: DispatchingAndroidInjector<BroadcastReceiver>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -76,14 +70,5 @@ class MoviesBoxApp : Application(), HasActivityInjector, HasServiceInjector,
         }
     }
 
-    // injector for the activity
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
-
-    // injector for the service
-    override fun serviceInjector(): AndroidInjector<Service> = serviceDispatchingAndroidInjector
-
-    // injector for the broadcast receiver
-    override fun broadcastReceiverInjector(): AndroidInjector<BroadcastReceiver> =
-        broadcastDispatchingAndroidInjector
-
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 }

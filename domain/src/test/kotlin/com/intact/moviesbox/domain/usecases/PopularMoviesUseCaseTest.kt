@@ -38,8 +38,7 @@ class PopularMoviesUseCaseTest {
         MockitoAnnotations.initMocks(this)
 
         // initializing use case
-        popularMoviesUseCase =
-            PopularMoviesUseCase(movieRepository, baseSchedulerProvider)
+        popularMoviesUseCase = PopularMoviesUseCase(movieRepository, baseSchedulerProvider)
     }
 
     @Test

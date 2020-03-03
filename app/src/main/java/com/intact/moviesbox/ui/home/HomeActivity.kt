@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import butterknife.ButterKnife
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -64,9 +63,6 @@ class HomeActivity : BaseActivity() {
 
         // check if there is a new update
         checkUpdate()
-
-        // initialize butterknife
-        ButterKnife.bind(this)
 
         // set the action bar
         setSupportActionBar(binding.toolbar)
