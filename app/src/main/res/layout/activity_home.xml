@@ -66,7 +66,7 @@
                     android:id="@+id/topRatedMoviesRecyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/dimen_300"
+                    android:minHeight="@dimen/dimen_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.555"
                     app:layout_constraintStart_toStartOf="parent"

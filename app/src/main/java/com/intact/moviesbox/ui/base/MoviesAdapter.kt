@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso
 import timber.log.Timber
 import javax.inject.Inject
 
-class BaseMoviesAdapter @Inject constructor(
+class MoviesAdapter @Inject constructor(
     private val context: Context,
     private val picasso: Picasso,
     private val movieType: MovieListType
@@ -72,7 +72,7 @@ class BaseMoviesAdapter @Inject constructor(
                 with(holder as PosterMovieViewHolder) {
                     with(moviesData[position]) {
                         binding.tvMovieName.text = title
-                        picasso.load(IMAGE_BASE_URL_500 + posterPath)
+                        picasso.load(IMAGE_BASE_URL_500 + backdropPath)
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {

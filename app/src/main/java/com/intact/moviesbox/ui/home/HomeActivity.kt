@@ -13,11 +13,14 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.intact.moviesbox.databinding.ActivityHomeBinding
+import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
+import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
+import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
 import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
-import com.intact.moviesbox.ui.base.BaseMoviesAdapter
+import com.intact.moviesbox.ui.base.MoviesAdapter
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
 import com.microsoft.appcenter.AppCenter
@@ -29,13 +32,16 @@ import javax.inject.Inject
 class HomeActivity : BaseActivity() {
 
     @Inject
-    lateinit var nowPlayingMoviesAdapter: BaseMoviesAdapter
+    @NowPlayingQualifier
+    lateinit var nowPlayingMoviesAdapter: MoviesAdapter
 
     @Inject
-    lateinit var topRatedMoviesAdapter: BaseMoviesAdapter
+    @TopRatedQualifier
+    lateinit var topRatedMoviesAdapter: MoviesAdapter
 
     @Inject
-    lateinit var upcomingMoviesAdapter: BaseMoviesAdapter
+    @UpcomingQualifier
+    lateinit var upcomingMoviesAdapter: MoviesAdapter
 
     @Inject
     lateinit var viewModelFactory: CustomViewModelFactory

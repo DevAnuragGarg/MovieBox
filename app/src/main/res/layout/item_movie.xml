@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/dimen_180"
-        android:layout_height="@dimen/dimen_300">
+        android:layout_height="@dimen/dimen_300"
+        android:padding="@dimen/dimen_3">
 
         <ImageView
             android:id="@+id/bannerIV"
