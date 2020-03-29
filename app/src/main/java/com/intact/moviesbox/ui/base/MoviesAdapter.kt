@@ -1,7 +1,6 @@
 package com.intact.moviesbox.ui.base
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,8 @@ import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.ItemMovieBinding
 import com.intact.moviesbox.databinding.ItemPosterMovieBinding
 import com.intact.moviesbox.presentation.model.MovieDTO
-import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
+import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
-import com.intact.moviesbox.util.MOVIE_ID
 import com.intact.moviesbox.util.MovieListType
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -29,6 +27,7 @@ class MoviesAdapter @Inject constructor(
     }
 
     private var moviesData = ArrayList<MovieDTO>()
+    private lateinit var onClickListener: OnMovieItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -38,7 +37,8 @@ class MoviesAdapter @Inject constructor(
                 MovieViewHolder(view)
             }
             MovieListType.TopRatedMovies -> {
-                val view = LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
+                val view =
+                    LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
                 PosterMovieViewHolder(view)
             }
             MovieListType.UpcomingMovies -> {
@@ -61,9 +61,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            val intent = Intent(context, MovieDetailActivity::class.java)
-                            intent.putExtra(MOVIE_ID, id)
-                            context.startActivity(intent)
+                            onClickListener.onMovieItemClicked(id)
                         }
                     }
                 }
@@ -76,9 +74,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            val intent = Intent(context, MovieDetailActivity::class.java)
-                            intent.putExtra(MOVIE_ID, id)
-                            context.startActivity(intent)
+                            onClickListener.onMovieItemClicked(id)
                         }
                     }
                 }
@@ -91,9 +87,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            val intent = Intent(context, MovieDetailActivity::class.java)
-                            intent.putExtra(MOVIE_ID, id)
-                            context.startActivity(intent)
+                            onClickListener.onMovieItemClicked(id)
                         }
                     }
                 }
@@ -112,5 +106,9 @@ class MoviesAdapter @Inject constructor(
     fun setMoviesData(movies: ArrayList<MovieDTO>) {
         moviesData = movies
         notifyDataSetChanged()
+    }
+
+    fun setMovieItemClickListener(listener: OnMovieItemClickListener) {
+        onClickListener = listener
     }
 }

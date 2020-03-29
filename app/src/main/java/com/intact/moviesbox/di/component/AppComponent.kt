@@ -1,8 +1,10 @@
 package com.intact.moviesbox.di.component
 
 import android.app.Application
+import android.widget.BaseAdapter
 import com.intact.moviesbox.MoviesBoxApp
 import com.intact.moviesbox.di.module.*
+import com.intact.moviesbox.ui.base.BaseActivity
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -29,9 +31,14 @@ import javax.inject.Singleton
 interface AppComponent {
 
     /**
-     *  we want to bind some instance to Component. In this case we can create an
-     *  interface with @Component.Builder annotation and add whatever method we
-     *  want to add to builder. Here we are adding Application to my AppComponent.
+     *  we want to bind some instance to Component. In this case we can create an interface with
+     *  @Component.Builder annotation and add whatever method we want to add to builder. Here we
+     *  are adding Application to my AppComponent.
+     *
+     *  we are annotating that this interface will be responsible for our generated builder which
+     *  will have methods responsible for retrieving our application class and building whole
+     *  component together. @BindsInstance means that this method will also inject our Application
+     *  class to the component so we will be able to use it there.
      */
 
     @Component.Builder

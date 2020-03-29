@@ -37,11 +37,11 @@ class MovieDetailActivity : BaseActivity(), HasAndroidInjector {
         actionBar?.run {
             this.setDisplayHomeAsUpEnabled(true)
         }
-        showMovieDetailFrag(intent!!.extras!!.getString(MOVIE_ID)!!)
+        showMovieDetailFrag(intent!!.extras!!.getLong(MOVIE_ID)!!)
     }
 
     // show movie detail frag
-    private fun showMovieDetailFrag(movieId: String) {
+    private fun showMovieDetailFrag(movieId: Long) {
         // initializing fragment
         val fragment = MovieDetailFragment.newInstance(movieId)
 

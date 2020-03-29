@@ -20,8 +20,11 @@ import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
-import com.intact.moviesbox.ui.base.MoviesAdapter
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
+import com.intact.moviesbox.ui.base.MoviesAdapter
+import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
+import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
+import com.intact.moviesbox.util.MOVIE_ID
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
@@ -29,7 +32,7 @@ import com.microsoft.appcenter.crashes.Crashes
 import timber.log.Timber
 import javax.inject.Inject
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(), OnMovieItemClickListener {
 
     @Inject
     @NowPlayingQualifier
@@ -106,6 +109,7 @@ class HomeActivity : BaseActivity() {
     // updating the now playing movies UI
     private fun updateNowPlayingMoviesUI() {
         nowPlayingMoviesAdapter.setMoviesData(ArrayList())
+        nowPlayingMoviesAdapter.setMovieItemClickListener(this)
 
         with(binding.nowPlayingRecyclerView) {
             layoutManager =
@@ -118,6 +122,7 @@ class HomeActivity : BaseActivity() {
     // updating the upcoming movies UI
     private fun updateUpcomingMoviesUI() {
         upcomingMoviesAdapter.setMoviesData(ArrayList())
+        upcomingMoviesAdapter.setMovieItemClickListener(this)
 
         with(binding.upcomingMoviesRecyclerView) {
             layoutManager =
@@ -130,6 +135,7 @@ class HomeActivity : BaseActivity() {
     // updating the top rated movies UI
     private fun updatedTopRatedMoviesUI() {
         topRatedMoviesAdapter.setMoviesData(ArrayList())
+        topRatedMoviesAdapter.setMovieItemClickListener(this)
 
         with(binding.topRatedMoviesRecyclerView) {
             layoutManager =
@@ -223,6 +229,12 @@ class HomeActivity : BaseActivity() {
 
         // When status updates are no longer needed, unregister the listener.
         appUpdateManager.unregisterListener(installUpdateListener)
+    }
+
+    override fun onMovieItemClicked(movieId: Long) {
+        val intent = Intent(this@HomeActivity, MovieDetailActivity::class.java)
+        intent.putExtra(MOVIE_ID, movieId)
+        startActivity(intent)
     }
 }
 

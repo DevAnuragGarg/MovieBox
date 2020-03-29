@@ -22,7 +22,7 @@ class MovieDetailViewModel @Inject constructor(
     private val errorLiveData = MutableLiveData<ErrorDTO>()
     private val movieDetailLiveData = MutableLiveData<MovieDetailDTO>()
 
-    fun getMovieDetails(id: String) {
+    fun getMovieDetails(id: Long) {
         getLoadingLiveData().value = true
 //        getCompositeDisposable().add(
 //            getBaseDataManager().getMovieDetails(id)

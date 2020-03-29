@@ -96,13 +96,10 @@ dependencies {
 
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation 'androidx.test:core:1.2.0' // roboelectric
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
     testImplementation 'android.arch.core:core-testing:1.1.1' // Test helpers for LiveData
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
+    testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInlineVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
 }
 apply plugin: 'com.google.gms.google-services'
 

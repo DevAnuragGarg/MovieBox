@@ -30,14 +30,14 @@ class MovieDetailFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: CustomViewModelFactory
 
-    private lateinit var movieId: String
+    private var movieId: Long = 0
     private lateinit var binding: FragmentMovieDetailBinding
     private lateinit var movieDetailViewModel: MovieDetailViewModel
 
     // creating new instance using static function
     companion object {
 
-        fun newInstance(movieId: String) = MovieDetailFragment().apply {
+        fun newInstance(movieId: Long) = MovieDetailFragment().apply {
             arguments = bundleOf(
                 MOVIE_ID to movieId
             )
@@ -46,7 +46,7 @@ class MovieDetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieId = arguments?.getString(MOVIE_ID)!!
+        movieId = arguments?.getLong(MOVIE_ID)!!
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
