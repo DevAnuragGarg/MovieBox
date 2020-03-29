@@ -5,7 +5,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
+    android:background="@color/generic_bg"
     tools:context=".ui.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -27,6 +27,16 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.home.HomeActivity">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.4"
+            android:background="@drawable/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
@@ -105,6 +115,76 @@
                     app:layout_constraintHorizontal_bias="0.555"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/popularMoviesCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_80"
+                    android:layout_margin="@dimen/dimen_10"
+                    android:layout_marginBottom="@dimen/dimen_20"
+                    android:background="@drawable/popular_movie_bg"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="@dimen/dimen_5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/upComingMoviesCardView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/upcomingMoviesRecyclerView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5"
+                        android:background="@drawable/popular_movie_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/popular_movies_title"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_18"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/upComingMoviesCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_80"
+                    android:layout_margin="@dimen/dimen_10"
+                    android:layout_marginBottom="@dimen/dimen_20"
+                    android:background="@drawable/popular_movie_bg"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="@dimen/dimen_5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/popularMoviesCardView"
+                    app:layout_constraintTop_toBottomOf="@+id/upcomingMoviesRecyclerView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5"
+                        android:background="@drawable/popular_movie_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/upcoming_movies_title"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/size_18"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
