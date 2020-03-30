@@ -16,10 +16,10 @@ data class MovieEntity(
     val tagLine: String?,
     val overview: String,
     val popularity: Float,
-    val voteAverage: Float,
     val posterPath: String,
+    val voteAverage: Float?,
     val releaseDate: String,
-    val backdropPath: String,
+    val backdropPath: String?,
     val originalTitle: String,
     val originalLanguage: String
 )

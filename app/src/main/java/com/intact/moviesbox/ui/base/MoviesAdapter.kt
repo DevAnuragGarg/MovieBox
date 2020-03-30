@@ -96,11 +96,11 @@ class MoviesAdapter @Inject constructor(
     }
 
     class MovieViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemMovieBinding.bind(view)!!
+        val binding: ItemMovieBinding = ItemMovieBinding.bind(view)
     }
 
     class PosterMovieViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemPosterMovieBinding.bind(view)!!
+        val binding: ItemPosterMovieBinding = ItemPosterMovieBinding.bind(view)
     }
 
     fun setMoviesData(movies: ArrayList<MovieDTO>) {

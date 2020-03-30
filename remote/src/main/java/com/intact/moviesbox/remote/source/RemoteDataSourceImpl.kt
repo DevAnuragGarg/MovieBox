@@ -58,7 +58,7 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getMovieDetails(movieId: Long): Single<MovieData> {
         return movieServiceRequests.getMovieDetails(
             movieId = movieId,
-            apiKey = "e254cf574a28681bc9e82ec1719360b5"
+            apiKey = MOVIE_DB_API_KEY
         ).map { movieDataNetworkMapper.from(it) }
     }
 }

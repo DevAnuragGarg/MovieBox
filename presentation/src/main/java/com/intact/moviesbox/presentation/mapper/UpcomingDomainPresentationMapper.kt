@@ -4,6 +4,7 @@ import com.intact.moviesbox.domain.entities.MovieEntity
 import com.intact.moviesbox.domain.entities.UpcomingMoviesEntity
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.model.UpcomingMoviesDTO
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -14,6 +15,7 @@ class UpcomingDomainPresentationMapper @Inject constructor() :
     Mapper<UpcomingMoviesEntity, UpcomingMoviesDTO> {
 
     override fun from(e: UpcomingMoviesDTO): UpcomingMoviesEntity {
+        Timber.d(e.toString())
         val movieList = ArrayList<MovieEntity>()
 
         // using the movie entity mapper
@@ -31,6 +33,7 @@ class UpcomingDomainPresentationMapper @Inject constructor() :
     }
 
     override fun to(t: UpcomingMoviesEntity): UpcomingMoviesDTO {
+        Timber.d(t.toString())
         val movieList = ArrayList<MovieDTO>()
         val mapper = MovieDomainPresentationMapper()
 

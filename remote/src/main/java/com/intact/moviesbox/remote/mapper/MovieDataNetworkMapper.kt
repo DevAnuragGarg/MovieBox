@@ -30,24 +30,24 @@ class MovieDataNetworkMapper @Inject constructor() : Mapper<MovieData, MovieDTON
 
     override fun to(t: MovieData): MovieDTONetwork {
         return MovieDTONetwork(
-            voteCount = t.voteCount,
             id = t.id,
-            voteAverage = t.voteAverage,
             title = t.title,
-            popularity = t.popularity,
-            posterPath = t.posterPath,
-            originalLanguage = t.originalLanguage,
-            originalTitle = t.originalTitle,
-            backdropPath = t.backdropPath,
             adult = t.adult,
-            overview = t.overview,
-            releaseDate = t.releaseDate,
-            tagLine = t.tagLine,
             budget = t.budget,
+            status = t.status,
             imdbId = t.imdbId,
+            tagLine = t.tagLine,
             revenue = t.revenue,
             runtime = t.runtime,
-            status = t.status
+            overview = t.overview,
+            voteCount = t.voteCount,
+            popularity = t.popularity,
+            posterPath = t.posterPath,
+            voteAverage = t.voteAverage,
+            releaseDate = t.releaseDate,
+            backdropPath = t.backdropPath,
+            originalTitle = t.originalTitle,
+            originalLanguage = t.originalLanguage
         )
     }
 }

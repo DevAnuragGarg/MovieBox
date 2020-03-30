@@ -26,9 +26,9 @@ data class MovieDTONetwork(
     @Expose @SerializedName("vote_count") val voteCount: Int,
     @Expose @SerializedName("popularity") val popularity: Float,
     @Expose @SerializedName("poster_path") val posterPath: String,
-    @Expose @SerializedName("vote_average") val voteAverage: Float,
+    @Expose @SerializedName("vote_average") val voteAverage: Float?,
     @Expose @SerializedName("release_date") val releaseDate: String,
-    @Expose @SerializedName("backdrop_path") val backdropPath: String,
+    @Expose @SerializedName("backdrop_path") val backdropPath: String?,
     @Expose @SerializedName("original_title") val originalTitle: String,
     @Expose @SerializedName("original_language") val originalLanguage: String
 )
