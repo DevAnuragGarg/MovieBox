@@ -33,6 +33,7 @@
             android:layout_height="0dp"
             android:alpha="0.4"
             android:background="@drawable/background"
+            android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,10 +124,11 @@
                     android:layout_margin="@dimen/dimen_10"
                     android:layout_marginBottom="@dimen/dimen_20"
                     android:background="@drawable/popular_movie_bg"
+                    android:onClick="onViewClicked"
                     app:cardBackgroundColor="@color/card_bg"
                     app:cardCornerRadius="@dimen/dimen_5"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/upComingMoviesCardView"
+                    app:layout_constraintEnd_toStartOf="@+id/trendingMoviesCardView"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/upcomingMoviesRecyclerView">
@@ -134,8 +136,19 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/dimen_5"
-                        android:background="@drawable/popular_movie_bg">
+                        android:layout_margin="@dimen/dimen_5">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:alpha="0.4"
+                            android:contentDescription="@null"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/popular_movie_bg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -152,12 +165,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/upComingMoviesCardView"
+                    android:id="@+id/trendingMoviesCardView"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dimen_80"
                     android:layout_margin="@dimen/dimen_10"
                     android:layout_marginBottom="@dimen/dimen_20"
                     android:background="@drawable/popular_movie_bg"
+                    android:onClick="onViewClicked"
                     app:cardBackgroundColor="@color/card_bg"
                     app:cardCornerRadius="@dimen/dimen_5"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -169,13 +183,24 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/dimen_5"
-                        android:background="@drawable/popular_movie_bg">
+                        android:layout_margin="@dimen/dimen_5">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:alpha="0.4"
+                            android:contentDescription="@null"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/trending_movie_bg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/upcoming_movies_title"
+                            android:text="@string/trending_movies_title"
                             android:textColor="@color/white"
                             android:textSize="@dimen/size_18"
                             android:textStyle="bold"

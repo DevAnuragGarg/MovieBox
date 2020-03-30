@@ -1,8 +1,6 @@
 package com.intact.moviesbox.data.repository
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.NowPlayingMoviesData
-import com.intact.moviesbox.data.model.TopRatedMoviesData
+import com.intact.moviesbox.data.model.*
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -11,10 +9,10 @@ import io.reactivex.Single
  * contract between data layer and remote data source
  */
 interface RemoteDataSource {
-    fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesData>
-    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesData>
-    fun getUpcomingMovies()
-    fun getPopularMovies(pageNumber: String): Observable<NowPlayingMoviesData>
-    fun getTrendingMovies()
     fun getMovieDetails(movieId: Long): Single<MovieData>
+    fun getPopularMovies(pageNumber: String): Observable<PopularMoviesData>
+    fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesData>
+    fun getUpcomingMovies(pageNumber: String): Observable<UpcomingMoviesData>
+    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesData>
+    fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesData>
 }

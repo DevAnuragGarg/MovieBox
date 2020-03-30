@@ -3,13 +3,12 @@ package com.intact.moviesbox.presentation.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
 import com.intact.moviesbox.domain.entities.TopRatedMoviesEntity
+import com.intact.moviesbox.domain.entities.UpcomingMoviesEntity
 import com.intact.moviesbox.domain.usecases.NowPlayingMoviesUseCase
 import com.intact.moviesbox.domain.usecases.TopRatedMoviesUseCase
+import com.intact.moviesbox.domain.usecases.UpcomingMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
-import com.intact.moviesbox.presentation.model.ErrorDTO
-import com.intact.moviesbox.presentation.model.MovieDTO
-import com.intact.moviesbox.presentation.model.NowPlayingMoviesDTO
-import com.intact.moviesbox.presentation.model.TopRatedMoviesDTO
+import com.intact.moviesbox.presentation.model.*
 import com.intact.moviesbox.presentation.viewmodels.base.BaseViewModel
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
@@ -33,16 +32,19 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
-    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, NowPlayingMoviesDTO>,
-    private val topRatedMoviesMapper: Mapper<TopRatedMoviesEntity, TopRatedMoviesDTO>,
+    private val upcomingMoviesUseCase: UpcomingMoviesUseCase,
+    private val topRatedMoviesUseCase: TopRatedMoviesUseCase,
     private val nowPlayingMoviesUseCase: NowPlayingMoviesUseCase,
-    private val topRatedMoviesUseCase: TopRatedMoviesUseCase
+    private val topRatedMoviesMapper: Mapper<TopRatedMoviesEntity, TopRatedMoviesDTO>,
+    private val upcomingMoviesMapper: Mapper<UpcomingMoviesEntity, UpcomingMoviesDTO>,
+    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, NowPlayingMoviesDTO>
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
     private val errorLiveData = MutableLiveData<ErrorDTO>()
-    private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private val upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private fun getCompositeDisposable() = CompositeDisposable()
 
     // get now playing movies
@@ -75,9 +77,25 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    // get the upcoming movies
+    fun getUpcomingMovies(pageNumber: String) {
+        isLoading.value = true
+        getCompositeDisposable().add(
+            upcomingMoviesUseCase.buildUseCase(UpcomingMoviesUseCase.Param(pageNumber = pageNumber))
+                .map { upcomingMoviesMapper.to(it) }
+                .subscribe({ it ->
+                    Timber.d("Success: Upcoming movies response received: ${it.movies}")
+                    upcomingMoviesLiveData.value = it.movies
+                }, {
+                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                })
+        )
+    }
+
     fun getErrorLiveData() = errorLiveData
-    fun getNowPlayingMoviesLiveData() = nowPlayingMoviesLiveData
     fun getTopRatedMoviesLiveData() = topRatedMoviesLiveData
+    fun getUpcomingMoviesLiveData() = upcomingMoviesLiveData
+    fun getNowPlayingMoviesLiveData() = nowPlayingMoviesLiveData
 
     override fun onCleared() {
         super.onCleared()

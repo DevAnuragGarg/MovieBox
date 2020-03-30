@@ -1,17 +1,10 @@
 package com.intact.moviesbox.di.module
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.NowPlayingMoviesData
-import com.intact.moviesbox.data.model.TopRatedMoviesData
+import com.intact.moviesbox.data.model.*
 import com.intact.moviesbox.data.repository.RemoteDataSource
 import com.intact.moviesbox.remote.api.MovieServiceRequests
-import com.intact.moviesbox.remote.mapper.Mapper
-import com.intact.moviesbox.remote.mapper.MovieDataNetworkMapper
-import com.intact.moviesbox.remote.mapper.NowPlayingDataNetworkMapper
-import com.intact.moviesbox.remote.mapper.TopRatedDataNetworkMapper
-import com.intact.moviesbox.remote.model.MovieDTONetwork
-import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
-import com.intact.moviesbox.remote.model.TopRatedMoviesDTONetwork
+import com.intact.moviesbox.remote.mapper.*
+import com.intact.moviesbox.remote.model.*
 import com.intact.moviesbox.remote.source.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -39,9 +32,18 @@ class RemoteRequestModule {
         fun bindMovieDataNetworkMapper(movieDataNetworkMapper: MovieDataNetworkMapper): Mapper<MovieData, MovieDTONetwork>
 
         @Binds
-        fun bindNowPlayingDataNetworkMapper(nowPlayingDataNetworkMapper: NowPlayingDataNetworkMapper): Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork>
+        fun bindPopularDataNetworkMapper(popularDataNetworkMapper: PopularDataNetworkMapper): Mapper<PopularMoviesData, PopularMoviesDTONetwork>
 
         @Binds
         fun bindTopRatedDataNetworkMapper(topRatedDataNetworkMapper: TopRatedDataNetworkMapper): Mapper<TopRatedMoviesData, TopRatedMoviesDTONetwork>
+
+        @Binds
+        fun bindUpcomingDataNetworkMapper(upcomingDataNetworkMapper: UpcomingDataNetworkMapper): Mapper<UpcomingMoviesData, UpcomingMoviesDTONetwork>
+
+        @Binds
+        fun bindTrendingDataNetworkMapper(trendingDataNetworkMapper: TrendingDataNetworkMapper): Mapper<TrendingMoviesData, TrendingMoviesDTONetwork>
+
+        @Binds
+        fun bindNowPlayingDataNetworkMapper(nowPlayingDataNetworkMapper: NowPlayingDataNetworkMapper): Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork>
     }
 }

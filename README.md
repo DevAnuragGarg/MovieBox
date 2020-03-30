@@ -33,7 +33,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
-- [CircleCI](https://circleci.com/) for continous integration
+- [CircleCI](https://circleci.com/) for continuous integration
 - [Mockito](https://site.mockito.org)
 
 ## License

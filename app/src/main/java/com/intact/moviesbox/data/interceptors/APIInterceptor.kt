@@ -8,7 +8,6 @@ import java.io.IOException
 
 /**
  * Interceptor file to print the logs for the api hit
- *
  */
 
 class APIInterceptor : Interceptor {
@@ -32,6 +31,7 @@ class APIInterceptor : Interceptor {
         Timber.d("**********************       RESPONSE INITIATED     **********************")
         Timber.d("RESPONSE CODE -> %s", response.code)
         Timber.d("RESPONSE HEADERS -> %s", response.headers)
+        Timber.d("RESPONSE BODY -> %s", response.body)
         Timber.d("**********************       RESPONSE FINISHED     **********************")
 
         // returning the response object

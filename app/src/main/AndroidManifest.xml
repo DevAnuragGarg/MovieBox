@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.intact.moviesbox">
+    package="com.intact.moviesbox">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/movie"
-            android:label="@string/app_name"
-            android:name="com.intact.moviesbox.MoviesBoxApp"
-            android:usesCleartextTraffic="true"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name="com.intact.moviesbox.ui.home.HomeActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        android:name="com.intact.moviesbox.MoviesBoxApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/movie"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.intact.moviesbox.ui.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <!-- For enabling deep linking-->
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="http"
-                      android:host="www.moviesbox.com"
-                      android:pathPrefix="/android"/>
-                <data android:scheme="moviesbox"
-                      android:host="android"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.moviesbox.com"
+                    android:pathPrefix="/android"
+                    android:scheme="http" />
+                <data
+                    android:host="android"
+                    android:scheme="moviesbox" />
             </intent-filter>
         </activity>
-        <activity android:name="com.intact.moviesbox.ui.movieDetail.MovieDetailActivity"
-                  android:theme="@style/AppTheme.NoActionBar.DetailScreen"/>
+        <activity
+            android:name="com.intact.moviesbox.ui.movieDetail.MovieDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar.DetailScreen" />
+        <activity
+            android:name=".ui.MoviesListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

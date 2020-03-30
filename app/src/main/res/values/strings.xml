@@ -4,8 +4,9 @@
     <!--Home screen-->
     <string name="popular_movies_title">Popular Movies</string>
     <string name="upcoming_movies_title">Upcoming Movies</string>
-    <string name="now_playing_movies_title">Now Playing Movies</string>
+    <string name="trending_movies_title">Trending Movies</string>
     <string name="top_rated_movies_title">Top Rated Movies</string>
+    <string name="now_playing_movies_title">Now Playing Movies</string>
 
     <!--Content description-->
     <string name="movie_image">movieImage</string>
