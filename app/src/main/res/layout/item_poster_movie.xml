@@ -9,13 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/dimen_250"
-        android:layout_height="@dimen/dimen_200"
+        android:layout_height="@dimen/dimen_250"
         android:padding="@dimen/dimen_3">
 
         <ImageView
             android:id="@+id/bannerIV"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_150"
+            android:layout_height="@dimen/dimen_180"
             android:contentDescription="@string/movie_image"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,19 +24,44 @@
 
         <TextView
             android:id="@+id/tvMovieName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/dimen_5"
-            android:layout_marginBottom="@dimen/dimen_5"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_15"
+            android:textSize="@dimen/size_16"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bannerIV" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_2"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.1"
+            android:theme="@style/CustomRatingBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ratingBar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

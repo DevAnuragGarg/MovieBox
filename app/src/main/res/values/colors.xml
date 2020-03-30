@@ -6,6 +6,7 @@
 
     <!-- Generic colors -->
     <color name="white">#FFFFFF</color>
-    <color name="generic_bg">#212121</color>
     <color name="card_bg">#37474F</color>
+    <color name="generic_bg">#212121</color>
+    <color name="rating_yellow">#EF962D</color>
 </resources>

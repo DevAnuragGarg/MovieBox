@@ -70,6 +70,8 @@ class MoviesAdapter @Inject constructor(
                 with(holder as PosterMovieViewHolder) {
                     with(moviesData[position]) {
                         binding.tvMovieName.text = title
+                        binding.ratingBar.rating = voteAverage!!.div(2)
+                        binding.tvRating.text = voteAverage.toString()
                         picasso.load(IMAGE_BASE_URL_500 + backdropPath)
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 

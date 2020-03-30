@@ -21,4 +21,8 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+
+    <style name="CustomRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/rating_yellow</item>
+    </style>
 </resources>
