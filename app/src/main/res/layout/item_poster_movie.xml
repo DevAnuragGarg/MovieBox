@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/dimen_250"
-        android:layout_height="@dimen/dimen_250"
+        android:layout_height="match_parent"
         android:padding="@dimen/dimen_3">
 
         <ImageView
@@ -24,9 +24,10 @@
 
         <TextView
             android:id="@+id/tvMovieName"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_5"
+            android:layout_marginBottom="@dimen/dimen_5"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
@@ -40,28 +41,30 @@
 
         <RatingBar
             android:id="@+id/ratingBar"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_marginBottom="@dimen/dimen_2"
+            android:layout_marginBottom="@dimen/dimen_3"
             android:numStars="5"
             android:rating="4.5"
             android:stepSize="0.1"
             android:theme="@style/CustomRatingBar"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvRating"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvRating"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_12"
-            android:layout_marginEnd="@dimen/dimen_10"
-            android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_marginStart="@dimen/dimen_10"
             android:textColor="@color/white"
             android:textSize="@dimen/size_16"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ratingBar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
