@@ -10,4 +10,7 @@
 
     <!--Content description-->
     <string name="movie_image">movieImage</string>
+
+    <!-- Home screen item listing-->
+    <string name="release_on">Release on: %s</string>
 </resources>
