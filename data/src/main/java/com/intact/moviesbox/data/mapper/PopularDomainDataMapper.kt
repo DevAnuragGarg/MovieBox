@@ -1,34 +1,34 @@
 package com.intact.moviesbox.data.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.PopularMoviesData
-import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.domain.entities.PopularMoviesEntity
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.data.model.PopularMoviesDataDTO
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
+import com.intact.moviesbox.domain.entities.PopularMoviesDomainDTO
 import javax.inject.Inject
 
 class PopularDomainDataMapper @Inject constructor() :
-    Mapper<PopularMoviesEntity, PopularMoviesData> {
+    Mapper<PopularMoviesDomainDTO, PopularMoviesDataDTO> {
 
-    override fun from(e: PopularMoviesData): PopularMoviesEntity {
-        val popularMovies = ArrayList<MovieEntity>()
+    override fun from(e: PopularMoviesDataDTO): PopularMoviesDomainDTO {
+        val popularMovies = ArrayList<MovieDomainDTO>()
 
         // used the movie domain data mapper to convert
         // movie data into movie entity
         val movieDomainDataMapper = MovieDomainDataMapper()
 
-        for (movie in e.movies) {
+        for (movie in e.movieDTOS) {
             popularMovies.add(movieDomainDataMapper.from(movie))
         }
 
-        return PopularMoviesEntity(
+        return PopularMoviesDomainDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
             movies = popularMovies
         )
     }
 
-    override fun to(t: PopularMoviesEntity): PopularMoviesData {
-        val popularMovies = ArrayList<MovieData>()
+    override fun to(t: PopularMoviesDomainDTO): PopularMoviesDataDTO {
+        val popularMovies = ArrayList<MovieDataDTO>()
 
         // used the movie domain data mapper to convert
         // movie entity into movie data
@@ -38,10 +38,10 @@ class PopularDomainDataMapper @Inject constructor() :
             popularMovies.add(movieDomainDataMapper.to(movie))
         }
 
-        return PopularMoviesData(
+        return PopularMoviesDataDTO(
             pageNumber = t.pageNumber,
             totalPages = t.totalPages,
-            movies = popularMovies
+            movieDTOS = popularMovies
         )
     }
 }

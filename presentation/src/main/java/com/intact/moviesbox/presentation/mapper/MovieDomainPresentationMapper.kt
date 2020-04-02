@@ -1,16 +1,16 @@
 package com.intact.moviesbox.presentation.mapper
 
-import com.intact.moviesbox.domain.entities.MovieEntity
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import javax.inject.Inject
 
 /**
  * mapper class to convert the movie domain layer data to movie presentation layer data
  */
-class MovieDomainPresentationMapper @Inject constructor(): Mapper<MovieEntity, MovieDTO> {
+class MovieDomainPresentationMapper @Inject constructor(): Mapper<MovieDomainDTO, MovieDTO> {
 
-    override fun from(e: MovieDTO): MovieEntity {
-        return MovieEntity(
+    override fun from(e: MovieDTO): MovieDomainDTO {
+        return MovieDomainDTO(
             voteCount = e.voteCount,
             id = e.id,
             voteAverage = e.voteAverage,
@@ -32,7 +32,7 @@ class MovieDomainPresentationMapper @Inject constructor(): Mapper<MovieEntity, M
         )
     }
 
-    override fun to(t: MovieEntity): MovieDTO {
+    override fun to(t: MovieDomainDTO): MovieDTO {
         return MovieDTO(
             id = t.id,
             title = t.title,

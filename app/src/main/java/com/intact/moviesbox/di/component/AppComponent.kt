@@ -1,10 +1,8 @@
 package com.intact.moviesbox.di.component
 
 import android.app.Application
-import android.widget.BaseAdapter
 import com.intact.moviesbox.MoviesBoxApp
 import com.intact.moviesbox.di.module.*
-import com.intact.moviesbox.ui.base.BaseActivity
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -26,7 +24,7 @@ import javax.inject.Singleton
     modules = [AndroidInjectionModule::class, ActivityBuilderModule::class, AppModule::class,
         RemoteRequestModule::class, PicassoModule::class, ApplicationContextModule::class,
         ViewModelModule::class, DataModule::class, PresentationModule::class,
-        ViewModelFactoryModule::class]
+        ViewModelFactoryModule::class, LocalPersistenceModule::class]
 )
 interface AppComponent {
 

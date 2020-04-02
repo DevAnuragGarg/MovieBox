@@ -1,34 +1,34 @@
 package com.intact.moviesbox.data.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.TrendingMoviesData
-import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.domain.entities.TrendingMoviesEntity
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.data.model.TrendingMoviesDataDTO
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
+import com.intact.moviesbox.domain.entities.TrendingMoviesDomainDTO
 import javax.inject.Inject
 
 class TrendingDomainDataMapper @Inject constructor() :
-    Mapper<TrendingMoviesEntity, TrendingMoviesData> {
+    Mapper<TrendingMoviesDomainDTO, TrendingMoviesDataDTO> {
 
-    override fun from(e: TrendingMoviesData): TrendingMoviesEntity {
-        val trendingMovies = ArrayList<MovieEntity>()
+    override fun from(e: TrendingMoviesDataDTO): TrendingMoviesDomainDTO {
+        val trendingMovies = ArrayList<MovieDomainDTO>()
 
         // used the movie domain data mapper to convert
         // movie data into movie entity
         val movieDomainDataMapper = MovieDomainDataMapper()
 
-        for (movie in e.movies) {
+        for (movie in e.movieDTOS) {
             trendingMovies.add(movieDomainDataMapper.from(movie))
         }
 
-        return TrendingMoviesEntity(
+        return TrendingMoviesDomainDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
             movies = trendingMovies
         )
     }
 
-    override fun to(t: TrendingMoviesEntity): TrendingMoviesData {
-        val trendingMovies = ArrayList<MovieData>()
+    override fun to(t: TrendingMoviesDomainDTO): TrendingMoviesDataDTO {
+        val trendingMovies = ArrayList<MovieDataDTO>()
 
         // used the movie domain data mapper to convert
         // movie entity into movie data
@@ -38,10 +38,10 @@ class TrendingDomainDataMapper @Inject constructor() :
             trendingMovies.add(movieDomainDataMapper.to(movie))
         }
 
-        return TrendingMoviesData(
+        return TrendingMoviesDataDTO(
             pageNumber = t.pageNumber,
             totalPages = t.totalPages,
-            movies = trendingMovies
+            movieDTOS = trendingMovies
         )
     }
 }

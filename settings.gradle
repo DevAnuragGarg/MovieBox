@@ -1,2 +1,4 @@
 include ':app', ':domain', ':presentation', ':data'
 include ':remote'
+include ':local'
+include ':local'

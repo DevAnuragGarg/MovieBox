@@ -1,10 +1,10 @@
 package com.intact.moviesbox.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import com.intact.moviesbox.domain.entities.PopularMoviesEntity
-import com.intact.moviesbox.domain.entities.TrendingMoviesEntity
-import com.intact.moviesbox.domain.usecases.PopularMoviesUseCase
-import com.intact.moviesbox.domain.usecases.TrendingMoviesUseCase
+import com.intact.moviesbox.domain.entities.PopularMoviesDomainDTO
+import com.intact.moviesbox.domain.entities.TrendingMoviesDomainDTO
+import com.intact.moviesbox.domain.usecases.GetPopularMoviesUseCase
+import com.intact.moviesbox.domain.usecases.GetTrendingMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
@@ -33,10 +33,10 @@ import javax.inject.Inject
  */
 
 class MoviesListViewModel @Inject constructor(
-    private val popularMoviesUseCase: PopularMoviesUseCase,
-    private val trendingMoviesUseCase: TrendingMoviesUseCase,
-    private val popularMoviesMapper: Mapper<PopularMoviesEntity, PopularMoviesDTO>,
-    private val trendingMoviesMapper: Mapper<TrendingMoviesEntity, TrendingMoviesDTO>
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
+    private val popularMoviesMapper: Mapper<PopularMoviesDomainDTO, PopularMoviesDTO>,
+    private val trendingMoviesMapper: Mapper<TrendingMoviesDomainDTO, TrendingMoviesDTO>
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
@@ -49,7 +49,7 @@ class MoviesListViewModel @Inject constructor(
     fun getTrendingMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            trendingMoviesUseCase.buildUseCase(TrendingMoviesUseCase.Param(pageNumber = pageNumber))
+            getTrendingMoviesUseCase.buildUseCase(GetTrendingMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { trendingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Trending movies response received: ${it.movies}")
@@ -64,7 +64,7 @@ class MoviesListViewModel @Inject constructor(
     fun getPopularMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            popularMoviesUseCase.buildUseCase(PopularMoviesUseCase.Param(pageNumber = pageNumber))
+            getPopularMoviesUseCase.buildUseCase(GetPopularMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { popularMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Popular movies response received: ${it.movies}")

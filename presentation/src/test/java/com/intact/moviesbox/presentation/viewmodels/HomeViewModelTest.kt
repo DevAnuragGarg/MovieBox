@@ -2,7 +2,6 @@ package com.intact.moviesbox.presentation.viewmodels
 
 import com.intact.moviesbox.domain.repositories.MovieRepository
 import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
-import com.intact.moviesbox.domain.usecases.PopularMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.NowPlayingDomainPresentationMapper
 import org.junit.Before
 import org.junit.runner.RunWith

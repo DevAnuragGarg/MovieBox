@@ -40,10 +40,11 @@ dependencies {
     // we could have used only the presentation layer through which app module can
     // interact, but to fill the dependencies using the dagger2, all the implementations
     // are written in the di folder of the app module.
-    implementation project(path: ':domain')
-    implementation project(path: ':presentation')
     implementation project(path: ':data')
+    implementation project(path: ':local')
+    implementation project(path: ':domain')
     implementation project(path: ':remote')
+    implementation project(path: ':presentation')
 
     // kotlin kx
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
@@ -67,6 +68,11 @@ dependencies {
 
     // picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // room dependencies
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     // dagger
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"

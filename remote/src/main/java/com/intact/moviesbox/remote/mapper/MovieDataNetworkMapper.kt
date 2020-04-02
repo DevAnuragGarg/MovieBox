@@ -1,12 +1,12 @@
 package com.intact.moviesbox.remote.mapper
 
-import com.intact.moviesbox.data.model.MovieData
+import com.intact.moviesbox.data.model.MovieDataDTO
 import com.intact.moviesbox.remote.model.MovieDTONetwork
 import javax.inject.Inject
 
-class MovieDataNetworkMapper @Inject constructor() : Mapper<MovieData, MovieDTONetwork> {
-    override fun from(e: MovieDTONetwork): MovieData {
-        return MovieData(
+class MovieDataNetworkMapper @Inject constructor() : Mapper<MovieDataDTO, MovieDTONetwork> {
+    override fun from(e: MovieDTONetwork): MovieDataDTO {
+        return MovieDataDTO(
             id = e.id,
             title = e.title,
             adult = e.adult,
@@ -28,7 +28,7 @@ class MovieDataNetworkMapper @Inject constructor() : Mapper<MovieData, MovieDTON
         )
     }
 
-    override fun to(t: MovieData): MovieDTONetwork {
+    override fun to(t: MovieDataDTO): MovieDTONetwork {
         return MovieDTONetwork(
             id = t.id,
             title = t.title,

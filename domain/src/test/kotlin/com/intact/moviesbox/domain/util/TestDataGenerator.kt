@@ -5,10 +5,10 @@ import com.intact.moviesbox.domain.entities.*
 class TestDataGenerator {
 
     companion object {
-        fun getPopularMoviesList(): PopularMoviesEntity {
-            val arrayList = ArrayList<MovieEntity>()
+        fun getPopularMoviesList(): PopularMoviesDomainDTO {
+            val arrayList = ArrayList<MovieDomainDTO>()
             arrayList.add(
-                MovieEntity(
+                MovieDomainDTO(
                     392,
                     429203,
                     null,
@@ -29,13 +29,13 @@ class TestDataGenerator {
                     "en"
                 )
             )
-            return PopularMoviesEntity(pageNumber = "1", totalPages = "500", movies = arrayList)
+            return PopularMoviesDomainDTO(pageNumber = "1", totalPages = "500", movies = arrayList)
         }
 
-        fun getTrendingMoviesList(): TrendingMoviesEntity {
-            val arrayList = ArrayList<MovieEntity>()
+        fun getTrendingMoviesList(): TrendingMoviesDomainDTO {
+            val arrayList = ArrayList<MovieDomainDTO>()
             arrayList.add(
-                MovieEntity(
+                MovieDomainDTO(
                     392,
                     429203,
                     null,
@@ -56,13 +56,13 @@ class TestDataGenerator {
                     "en"
                 )
             )
-            return TrendingMoviesEntity(pageNumber = "1", totalPages = "500", movies = arrayList)
+            return TrendingMoviesDomainDTO(pageNumber = "1", totalPages = "500", movies = arrayList)
         }
 
-        fun getNowPlayingMoviesList(): NowPlayingMoviesEntity {
-            val arrayList = ArrayList<MovieEntity>()
+        fun getNowPlayingMoviesList(): NowPlayingMoviesDomainDTO {
+            val arrayList = ArrayList<MovieDomainDTO>()
             arrayList.add(
-                MovieEntity(
+                MovieDomainDTO(
                     392,
                     429203,
                     null,
@@ -83,13 +83,13 @@ class TestDataGenerator {
                     "en"
                 )
             )
-            return NowPlayingMoviesEntity(pageNumber = "1", totalPages = "500", movies = arrayList)
+            return NowPlayingMoviesDomainDTO(pageNumber = "1", totalPages = "500", movies = arrayList)
         }
 
-        fun getTopRatedMoviesList(): TopRatedMoviesEntity {
-            val arrayList = ArrayList<MovieEntity>()
+        fun getTopRatedMoviesList(): TopRatedMoviesDomainDTO {
+            val arrayList = ArrayList<MovieDomainDTO>()
             arrayList.add(
-                MovieEntity(
+                MovieDomainDTO(
                     392,
                     429203,
                     null,
@@ -110,13 +110,13 @@ class TestDataGenerator {
                     "en"
                 )
             )
-            return TopRatedMoviesEntity(pageNumber = "1", totalPages = "500", movies = arrayList)
+            return TopRatedMoviesDomainDTO(pageNumber = "1", totalPages = "500", movies = arrayList)
         }
 
-        fun getUpcomingMoviesList(): UpcomingMoviesEntity {
-            val arrayList = ArrayList<MovieEntity>()
+        fun getUpcomingMoviesList(): UpcomingMoviesDomainDTO {
+            val arrayList = ArrayList<MovieDomainDTO>()
             arrayList.add(
-                MovieEntity(
+                MovieDomainDTO(
                     392,
                     429203,
                     null,
@@ -137,7 +137,7 @@ class TestDataGenerator {
                     "en"
                 )
             )
-            return UpcomingMoviesEntity(pageNumber = "1", totalPages = "500", movies = arrayList)
+            return UpcomingMoviesDomainDTO(pageNumber = "1", totalPages = "500", movies = arrayList)
         }
     }
 }

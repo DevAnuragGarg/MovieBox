@@ -1,7 +1,7 @@
 package com.intact.moviesbox.presentation.mapper
 
-import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.domain.entities.UpcomingMoviesEntity
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
+import com.intact.moviesbox.domain.entities.UpcomingMoviesDomainDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.model.UpcomingMoviesDTO
 import timber.log.Timber
@@ -12,11 +12,11 @@ import javax.inject.Inject
  * or vice versa. Extending the base Mapper class.
  */
 class UpcomingDomainPresentationMapper @Inject constructor() :
-    Mapper<UpcomingMoviesEntity, UpcomingMoviesDTO> {
+    Mapper<UpcomingMoviesDomainDTO, UpcomingMoviesDTO> {
 
-    override fun from(e: UpcomingMoviesDTO): UpcomingMoviesEntity {
+    override fun from(e: UpcomingMoviesDTO): UpcomingMoviesDomainDTO {
         Timber.d(e.toString())
-        val movieList = ArrayList<MovieEntity>()
+        val movieList = ArrayList<MovieDomainDTO>()
 
         // using the movie entity mapper
         val mapper = MovieDomainPresentationMapper()
@@ -25,14 +25,14 @@ class UpcomingDomainPresentationMapper @Inject constructor() :
             movieList.add(mapper.from(movieModel))
         }
 
-        return UpcomingMoviesEntity(
+        return UpcomingMoviesDomainDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
             movies = movieList
         )
     }
 
-    override fun to(t: UpcomingMoviesEntity): UpcomingMoviesDTO {
+    override fun to(t: UpcomingMoviesDomainDTO): UpcomingMoviesDTO {
         Timber.d(t.toString())
         val movieList = ArrayList<MovieDTO>()
         val mapper = MovieDomainPresentationMapper()

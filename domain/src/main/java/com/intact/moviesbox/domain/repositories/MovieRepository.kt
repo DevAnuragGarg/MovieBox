@@ -1,6 +1,7 @@
 package com.intact.moviesbox.domain.repositories
 
 import com.intact.moviesbox.domain.entities.*
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -12,15 +13,19 @@ import io.reactivex.Single
 
 interface MovieRepository {
 
-    fun getPopularMovies(pageNumber: String): Observable<PopularMoviesEntity>
+    fun getMovieDetail(movieId: Long): Single<MovieDomainDTO>
 
-    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesEntity>
+    fun saveMovieDetail(movieDetail:MovieDomainDTO): Completable
 
-    fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesEntity>
+    //fun saveAllMovies(movieDetailList: List<MovieDomainDTO>): Completable
 
-    fun getPlayingNowMovies(pageNumber: String): Observable<NowPlayingMoviesEntity>
+    fun getPopularMovies(pageNumber: String): Observable<PopularMoviesDomainDTO>
 
-    fun getUpcomingRatedMovies(pageNumber: String): Observable<UpcomingMoviesEntity>
+    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesDomainDTO>
 
-    fun getMovieDetails(movieId: Long): Single<MovieEntity>
+    fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesDomainDTO>
+
+    fun getPlayingNowMovies(pageNumber: String): Observable<NowPlayingMoviesDomainDTO>
+
+    fun getUpcomingRatedMovies(pageNumber: String): Observable<UpcomingMoviesDomainDTO>
 }

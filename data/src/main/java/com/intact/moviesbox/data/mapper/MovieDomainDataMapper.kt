@@ -1,17 +1,17 @@
 package com.intact.moviesbox.data.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.domain.entities.MovieEntity
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
 import javax.inject.Inject
 
 /**
  * mapper file to map the values from or to MovieEntity and MovieData
  */
 
-class MovieDomainDataMapper @Inject constructor() : Mapper<MovieEntity, MovieData> {
+class MovieDomainDataMapper @Inject constructor() : Mapper<MovieDomainDTO, MovieDataDTO> {
 
-    override fun from(e: MovieData): MovieEntity {
-        return MovieEntity(
+    override fun from(e: MovieDataDTO): MovieDomainDTO {
+        return MovieDomainDTO(
             id = e.id,
             title = e.title,
             adult = e.adult,
@@ -33,8 +33,8 @@ class MovieDomainDataMapper @Inject constructor() : Mapper<MovieEntity, MovieDat
         )
     }
 
-    override fun to(t: MovieEntity): MovieData {
-        return MovieData(
+    override fun to(t: MovieDomainDTO): MovieDataDTO {
+        return MovieDataDTO(
             id = t.id,
             title = t.title,
             adult = t.adult,

@@ -1,34 +1,34 @@
 package com.intact.moviesbox.data.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.UpcomingMoviesData
-import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.domain.entities.UpcomingMoviesEntity
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.data.model.UpcomingMoviesDataDTO
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
+import com.intact.moviesbox.domain.entities.UpcomingMoviesDomainDTO
 import javax.inject.Inject
 
 class UpcomingDomainDataMapper @Inject constructor() :
-    Mapper<UpcomingMoviesEntity, UpcomingMoviesData> {
+    Mapper<UpcomingMoviesDomainDTO, UpcomingMoviesDataDTO> {
 
-    override fun from(e: UpcomingMoviesData): UpcomingMoviesEntity {
-        val upcomingMovies = ArrayList<MovieEntity>()
+    override fun from(e: UpcomingMoviesDataDTO): UpcomingMoviesDomainDTO {
+        val upcomingMovies = ArrayList<MovieDomainDTO>()
 
         // used the movie domain data mapper to convert
         // movie data into movie entity
         val movieDomainDataMapper = MovieDomainDataMapper()
 
-        for (movie in e.movies) {
+        for (movie in e.movieDTOS) {
             upcomingMovies.add(movieDomainDataMapper.from(movie))
         }
 
-        return UpcomingMoviesEntity(
+        return UpcomingMoviesDomainDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
             movies = upcomingMovies
         )
     }
 
-    override fun to(t: UpcomingMoviesEntity): UpcomingMoviesData {
-        val upcomingMovies = ArrayList<MovieData>()
+    override fun to(t: UpcomingMoviesDomainDTO): UpcomingMoviesDataDTO {
+        val upcomingMovies = ArrayList<MovieDataDTO>()
 
         // used the movie domain data mapper to convert
         // movie entity into movie data
@@ -38,10 +38,10 @@ class UpcomingDomainDataMapper @Inject constructor() :
             upcomingMovies.add(movieDomainDataMapper.to(movie))
         }
 
-        return UpcomingMoviesData(
+        return UpcomingMoviesDataDTO(
             pageNumber = t.pageNumber,
             totalPages = t.totalPages,
-            movies = upcomingMovies
+            movieDTOS = upcomingMovies
         )
     }
 }

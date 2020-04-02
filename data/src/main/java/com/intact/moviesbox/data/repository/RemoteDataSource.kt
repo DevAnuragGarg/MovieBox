@@ -9,10 +9,10 @@ import io.reactivex.Single
  * contract between data layer and remote data source
  */
 interface RemoteDataSource {
-    fun getMovieDetails(movieId: Long): Single<MovieData>
-    fun getPopularMovies(pageNumber: String): Observable<PopularMoviesData>
-    fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesData>
-    fun getUpcomingMovies(pageNumber: String): Observable<UpcomingMoviesData>
-    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesData>
-    fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesData>
+    fun getMovieDetails(movieId: Long): Single<MovieDataDTO>
+    fun getPopularMovies(pageNumber: String): Observable<PopularMoviesDataDTO>
+    fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesDataDTO>
+    fun getUpcomingMovies(pageNumber: String): Observable<UpcomingMoviesDataDTO>
+    fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesDataDTO>
+    fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesDataDTO>
 }

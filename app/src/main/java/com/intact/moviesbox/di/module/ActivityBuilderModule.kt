@@ -4,7 +4,6 @@ import com.intact.moviesbox.di.scope.ActivityScope
 import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.home.HomeActivity
 import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
-import com.intact.moviesbox.ui.movieDetail.MovieDetailFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -29,6 +28,6 @@ abstract class ActivityBuilderModule {
     abstract fun contributeMoviesListActivity(): MoviesListActivity
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [MovieDetailFragmentModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeMovieDetailActivity(): MovieDetailActivity
 }

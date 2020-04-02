@@ -8,8 +8,6 @@ import io.reactivex.Scheduler
  */
 interface BaseSchedulerProvider {
 
-    fun computation(): Scheduler
-
     fun io(): Scheduler
 
     fun ui(): Scheduler
@@ -19,4 +17,6 @@ interface BaseSchedulerProvider {
     fun background(): Scheduler
 
     fun trampoline(): Scheduler
+
+    fun computation(): Scheduler
 }

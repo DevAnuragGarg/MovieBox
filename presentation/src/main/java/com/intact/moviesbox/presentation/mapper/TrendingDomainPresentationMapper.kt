@@ -1,7 +1,7 @@
 package com.intact.moviesbox.presentation.mapper
 
-import com.intact.moviesbox.domain.entities.MovieEntity
-import com.intact.moviesbox.domain.entities.TrendingMoviesEntity
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
+import com.intact.moviesbox.domain.entities.TrendingMoviesDomainDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.model.TrendingMoviesDTO
 import javax.inject.Inject
@@ -11,10 +11,10 @@ import javax.inject.Inject
  * or vice versa. Extending the base Mapper class.
  */
 class TrendingDomainPresentationMapper @Inject constructor() :
-    Mapper<TrendingMoviesEntity, TrendingMoviesDTO> {
+    Mapper<TrendingMoviesDomainDTO, TrendingMoviesDTO> {
 
-    override fun from(e: TrendingMoviesDTO): TrendingMoviesEntity {
-        val movieList = ArrayList<MovieEntity>()
+    override fun from(e: TrendingMoviesDTO): TrendingMoviesDomainDTO {
+        val movieList = ArrayList<MovieDomainDTO>()
 
         // using the movie entity mapper
         val mapper = MovieDomainPresentationMapper()
@@ -23,14 +23,14 @@ class TrendingDomainPresentationMapper @Inject constructor() :
             movieList.add(mapper.from(movieModel))
         }
 
-        return TrendingMoviesEntity(
+        return TrendingMoviesDomainDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
             movies = movieList
         )
     }
 
-    override fun to(t: TrendingMoviesEntity): TrendingMoviesDTO {
+    override fun to(t: TrendingMoviesDomainDTO): TrendingMoviesDTO {
         val movieList = ArrayList<MovieDTO>()
         val mapper = MovieDomainPresentationMapper()
 

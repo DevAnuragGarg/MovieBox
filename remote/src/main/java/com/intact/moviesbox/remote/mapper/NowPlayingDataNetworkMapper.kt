@@ -1,15 +1,15 @@
 package com.intact.moviesbox.remote.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.NowPlayingMoviesData
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.data.model.NowPlayingMoviesDataDTO
 import com.intact.moviesbox.remote.model.MovieDTONetwork
 import com.intact.moviesbox.remote.model.NowPlayingMoviesDTONetwork
 import javax.inject.Inject
 
 class NowPlayingDataNetworkMapper @Inject constructor() :
-    Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork> {
-    override fun from(e: NowPlayingMoviesDTONetwork): NowPlayingMoviesData {
-        val nowPlayingMovies = ArrayList<MovieData>()
+    Mapper<NowPlayingMoviesDataDTO, NowPlayingMoviesDTONetwork> {
+    override fun from(e: NowPlayingMoviesDTONetwork): NowPlayingMoviesDataDTO {
+        val nowPlayingMovies = ArrayList<MovieDataDTO>()
 
         // used the movie data network mapper to convert
         // movie network into movie data
@@ -19,21 +19,21 @@ class NowPlayingDataNetworkMapper @Inject constructor() :
             nowPlayingMovies.add(movieDataNetworkMapper.from(movie))
         }
 
-        return NowPlayingMoviesData(
+        return NowPlayingMoviesDataDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
-            movies = nowPlayingMovies
+            movieDTOS = nowPlayingMovies
         )
     }
 
-    override fun to(t: NowPlayingMoviesData): NowPlayingMoviesDTONetwork {
+    override fun to(t: NowPlayingMoviesDataDTO): NowPlayingMoviesDTONetwork {
         val nowPlayingMovies = ArrayList<MovieDTONetwork>()
 
         // used the movie data network mapper to convert
         // movie network into movie data
         val movieDataNetworkMapper = MovieDataNetworkMapper()
 
-        for (movie in t.movies) {
+        for (movie in t.movieDTOS) {
             nowPlayingMovies.add(movieDataNetworkMapper.to(movie))
         }
 

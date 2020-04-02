@@ -1,12 +1,12 @@
 package com.intact.moviesbox.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import com.intact.moviesbox.domain.entities.NowPlayingMoviesEntity
-import com.intact.moviesbox.domain.entities.TopRatedMoviesEntity
-import com.intact.moviesbox.domain.entities.UpcomingMoviesEntity
-import com.intact.moviesbox.domain.usecases.NowPlayingMoviesUseCase
-import com.intact.moviesbox.domain.usecases.TopRatedMoviesUseCase
-import com.intact.moviesbox.domain.usecases.UpcomingMoviesUseCase
+import com.intact.moviesbox.domain.entities.NowPlayingMoviesDomainDTO
+import com.intact.moviesbox.domain.entities.TopRatedMoviesDomainDTO
+import com.intact.moviesbox.domain.entities.UpcomingMoviesDomainDTO
+import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
+import com.intact.moviesbox.domain.usecases.GetTopRatedMoviesUseCase
+import com.intact.moviesbox.domain.usecases.GetUpcomingMoviesUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
 import com.intact.moviesbox.presentation.model.*
 import com.intact.moviesbox.presentation.viewmodels.base.BaseViewModel
@@ -32,12 +32,12 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
-    private val upcomingMoviesUseCase: UpcomingMoviesUseCase,
-    private val topRatedMoviesUseCase: TopRatedMoviesUseCase,
-    private val nowPlayingMoviesUseCase: NowPlayingMoviesUseCase,
-    private val topRatedMoviesMapper: Mapper<TopRatedMoviesEntity, TopRatedMoviesDTO>,
-    private val upcomingMoviesMapper: Mapper<UpcomingMoviesEntity, UpcomingMoviesDTO>,
-    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesEntity, NowPlayingMoviesDTO>
+    private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
+    private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
+    private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
+    private val topRatedMoviesMapper: Mapper<TopRatedMoviesDomainDTO, TopRatedMoviesDTO>,
+    private val upcomingMoviesMapper: Mapper<UpcomingMoviesDomainDTO, UpcomingMoviesDTO>,
+    private val nowPlayingMoviesMapper: Mapper<NowPlayingMoviesDomainDTO, NowPlayingMoviesDTO>
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
     fun getNowPlayingMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            nowPlayingMoviesUseCase.buildUseCase(NowPlayingMoviesUseCase.Param(pageNumber = pageNumber))
+            getNowPlayingMoviesUseCase.buildUseCase(GetNowPlayingMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { nowPlayingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
@@ -66,7 +66,7 @@ class HomeViewModel @Inject constructor(
     fun getTopRatedMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            topRatedMoviesUseCase.buildUseCase(TopRatedMoviesUseCase.Param(pageNumber = pageNumber))
+            getTopRatedMoviesUseCase.buildUseCase(GetTopRatedMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { topRatedMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Top rated movies response received: ${it.movies}")
@@ -81,7 +81,7 @@ class HomeViewModel @Inject constructor(
     fun getUpcomingMovies(pageNumber: String) {
         isLoading.value = true
         getCompositeDisposable().add(
-            upcomingMoviesUseCase.buildUseCase(UpcomingMoviesUseCase.Param(pageNumber = pageNumber))
+            getUpcomingMoviesUseCase.buildUseCase(GetUpcomingMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { upcomingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Upcoming movies response received: ${it.movies}")

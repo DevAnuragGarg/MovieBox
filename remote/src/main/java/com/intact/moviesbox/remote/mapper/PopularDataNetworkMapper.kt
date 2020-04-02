@@ -1,15 +1,15 @@
 package com.intact.moviesbox.remote.mapper
 
-import com.intact.moviesbox.data.model.MovieData
-import com.intact.moviesbox.data.model.PopularMoviesData
+import com.intact.moviesbox.data.model.MovieDataDTO
+import com.intact.moviesbox.data.model.PopularMoviesDataDTO
 import com.intact.moviesbox.remote.model.MovieDTONetwork
 import com.intact.moviesbox.remote.model.PopularMoviesDTONetwork
 import javax.inject.Inject
 
 class PopularDataNetworkMapper @Inject constructor() :
-    Mapper<PopularMoviesData, PopularMoviesDTONetwork> {
-    override fun from(e: PopularMoviesDTONetwork): PopularMoviesData {
-        val popularMovies = ArrayList<MovieData>()
+    Mapper<PopularMoviesDataDTO, PopularMoviesDTONetwork> {
+    override fun from(e: PopularMoviesDTONetwork): PopularMoviesDataDTO {
+        val popularMovies = ArrayList<MovieDataDTO>()
 
         // used the movie data network mapper to convert
         // movie network into movie data
@@ -19,21 +19,21 @@ class PopularDataNetworkMapper @Inject constructor() :
             popularMovies.add(movieDataNetworkMapper.from(movie))
         }
 
-        return PopularMoviesData(
+        return PopularMoviesDataDTO(
             pageNumber = e.pageNumber,
             totalPages = e.totalPages,
-            movies = popularMovies
+            movieDTOS = popularMovies
         )
     }
 
-    override fun to(t: PopularMoviesData): PopularMoviesDTONetwork {
+    override fun to(t: PopularMoviesDataDTO): PopularMoviesDTONetwork {
         val popularMovies = ArrayList<MovieDTONetwork>()
 
         // used the movie data network mapper to convert
         // movie network into movie data
         val movieDataNetworkMapper = MovieDataNetworkMapper()
 
-        for (movie in t.movies) {
+        for (movie in t.movieDTOS) {
             popularMovies.add(movieDataNetworkMapper.to(movie))
         }
 

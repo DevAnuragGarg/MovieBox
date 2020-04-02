@@ -13,52 +13,52 @@ const val MOVIE_DB_API_KEY = "e254cf574a28681bc9e82ec1719360b5"
 
 class RemoteDataSourceImpl @Inject constructor(
     private val movieServiceRequests: MovieServiceRequests,
-    private val movieDataNetworkMapper: Mapper<MovieData, MovieDTONetwork>,
-    private val popularDataNetworkMapper: Mapper<PopularMoviesData, PopularMoviesDTONetwork>,
-    private val topRatedDataNetworkMapper: Mapper<TopRatedMoviesData, TopRatedMoviesDTONetwork>,
-    private val trendingDataNetworkMapper: Mapper<TrendingMoviesData, TrendingMoviesDTONetwork>,
-    private val upcomingDataNetworkMapper: Mapper<UpcomingMoviesData, UpcomingMoviesDTONetwork>,
-    private val nowPlayingDataNetworkMapper: Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork>
+    private val movieDataDTONetworkMapper: Mapper<MovieDataDTO, MovieDTONetwork>,
+    private val popularDataDTONetworkMapper: Mapper<PopularMoviesDataDTO, PopularMoviesDTONetwork>,
+    private val topRatedDataDTONetworkMapper: Mapper<TopRatedMoviesDataDTO, TopRatedMoviesDTONetwork>,
+    private val trendingDataDTONetworkMapper: Mapper<TrendingMoviesDataDTO, TrendingMoviesDTONetwork>,
+    private val upcomingDataDTONetworkMapper: Mapper<UpcomingMoviesDataDTO, UpcomingMoviesDTONetwork>,
+    private val nowPlayingDataDTONetworkMapper: Mapper<NowPlayingMoviesDataDTO, NowPlayingMoviesDTONetwork>
 ) : RemoteDataSource {
-    override fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesData> {
+    override fun getRunningNowMovies(pageNumber: String): Observable<NowPlayingMoviesDataDTO> {
         return movieServiceRequests.getNowPlayingMovies(
             apiKey = MOVIE_DB_API_KEY,
             pageNumber = pageNumber
-        ).map { nowPlayingDataNetworkMapper.from(it) }
+        ).map { nowPlayingDataDTONetworkMapper.from(it) }
     }
 
-    override fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesData> {
+    override fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesDataDTO> {
         return movieServiceRequests.getTopRatedMovies(
             apiKey = MOVIE_DB_API_KEY,
             pageNumber = pageNumber
-        ).map { topRatedDataNetworkMapper.from(it) }
+        ).map { topRatedDataDTONetworkMapper.from(it) }
     }
 
-    override fun getPopularMovies(pageNumber: String): Observable<PopularMoviesData> {
+    override fun getPopularMovies(pageNumber: String): Observable<PopularMoviesDataDTO> {
         return movieServiceRequests.getPopularMovies(
             apiKey = MOVIE_DB_API_KEY,
             pageNumber = pageNumber
-        ).map { popularDataNetworkMapper.from(it) }
+        ).map { popularDataDTONetworkMapper.from(it) }
     }
 
-    override fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesData> {
+    override fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesDataDTO> {
         return movieServiceRequests.getTrendingMovies(
             apiKey = MOVIE_DB_API_KEY,
             pageNumber = pageNumber
-        ).map { trendingDataNetworkMapper.from(it) }
+        ).map { trendingDataDTONetworkMapper.from(it) }
     }
 
-    override fun getUpcomingMovies(pageNumber: String): Observable<UpcomingMoviesData> {
+    override fun getUpcomingMovies(pageNumber: String): Observable<UpcomingMoviesDataDTO> {
         return movieServiceRequests.getUpcomingMovies(
             apiKey = MOVIE_DB_API_KEY,
             pageNumber = pageNumber
-        ).map { upcomingDataNetworkMapper.from(it) }
+        ).map { upcomingDataDTONetworkMapper.from(it) }
     }
 
-    override fun getMovieDetails(movieId: Long): Single<MovieData> {
+    override fun getMovieDetails(movieId: Long): Single<MovieDataDTO> {
         return movieServiceRequests.getMovieDetails(
             movieId = movieId,
             apiKey = MOVIE_DB_API_KEY
-        ).map { movieDataNetworkMapper.from(it) }
+        ).map { movieDataDTONetworkMapper.from(it) }
     }
 }

@@ -18,20 +18,23 @@ abstract class DataModule {
     abstract fun bindsRepository(repositoryImpl: MovieRepositoryImpl): MovieRepository
 
     @Binds
-    abstract fun bindsMovieDomainDataMapper(movieDomainDataMapper: MovieDomainDataMapper): Mapper<MovieEntity, MovieData>
+    abstract fun bindsMovieDomainDataMapper(movieDomainDataMapper: MovieDomainDataMapper): Mapper<MovieDomainDTO, MovieDataDTO>
 
     @Binds
-    abstract fun bindsPopularDomainDataMapper(popularDomainDataMapper: PopularDomainDataMapper): Mapper<PopularMoviesEntity, PopularMoviesData>
+    abstract fun bindsPopularDomainDataMapper(popularDomainDataMapper: PopularDomainDataMapper): Mapper<PopularMoviesDomainDTO, PopularMoviesDataDTO>
 
     @Binds
-    abstract fun bindsTopRatedDomainDataMapper(topRatedDomainDataMapper: TopRatedDomainDataMapper): Mapper<TopRatedMoviesEntity, TopRatedMoviesData>
+    abstract fun bindsTopRatedDomainDataMapper(topRatedDomainDataMapper: TopRatedDomainDataMapper): Mapper<TopRatedMoviesDomainDTO, TopRatedMoviesDataDTO>
 
     @Binds
-    abstract fun bindsTrendingDomainDataMapper(trendingDomainDataMapper: TrendingDomainDataMapper): Mapper<TrendingMoviesEntity, TrendingMoviesData>
+    abstract fun bindsTrendingDomainDataMapper(trendingDomainDataMapper: TrendingDomainDataMapper): Mapper<TrendingMoviesDomainDTO, TrendingMoviesDataDTO>
 
     @Binds
-    abstract fun bindsUpcomingDomainDataMapper(upcomingDomainDataMapper: UpcomingDomainDataMapper): Mapper<UpcomingMoviesEntity, UpcomingMoviesData>
+    abstract fun bindsUpcomingDomainDataMapper(upcomingDomainDataMapper: UpcomingDomainDataMapper): Mapper<UpcomingMoviesDomainDTO, UpcomingMoviesDataDTO>
 
     @Binds
-    abstract fun bindsNowPlayingDomainDataMapper(nowPlayingDomainDataMapper: NowPlayingDomainDataMapper): Mapper<NowPlayingMoviesEntity, NowPlayingMoviesData>
+    abstract fun bindsNowPlayingDomainDataMapper(nowPlayingDomainDataMapper: NowPlayingDomainDataMapper): Mapper<NowPlayingMoviesDomainDTO, NowPlayingMoviesDataDTO>
+
+//    @Binds
+//    abstract fun bindsMoviesListDomainDataMapper(movieListDomainDataMapper: MovieListDomainDataMapper): Mapper<List<MovieDomainDTO>, List<MovieDataDTO>>
 }

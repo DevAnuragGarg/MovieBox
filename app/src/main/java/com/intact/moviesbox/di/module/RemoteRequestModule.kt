@@ -29,21 +29,21 @@ class RemoteRequestModule {
         fun bindsRemoteSource(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteDataSource
 
         @Binds
-        fun bindMovieDataNetworkMapper(movieDataNetworkMapper: MovieDataNetworkMapper): Mapper<MovieData, MovieDTONetwork>
+        fun bindMovieDataNetworkMapper(movieDataNetworkMapper: MovieDataNetworkMapper): Mapper<MovieDataDTO, MovieDTONetwork>
 
         @Binds
-        fun bindPopularDataNetworkMapper(popularDataNetworkMapper: PopularDataNetworkMapper): Mapper<PopularMoviesData, PopularMoviesDTONetwork>
+        fun bindPopularDataNetworkMapper(popularDataNetworkMapper: PopularDataNetworkMapper): Mapper<PopularMoviesDataDTO, PopularMoviesDTONetwork>
 
         @Binds
-        fun bindTopRatedDataNetworkMapper(topRatedDataNetworkMapper: TopRatedDataNetworkMapper): Mapper<TopRatedMoviesData, TopRatedMoviesDTONetwork>
+        fun bindTopRatedDataNetworkMapper(topRatedDataNetworkMapper: TopRatedDataNetworkMapper): Mapper<TopRatedMoviesDataDTO, TopRatedMoviesDTONetwork>
 
         @Binds
-        fun bindUpcomingDataNetworkMapper(upcomingDataNetworkMapper: UpcomingDataNetworkMapper): Mapper<UpcomingMoviesData, UpcomingMoviesDTONetwork>
+        fun bindUpcomingDataNetworkMapper(upcomingDataNetworkMapper: UpcomingDataNetworkMapper): Mapper<UpcomingMoviesDataDTO, UpcomingMoviesDTONetwork>
 
         @Binds
-        fun bindTrendingDataNetworkMapper(trendingDataNetworkMapper: TrendingDataNetworkMapper): Mapper<TrendingMoviesData, TrendingMoviesDTONetwork>
+        fun bindTrendingDataNetworkMapper(trendingDataNetworkMapper: TrendingDataNetworkMapper): Mapper<TrendingMoviesDataDTO, TrendingMoviesDTONetwork>
 
         @Binds
-        fun bindNowPlayingDataNetworkMapper(nowPlayingDataNetworkMapper: NowPlayingDataNetworkMapper): Mapper<NowPlayingMoviesData, NowPlayingMoviesDTONetwork>
+        fun bindNowPlayingDataNetworkMapper(nowPlayingDataNetworkMapper: NowPlayingDataNetworkMapper): Mapper<NowPlayingMoviesDataDTO, NowPlayingMoviesDTONetwork>
     }
 }
