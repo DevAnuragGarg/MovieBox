@@ -1,32 +1,34 @@
 <resources>
 
+    <!-- we use MaterialComponent theme now which is API 21+ and AppCompat theme is
+     for pre lollipop devices. So from now on we use MaterialComponent-->
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+        <!--
+        <item name="android:textSize">@dimen/size_16</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowContentTransitions">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.DetailScreen">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="CustomRatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/rating_yellow</item>
     </style>
 
-    <style name="CollapsedExpandedTitleText" parent="AppTheme">
+    <style name="ExpandedTitleText" parent="AppTheme">
         <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="CollapsedTitleText" parent="AppTheme">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

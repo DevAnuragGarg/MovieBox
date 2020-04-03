@@ -38,10 +38,8 @@
         </activity>
         <activity
             android:name="com.intact.moviesbox.ui.movieDetail.MovieDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar.DetailScreen" />
-        <activity
-            android:name=".ui.MoviesListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.MoviesListActivity" />
     </application>
 
 </manifest>

@@ -88,10 +88,12 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "androidx.cardview:cardview:$rootProject.cardViewVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+
+    // material theme and components
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
 
     // firebase
     implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"

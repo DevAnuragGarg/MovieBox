@@ -11,6 +11,10 @@
     <!--Content description-->
     <string name="movie_image">movieImage</string>
 
+    <!-- Movie detail screen -->
+    <string name="movie_overview_title">Overview</string>
+    <string name="movie_release_date_title">Release Date</string>
+
     <!-- Home screen item listing-->
     <string name="release_on">Release on: %s</string>
 </resources>

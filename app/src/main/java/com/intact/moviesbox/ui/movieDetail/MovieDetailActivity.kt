@@ -1,6 +1,7 @@
 package com.intact.moviesbox.ui.movieDetail
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
 import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.ActivityMovieDetailBinding
@@ -49,8 +50,9 @@ class MovieDetailActivity : BaseActivity() {
     private fun initializeVariables() {
         // set up action bar
         setSupportActionBar(binding.toolbar)
-        actionBar?.run {
+        supportActionBar?.run {
             this.setDisplayHomeAsUpEnabled(true)
+            this.setDisplayShowHomeEnabled(true)
         }
 
         // get the view model
@@ -89,9 +91,19 @@ class MovieDetailActivity : BaseActivity() {
     // update UI
     private fun updateUI() {
         with(movieDTO) {
+            binding.movieTitleTV.text = title
+            binding.overViewTV.text = overview
             binding.collapsingToolbar.title = title
+            binding.releaseDateTV.text = releaseDate
             picasso.load(IMAGE_BASE_URL_500 + backdropPath)
                 .placeholder(R.drawable.ic_video_camera).into(binding.posterIV)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
