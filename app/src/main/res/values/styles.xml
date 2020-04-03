@@ -25,4 +25,8 @@
     <style name="CustomRatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/rating_yellow</item>
     </style>
+
+    <style name="CollapsedExpandedTitleText" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 </resources>

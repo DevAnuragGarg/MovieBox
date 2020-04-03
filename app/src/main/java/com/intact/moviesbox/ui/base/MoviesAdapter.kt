@@ -66,7 +66,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            onClickListener.onMovieItemClicked(id)
+                            onClickListener.onMovieItemClicked(movie = moviesData[position])
                         }
                     }
                 }
@@ -81,7 +81,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            onClickListener.onMovieItemClicked(id)
+                            onClickListener.onMovieItemClicked(movie = moviesData[position])
                         }
                     }
                 }
@@ -117,7 +117,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            onClickListener.onMovieItemClicked(id)
+                            onClickListener.onMovieItemClicked(movie = moviesData[position])
                         }
                     }
                 }

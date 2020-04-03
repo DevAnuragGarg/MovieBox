@@ -1,16 +1,17 @@
 package com.intact.moviesbox.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
+import com.intact.moviesbox.domain.entities.MovieDomainDTO
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesDomainDTO
 import com.intact.moviesbox.domain.entities.TopRatedMoviesDomainDTO
 import com.intact.moviesbox.domain.entities.UpcomingMoviesDomainDTO
 import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
 import com.intact.moviesbox.domain.usecases.GetTopRatedMoviesUseCase
 import com.intact.moviesbox.domain.usecases.GetUpcomingMoviesUseCase
+import com.intact.moviesbox.domain.usecases.SaveMovieDetailUseCase
 import com.intact.moviesbox.presentation.mapper.Mapper
 import com.intact.moviesbox.presentation.model.*
 import com.intact.moviesbox.presentation.viewmodels.base.BaseViewModel
-import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -32,6 +33,8 @@ import javax.inject.Inject
  */
 
 class HomeViewModel @Inject constructor(
+    private val movieMapper: Mapper<MovieDomainDTO, MovieDTO>,
+    private val saveMovieDetailUseCase: SaveMovieDetailUseCase,
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
@@ -45,7 +48,6 @@ class HomeViewModel @Inject constructor(
     private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
-    private fun getCompositeDisposable() = CompositeDisposable()
 
     // get now playing movies
     fun getNowPlayingMovies(pageNumber: String) {
@@ -92,15 +94,24 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    // save the movie detail
+    fun saveMovieDetail(movieDTO: MovieDTO) {
+        getCompositeDisposable().add(
+            saveMovieDetailUseCase.buildUseCase(
+                SaveMovieDetailUseCase.Param(movieDomainDTO = movieMapper.from(movieDTO))
+            ).subscribe({
+                Timber.d("Movie successfully saved in DB")
+            }, {
+                Timber.d("Error while saving: ${it.localizedMessage}")
+            }
+            )
+        )
+    }
+
     fun getErrorLiveData() = errorLiveData
     fun getTopRatedMoviesLiveData() = topRatedMoviesLiveData
     fun getUpcomingMoviesLiveData() = upcomingMoviesLiveData
     fun getNowPlayingMoviesLiveData() = nowPlayingMoviesLiveData
-
-    override fun onCleared() {
-        super.onCleared()
-        getCompositeDisposable().clear()
-    }
 
 //    val topRatedMoviesLiveData: LiveData<Resource<NowPlayingMoviesModel>>
 //        get() = nowPlayingMoviesUseCase

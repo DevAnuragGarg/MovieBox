@@ -20,6 +20,7 @@ import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
 import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
+import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.base.BaseActivity
@@ -55,6 +56,7 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
     lateinit var viewModelFactory: CustomViewModelFactory
 
     private lateinit var binding: ActivityHomeBinding              // view binding jet-pack
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var appUpdateManager: AppUpdateManager
     private val installUpdateListener: InstallStateUpdatedListener =
         InstallStateUpdatedListener { state ->
@@ -93,7 +95,7 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
         updateUpcomingMoviesUI()
 
         // get the view model
-        val homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory)
+        homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory)
             .get(HomeViewModel::class.java)
         setObservers(homeViewModel)
         homeViewModel.getNowPlayingMovies("1")
@@ -241,9 +243,13 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
         appUpdateManager.unregisterListener(installUpdateListener)
     }
 
-    override fun onMovieItemClicked(movieId: Long) {
+    override fun onMovieItemClicked(movie: MovieDTO) {
+        // saving the movie details
+        homeViewModel.saveMovieDetail(movieDTO = movie);
+
+        // starting movie detail activity
         val intent = Intent(this@HomeActivity, MovieDetailActivity::class.java)
-        intent.putExtra(MOVIE_ID, movieId)
+        intent.putExtra(MOVIE_ID, movie.id)
         startActivity(intent)
     }
 

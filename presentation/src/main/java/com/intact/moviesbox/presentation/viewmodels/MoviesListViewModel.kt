@@ -43,7 +43,6 @@ class MoviesListViewModel @Inject constructor(
     private val errorLiveData = MutableLiveData<ErrorDTO>()
     private val popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val trendingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
-    private fun getCompositeDisposable() = CompositeDisposable()
 
     // get trending movies
     fun getTrendingMovies(pageNumber: String) {
