@@ -5,11 +5,11 @@ import dagger.android.ContributesAndroidInjector
 
 
 /**
- * Created by Anurag Garg on 2019-04-25.
+ * Created by Anurag Garg on 2020-04-03.
  */
 @Module
-abstract class MovieDetailFragmentModule {
+abstract class MovieListFragmentModule {
 
     @ContributesAndroidInjector
-    internal abstract fun provideMovieDetailFragment(): MovieDetailFragment
+    internal abstract fun provideMovieListFragment(): MovieListFragment
 }

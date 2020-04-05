@@ -44,7 +44,9 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
-    private val errorLiveData = MutableLiveData<ErrorDTO>()
+    private val topRatedErrorLiveData = MutableLiveData<ErrorDTO>()
+    private val upcomingErrorLiveData = MutableLiveData<ErrorDTO>()
+    private val nowPlayingErrorLiveData = MutableLiveData<ErrorDTO>()
     private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
@@ -59,7 +61,8 @@ class HomeViewModel @Inject constructor(
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
                     nowPlayingMoviesLiveData.value = it.movies
                 }, {
-                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                    nowPlayingErrorLiveData.value =
+                        ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
     }
@@ -74,7 +77,8 @@ class HomeViewModel @Inject constructor(
                     Timber.d("Success: Top rated movies response received: ${it.movies}")
                     topRatedMoviesLiveData.value = it.movies
                 }, {
-                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                    topRatedErrorLiveData.value =
+                        ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
     }
@@ -85,11 +89,12 @@ class HomeViewModel @Inject constructor(
         getCompositeDisposable().add(
             getUpcomingMoviesUseCase.buildUseCase(GetUpcomingMoviesUseCase.Param(pageNumber = pageNumber))
                 .map { upcomingMoviesMapper.to(it) }
-                .subscribe({ it ->
+                .subscribe({
                     Timber.d("Success: Upcoming movies response received: ${it.movies}")
                     upcomingMoviesLiveData.value = it.movies
                 }, {
-                    errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
+                    upcomingErrorLiveData.value =
+                        ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
     }
@@ -108,10 +113,12 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    fun getErrorLiveData() = errorLiveData
-    fun getTopRatedMoviesLiveData() = topRatedMoviesLiveData
-    fun getUpcomingMoviesLiveData() = upcomingMoviesLiveData
-    fun getNowPlayingMoviesLiveData() = nowPlayingMoviesLiveData
+    fun getTopRatedErrorLiveData() = topRatedErrorLiveData
+    fun getUpcomingErrorLiveData() = upcomingErrorLiveData
+    fun getNowPlayingErrorLiveData() = nowPlayingErrorLiveData
+    fun getTopRatedMoviesListLiveData() = topRatedMoviesLiveData
+    fun getUpcomingMoviesListLiveData() = upcomingMoviesLiveData
+    fun getNowPlayingMoviesListLiveData() = nowPlayingMoviesLiveData
 
 //    val topRatedMoviesLiveData: LiveData<Resource<NowPlayingMoviesModel>>
 //        get() = nowPlayingMoviesUseCase

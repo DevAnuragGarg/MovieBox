@@ -1,23 +1,19 @@
 package com.intact.moviesbox.ui.base
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import dagger.android.AndroidInjection
-
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Created by Anurag Garg on 19/03/19.
  *
  * Base activity that will be extended by all the activities
+ *
+ * DaggerAppCompatActivity: you don not need to use AndroidInjection.inject(this) in onCreate
+ * Moreover you no need to extend the HasAndroidInjector,
+ * @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+ * override fun androidInjector(): AndroidInjector<Any> = androidInjector
+ *
+ * This all is done in DaggerActivity
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        // Activity should not know about how it is injected. So generic.
-        // All the dependencies will be injected automatically
-        AndroidInjection.inject(this)
-
-        super.onCreate(savedInstanceState)
-    }
 }

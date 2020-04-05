@@ -8,6 +8,7 @@ import com.intact.moviesbox.presentation.viewmodels.MoviesListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 
 /**
@@ -40,16 +41,19 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @Singleton
     @ViewModelKey(HomeViewModel::class)
     internal abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
 
     @Binds
     @IntoMap
+    @Singleton
     @ViewModelKey(MovieDetailViewModel::class)
     internal abstract fun bindMovieDetailViewModel(movieDetailViewModel: MovieDetailViewModel): ViewModel
 
     @Binds
     @IntoMap
+    @Singleton
     @ViewModelKey(MoviesListViewModel::class)
     internal abstract fun bindMoviesListViewModel(moviesListViewModel: MoviesListViewModel): ViewModel
 }

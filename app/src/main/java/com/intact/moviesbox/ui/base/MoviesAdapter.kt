@@ -24,15 +24,15 @@ import javax.inject.Inject
 class MoviesAdapter @Inject constructor(
     private val context: Context,
     private val picasso: Picasso,
-    private val movieType: MovieListType
+    private var movieType: MovieListType = MovieListType.NowPlayingMovies
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    init {
-        Timber.d("MovieType: ${movieType.name}")
-    }
 
     private var moviesData = ArrayList<MovieDTO>()
     private lateinit var onClickListener: OnMovieItemClickListener
+
+    fun setMovieListType(movieListType: MovieListType){
+        movieType = movieListType
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -133,8 +133,8 @@ class MoviesAdapter @Inject constructor(
         val binding: ItemPosterMovieBinding = ItemPosterMovieBinding.bind(view)
     }
 
-    fun setMoviesData(movies: ArrayList<MovieDTO>) {
-        moviesData = movies
+    fun addMovieData(movies: ArrayList<MovieDTO>) {
+        moviesData.addAll(movies)
         notifyDataSetChanged()
     }
 

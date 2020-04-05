@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -18,20 +16,15 @@ import com.intact.moviesbox.databinding.ActivityHomeBinding
 import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
-import com.intact.moviesbox.extension.observeLiveData
-import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.ui.base.MoviesAdapter
 import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
 import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
-import com.intact.moviesbox.util.MOVIE_ID
-import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
-import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
-import com.intact.moviesbox.util.SHOW_TRENDING_MOVIES
+import com.intact.moviesbox.ui.movieDetail.MovieListFragment
+import com.intact.moviesbox.util.*
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
@@ -42,15 +35,15 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
 
     @Inject
     @NowPlayingQualifier
-    lateinit var nowPlayingMoviesAdapter: MoviesAdapter
+    lateinit var nowPlayingMoviesFragment: MovieListFragment
 
     @Inject
     @TopRatedQualifier
-    lateinit var topRatedMoviesAdapter: MoviesAdapter
+    lateinit var topRatedMoviesFragment: MovieListFragment
 
     @Inject
     @UpcomingQualifier
-    lateinit var upcomingMoviesAdapter: MoviesAdapter
+    lateinit var upcomingMoviesFragment: MovieListFragment
 
     @Inject
     lateinit var viewModelFactory: CustomViewModelFactory
@@ -76,31 +69,39 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
     }
 
     private fun initializeVariables() {
-
-        // check if there is a new update
-        checkUpdate()
-
         // set the action bar
         setSupportActionBar(binding.toolbar)
 
-        // initializing app center for continous integration
+        // Add now playing fragment to the activity's container layout
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(
+            R.id.nowPlayingFrameLayout, nowPlayingMoviesFragment,
+            MovieListType.NowPlayingMovies.name
+        )
+
+        // Add top rated fragment to the activity's container layout
+        fragmentTransaction.replace(
+            R.id.topRatedFrameLayout, topRatedMoviesFragment,
+            MovieListType.TopRatedMovies.name
+        )
+
+        // Add upcoming fragment to the activity's container layout
+        fragmentTransaction.replace(
+            R.id.upcomingFrameLayout, upcomingMoviesFragment,
+            MovieListType.UpcomingMovies.name
+        )
+
+        // Commit the transaction
+        fragmentTransaction.commit()
+
+        // initializing app center for continuous integration
         AppCenter.start(
             application, "5a8030df-7ef1-4007-a0f7-807d8d6dd058",
             Analytics::class.java, Crashes::class.java
         )
 
-        // update empty UI
-        updateNowPlayingMoviesUI()
-        updatedTopRatedMoviesUI()
-        updateUpcomingMoviesUI()
-
-        // get the view model
-        homeViewModel = ViewModelProviders.of(this@HomeActivity, viewModelFactory)
-            .get(HomeViewModel::class.java)
-        setObservers(homeViewModel)
-        homeViewModel.getNowPlayingMovies("1")
-        homeViewModel.getTopRatedMovies("1")
-        homeViewModel.getUpcomingMovies("1")
+        // check if there is a new update
+        checkUpdate()
     }
 
     // Checks that the update is not stalled during 'onResume()'.
@@ -112,69 +113,6 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
                 popupSnackBarForCompleteUpdate()
             }
         }
-    }
-
-    // updating the now playing movies UI
-    private fun updateNowPlayingMoviesUI() {
-        nowPlayingMoviesAdapter.setMoviesData(ArrayList())
-        nowPlayingMoviesAdapter.setMovieItemClickListener(this)
-
-        with(binding.nowPlayingRecyclerView) {
-            layoutManager =
-                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = nowPlayingMoviesAdapter
-            nowPlayingMoviesAdapter.notifyDataSetChanged()
-        }
-    }
-
-    // updating the upcoming movies UI
-    private fun updateUpcomingMoviesUI() {
-        upcomingMoviesAdapter.setMoviesData(ArrayList())
-        upcomingMoviesAdapter.setMovieItemClickListener(this)
-
-        with(binding.upcomingMoviesRecyclerView) {
-            layoutManager =
-                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = upcomingMoviesAdapter
-            upcomingMoviesAdapter.notifyDataSetChanged()
-        }
-    }
-
-    // updating the top rated movies UI
-    private fun updatedTopRatedMoviesUI() {
-        topRatedMoviesAdapter.setMoviesData(ArrayList())
-        topRatedMoviesAdapter.setMovieItemClickListener(this)
-
-        with(binding.topRatedMoviesRecyclerView) {
-            layoutManager =
-                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = topRatedMoviesAdapter
-            topRatedMoviesAdapter.notifyDataSetChanged()
-        }
-    }
-
-    // setting the observers
-    private fun setObservers(viewModel: HomeViewModel) {
-        observeLiveData(viewModel.getNowPlayingMoviesLiveData()) {
-            Timber.d("Updating playing now movies data")
-            nowPlayingMoviesAdapter.setMoviesData(it)
-        }
-        observeLiveData(viewModel.getTopRatedMoviesLiveData()) {
-            Timber.d("Updating top rated movies data")
-            topRatedMoviesAdapter.setMoviesData(it)
-        }
-        observeLiveData(viewModel.getUpcomingMoviesLiveData()) {
-            Timber.d("Updating upcoming movies data")
-            upcomingMoviesAdapter.setMoviesData(it)
-        }
-        observeLiveData(viewModel.getErrorLiveData()) {
-            onError(it)
-        }
-    }
-
-    // on error received
-    private fun onError(dto: ErrorDTO) {
-        Timber.d("onError: $dto")
     }
 
     // check update

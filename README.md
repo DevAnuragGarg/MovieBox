@@ -19,8 +19,8 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - JetPack
   - LiveData - notify domain layer data to views.
   - ViewModel - UI related data holder, lifecycle aware.
-  - Room Persistence - construct database.
-  - View Binding - removed butter knife, kotlin synthetic, findViewById  
+  - View Binding - removed butter knife, kotlin synthetic, findViewById
+  - [Room](https://developer.android.com/topic/libraries/architecture/room) - persistence library, database  
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
   - Repository pattern
@@ -35,6 +35,19 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) for continuous integration
 - [Mockito](https://site.mockito.org)
+
+## TODOs
+- Work manager for cleaning up the database at particular time
+- making the status bar transparent in movie detail screen
+- pagination for all the recycler views
+- Handling of error scenarios
+- latest dagger changes
+- make binder null in fragment
+- implementation of similar movies in movie detail screen
+- converting the recycler views at home screen into individual fragments
+- implementation of data binding into movie detail screen
+- setting up the progress bar
+- writing test cases for all the modules and having maximum code coverage 
 
 ## License
 ```

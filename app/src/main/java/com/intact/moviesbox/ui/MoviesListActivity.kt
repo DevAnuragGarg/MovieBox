@@ -3,12 +3,10 @@ package com.intact.moviesbox.ui
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.intact.moviesbox.databinding.ActivityMoviesListBinding
-import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
-import timber.log.Timber
 import javax.inject.Inject
 
 class MoviesListActivity : BaseActivity() {
@@ -32,7 +30,7 @@ class MoviesListActivity : BaseActivity() {
         // get the view model
         val homeViewModel = ViewModelProviders.of(this@MoviesListActivity, viewModelFactory)
             .get(HomeViewModel::class.java)
-        setObservers(homeViewModel)
+        //setObservers(homeViewModel)
         when {
             showPopularMovies -> {
                 homeViewModel.getNowPlayingMovies("1")
@@ -43,7 +41,7 @@ class MoviesListActivity : BaseActivity() {
         }
     }
 
-    // setting the observers
+    /*// setting the observers
     private fun setObservers(viewModel: HomeViewModel) {
         observeLiveData(viewModel.getNowPlayingMoviesLiveData()) {
             Timber.d("Updating playing now movies data")
@@ -53,5 +51,5 @@ class MoviesListActivity : BaseActivity() {
             Timber.d("Updating top rated movies data")
             // topRatedMoviesAdapter.setMoviesData(it)
         }
-    }
+    }*/
 }

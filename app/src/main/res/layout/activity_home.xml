@@ -52,70 +52,29 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
+                <FrameLayout
+                    android:id="@+id/nowPlayingFrameLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:text="@string/now_playing_movies_title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/nowPlayingRecyclerView"
+                <FrameLayout
+                    android:id="@+id/topRatedFrameLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/dimen_300"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/nowPlayingFrameLayout" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginTop="@dimen/dimen_10"
-                    android:text="@string/top_rated_movies_title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/size_20"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nowPlayingRecyclerView" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/topRatedMoviesRecyclerView"
+                <FrameLayout
+                    android:id="@+id/upcomingFrameLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/dimen_200"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginTop="@dimen/dimen_10"
-                    android:text="@string/upcoming_movies_title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/size_20"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/topRatedMoviesRecyclerView" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/upcomingMoviesRecyclerView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/dimen_300"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/topRatedFrameLayout" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/popularMoviesCardView"
@@ -129,7 +88,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/trendingMoviesCardView"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/upcomingMoviesRecyclerView">
+                    app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -174,7 +133,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/popularMoviesCardView"
-                    app:layout_constraintTop_toBottomOf="@+id/upcomingMoviesRecyclerView">
+                    app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

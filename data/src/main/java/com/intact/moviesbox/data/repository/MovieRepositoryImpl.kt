@@ -6,6 +6,7 @@ import com.intact.moviesbox.domain.repositories.MovieRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.SingleObserver
 import javax.inject.Inject
 
 /**
