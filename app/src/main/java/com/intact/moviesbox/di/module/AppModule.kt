@@ -1,12 +1,8 @@
 package com.intact.moviesbox.di.module
 
 import android.content.Context
-import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
-import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
-import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
 import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
 import com.intact.moviesbox.ui.base.MoviesAdapter
-import com.intact.moviesbox.util.MovieListType
 import com.intact.moviesbox.util.SchedulerProvider
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -30,17 +26,6 @@ class AppModule {
     internal fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 
     @Provides
-    @NowPlayingQualifier
     internal fun provideNowPlayingMovieAdapter(context: Context, picasso: Picasso) =
-        MoviesAdapter(context, picasso, MovieListType.NowPlayingMovies)
-
-    @Provides
-    @TopRatedQualifier
-    internal fun provideTopRatedMovieAdapter(context: Context, picasso: Picasso) =
-        MoviesAdapter(context, picasso, MovieListType.TopRatedMovies)
-
-    @Provides
-    @UpcomingQualifier
-    internal fun provideUpcomingMovieAdapter(context: Context, picasso: Picasso) =
-        MoviesAdapter(context, picasso, MovieListType.UpcomingMovies)
+        MoviesAdapter(context, picasso)
 }

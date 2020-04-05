@@ -34,7 +34,4 @@ abstract class DataModule {
 
     @Binds
     abstract fun bindsNowPlayingDomainDataMapper(nowPlayingDomainDataMapper: NowPlayingDomainDataMapper): Mapper<NowPlayingMoviesDomainDTO, NowPlayingMoviesDataDTO>
-
-//    @Binds
-//    abstract fun bindsMoviesListDomainDataMapper(movieListDomainDataMapper: MovieListDomainDataMapper): Mapper<List<MovieDomainDTO>, List<MovieDataDTO>>
 }

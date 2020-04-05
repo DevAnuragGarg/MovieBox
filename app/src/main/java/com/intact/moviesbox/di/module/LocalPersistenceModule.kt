@@ -7,7 +7,6 @@ import com.intact.moviesbox.local.database.MoviesBoxDB
 import com.intact.moviesbox.local.entity.MovieEntity
 import com.intact.moviesbox.local.mapper.Mapper
 import com.intact.moviesbox.local.mapper.MovieLocalDataMapper
-import com.intact.moviesbox.local.mapper.MoviesListLocalDataMapper
 import com.intact.moviesbox.local.source.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -27,11 +26,6 @@ class LocalPersistenceModule {
         fun bindMovieMapper(
             movieLocalDataMapper: MovieLocalDataMapper
         ): Mapper<MovieEntity, MovieDataDTO>
-
-//        @Binds
-//        fun bindMoviesListMapper(
-//            moviesListLocalDataMapper: MoviesListLocalDataMapper
-//        ): Mapper<List<MovieEntity>, List<MovieDataDTO>>
     }
 
     @Provides

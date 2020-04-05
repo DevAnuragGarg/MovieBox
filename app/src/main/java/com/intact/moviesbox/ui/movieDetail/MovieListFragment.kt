@@ -1,5 +1,6 @@
 package com.intact.moviesbox.ui.movieDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.FragmentMovieListBinding
-import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
@@ -17,6 +17,8 @@ import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.base.BaseFragment
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.base.MoviesAdapter
+import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
+import com.intact.moviesbox.util.MOVIE_ID
 import com.intact.moviesbox.util.MOVIE_LIST_TYPE
 import com.intact.moviesbox.util.MovieListType
 import timber.log.Timber
@@ -26,10 +28,9 @@ import javax.inject.Inject
 /**
  * Created by Anurag Garg on 2020-04-03.
  */
-class MovieListFragment : BaseFragment() {
+class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
     @Inject
-    @NowPlayingQualifier
     lateinit var movieListAdapter: MoviesAdapter
 
     @Inject
@@ -95,6 +96,9 @@ class MovieListFragment : BaseFragment() {
                 }
             }
         }
+
+        // set up the click listener
+        movieListAdapter.setMovieItemClickListener(this)
     }
 
     override fun onCreateView(
@@ -150,5 +154,15 @@ class MovieListFragment : BaseFragment() {
     // on error received
     private fun onError(dto: ErrorDTO) {
         Timber.d("onError: $dto")
+    }
+
+    override fun onMovieItemClicked(movie: MovieDTO) {
+        // saving the movie details
+        homeViewModel.saveMovieDetail(movieDTO = movie)
+
+        // starting movie detail activity
+        val intent = Intent(activity, MovieDetailActivity::class.java)
+        intent.putExtra(MOVIE_ID, movie.id)
+        startActivity(intent)
     }
 }

@@ -16,22 +16,22 @@ import com.intact.moviesbox.databinding.ActivityHomeBinding
 import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
-import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
 import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
-import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
 import com.intact.moviesbox.ui.movieDetail.MovieListFragment
-import com.intact.moviesbox.util.*
+import com.intact.moviesbox.util.MovieListType
+import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
+import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
+import com.intact.moviesbox.util.SHOW_TRENDING_MOVIES
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
 import timber.log.Timber
 import javax.inject.Inject
 
-class HomeActivity : BaseActivity(), OnMovieItemClickListener {
+class HomeActivity : BaseActivity() {
 
     @Inject
     @NowPlayingQualifier
@@ -179,16 +179,6 @@ class HomeActivity : BaseActivity(), OnMovieItemClickListener {
 
         // When status updates are no longer needed, unregister the listener.
         appUpdateManager.unregisterListener(installUpdateListener)
-    }
-
-    override fun onMovieItemClicked(movie: MovieDTO) {
-        // saving the movie details
-        homeViewModel.saveMovieDetail(movieDTO = movie);
-
-        // starting movie detail activity
-        val intent = Intent(this@HomeActivity, MovieDetailActivity::class.java)
-        intent.putExtra(MOVIE_ID, movie.id)
-        startActivity(intent)
     }
 
     fun onViewClicked(view: View) {

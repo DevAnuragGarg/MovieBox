@@ -17,20 +17,19 @@ import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
 import com.intact.moviesbox.util.MovieListType
 import com.squareup.picasso.Picasso
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 class MoviesAdapter @Inject constructor(
     private val context: Context,
-    private val picasso: Picasso,
-    private var movieType: MovieListType = MovieListType.NowPlayingMovies
+    private val picasso: Picasso
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var moviesData = ArrayList<MovieDTO>()
+    private lateinit var movieType: MovieListType
     private lateinit var onClickListener: OnMovieItemClickListener
 
-    fun setMovieListType(movieListType: MovieListType){
+    fun setMovieListType(movieListType: MovieListType) {
         movieType = movieListType
     }
 
