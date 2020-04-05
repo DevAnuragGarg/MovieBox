@@ -2,7 +2,7 @@ package com.intact.moviesbox.di.module
 
 import androidx.lifecycle.ViewModel
 import com.intact.moviesbox.di.scope.ViewModelKey
-import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
+import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.presentation.viewmodels.MovieDetailViewModel
 import com.intact.moviesbox.presentation.viewmodels.MoviesListViewModel
 import dagger.Binds
@@ -42,8 +42,8 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @Singleton
-    @ViewModelKey(HomeViewModel::class)
-    internal abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+    @ViewModelKey(FragmentListViewModel::class)
+    internal abstract fun bindFragmentListViewModel(fragmentListViewModel: FragmentListViewModel): ViewModel
 
     @Binds
     @IntoMap

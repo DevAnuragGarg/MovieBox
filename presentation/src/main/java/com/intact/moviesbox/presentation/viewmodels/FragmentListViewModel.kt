@@ -32,7 +32,7 @@ import javax.inject.Inject
  * onExceptionResumeNext, retry, retryUntil, retryWhen
  */
 
-class HomeViewModel @Inject constructor(
+class FragmentListViewModel @Inject constructor(
     private val movieMapper: Mapper<MovieDomainDTO, MovieDTO>,
     private val saveMovieDetailUseCase: SaveMovieDetailUseCase,
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
@@ -46,6 +46,7 @@ class HomeViewModel @Inject constructor(
     private val isLoading = MutableLiveData<Boolean>()
     private val topRatedErrorLiveData = MutableLiveData<ErrorDTO>()
     private val upcomingErrorLiveData = MutableLiveData<ErrorDTO>()
+    private val loadingProgressLiveData = MutableLiveData<Boolean>()
     private val nowPlayingErrorLiveData = MutableLiveData<ErrorDTO>()
     private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
     private val upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
@@ -56,6 +57,18 @@ class HomeViewModel @Inject constructor(
         isLoading.value = true
         getCompositeDisposable().add(
             getNowPlayingMoviesUseCase.buildUseCase(GetNowPlayingMoviesUseCase.Param(pageNumber = pageNumber))
+                .doOnSubscribe {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = true
+                    }
+                }
+                .doOnTerminate {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = false
+                    }
+                }
                 .map { nowPlayingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
@@ -72,6 +85,18 @@ class HomeViewModel @Inject constructor(
         isLoading.value = true
         getCompositeDisposable().add(
             getTopRatedMoviesUseCase.buildUseCase(GetTopRatedMoviesUseCase.Param(pageNumber = pageNumber))
+                .doOnSubscribe {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = true
+                    }
+                }
+                .doOnTerminate {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = false
+                    }
+                }
                 .map { topRatedMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Top rated movies response received: ${it.movies}")
@@ -88,6 +113,18 @@ class HomeViewModel @Inject constructor(
         isLoading.value = true
         getCompositeDisposable().add(
             getUpcomingMoviesUseCase.buildUseCase(GetUpcomingMoviesUseCase.Param(pageNumber = pageNumber))
+                .doOnSubscribe {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = true
+                    }
+                }
+                .doOnTerminate {
+                    // only for the first page we are asking for update
+                    if (pageNumber == "1") {
+                        loadingProgressLiveData.value = false
+                    }
+                }
                 .map { upcomingMoviesMapper.to(it) }
                 .subscribe({
                     Timber.d("Success: Upcoming movies response received: ${it.movies}")
@@ -116,6 +153,7 @@ class HomeViewModel @Inject constructor(
     fun getTopRatedErrorLiveData() = topRatedErrorLiveData
     fun getUpcomingErrorLiveData() = upcomingErrorLiveData
     fun getNowPlayingErrorLiveData() = nowPlayingErrorLiveData
+    fun getLoadingProgressLiveData() = loadingProgressLiveData
     fun getTopRatedMoviesListLiveData() = topRatedMoviesLiveData
     fun getUpcomingMoviesListLiveData() = upcomingMoviesLiveData
     fun getNowPlayingMoviesListLiveData() = nowPlayingMoviesLiveData

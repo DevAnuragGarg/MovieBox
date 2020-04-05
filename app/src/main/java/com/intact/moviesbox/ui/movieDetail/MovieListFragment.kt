@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
@@ -13,7 +15,7 @@ import com.intact.moviesbox.databinding.FragmentMovieListBinding
 import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
-import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
+import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.base.BaseFragment
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.base.MoviesAdapter
@@ -38,7 +40,7 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
     private var pageNumber = "1"
     private lateinit var movieListType: MovieListType
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var fragmentListViewModel: FragmentListViewModel
     private lateinit var binding: FragmentMovieListBinding
 
     // creating new instance using static function
@@ -60,38 +62,41 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         super.onActivityCreated(savedInstanceState)
 
         // get the view model
-        homeViewModel =
+        fragmentListViewModel =
             ViewModelProviders.of(this@MovieListFragment, viewModelFactory)
-                .get(HomeViewModel::class.java)
+                .get(FragmentListViewModel::class.java)
 
-        Timber.d("Check: $homeViewModel")
+        // observe the loading live data
+        observeLiveData(fragmentListViewModel.getLoadingProgressLiveData()) {
+            updateProgressBar(showProgressBar = it)
+        }
 
         // get the movie details
         when (movieListType) {
             MovieListType.TopRatedMovies -> {
-                homeViewModel.getTopRatedMovies(pageNumber = pageNumber)
-                observeLiveData(homeViewModel.getTopRatedMoviesListLiveData()) {
+                fragmentListViewModel.getTopRatedMovies(pageNumber = pageNumber)
+                observeLiveData(fragmentListViewModel.getTopRatedMoviesListLiveData()) {
                     updateUI(it)
                 }
-                observeLiveData(homeViewModel.getTopRatedErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.getTopRatedErrorLiveData()) {
                     onError(it)
                 }
             }
             MovieListType.NowPlayingMovies -> {
-                homeViewModel.getNowPlayingMovies(pageNumber = pageNumber)
-                observeLiveData(homeViewModel.getNowPlayingMoviesListLiveData()) {
+                fragmentListViewModel.getNowPlayingMovies(pageNumber = pageNumber)
+                observeLiveData(fragmentListViewModel.getNowPlayingMoviesListLiveData()) {
                     updateUI(it)
                 }
-                observeLiveData(homeViewModel.getNowPlayingErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.getNowPlayingErrorLiveData()) {
                     onError(it)
                 }
             }
             MovieListType.UpcomingMovies -> {
-                homeViewModel.getUpcomingMovies(pageNumber = pageNumber)
-                observeLiveData(homeViewModel.getUpcomingMoviesListLiveData()) {
+                fragmentListViewModel.getUpcomingMovies(pageNumber = pageNumber)
+                observeLiveData(fragmentListViewModel.getUpcomingMoviesListLiveData()) {
                     updateUI(it)
                 }
-                observeLiveData(homeViewModel.getUpcomingErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.getUpcomingErrorLiveData()) {
                     onError(it)
                 }
             }
@@ -156,9 +161,19 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         Timber.d("onError: $dto")
     }
 
+    private fun updateProgressBar(showProgressBar: Boolean) {
+        if (showProgressBar) {
+            binding.progressBar.visibility = VISIBLE
+            binding.moviesRecyclerView.visibility = GONE
+        } else {
+            binding.progressBar.visibility = GONE
+            binding.moviesRecyclerView.visibility = VISIBLE
+        }
+    }
+
     override fun onMovieItemClicked(movie: MovieDTO) {
         // saving the movie details
-        homeViewModel.saveMovieDetail(movieDTO = movie)
+        fragmentListViewModel.saveMovieDetail(movieDTO = movie)
 
         // starting movie detail activity
         val intent = Intent(activity, MovieDetailActivity::class.java)

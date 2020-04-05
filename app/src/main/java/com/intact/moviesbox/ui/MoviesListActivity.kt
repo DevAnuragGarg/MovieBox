@@ -3,7 +3,7 @@ package com.intact.moviesbox.ui
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.intact.moviesbox.databinding.ActivityMoviesListBinding
-import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
+import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
@@ -29,7 +29,7 @@ class MoviesListActivity : BaseActivity() {
 
         // get the view model
         val homeViewModel = ViewModelProviders.of(this@MoviesListActivity, viewModelFactory)
-            .get(HomeViewModel::class.java)
+            .get(FragmentListViewModel::class.java)
         //setObservers(homeViewModel)
         when {
             showPopularMovies -> {

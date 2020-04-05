@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
 @RunWith(JUnit4::class)
-class HomeViewModelTest {
+class FragmentListViewModelTest {
 
     @Mock
     lateinit var movieRepository: MovieRepository
@@ -18,7 +18,7 @@ class HomeViewModelTest {
     @Mock
     lateinit var baseSchedulerProvider: BaseSchedulerProvider
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var fragmentListViewModel: FragmentListViewModel
     private val movieDataEntityMapper = NowPlayingDomainPresentationMapper()
     //private val usr = TestDataGenerator
 

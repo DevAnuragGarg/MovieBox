@@ -16,7 +16,7 @@ import com.intact.moviesbox.databinding.ActivityHomeBinding
 import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
-import com.intact.moviesbox.presentation.viewmodels.HomeViewModel
+import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
@@ -49,7 +49,7 @@ class HomeActivity : BaseActivity() {
     lateinit var viewModelFactory: CustomViewModelFactory
 
     private lateinit var binding: ActivityHomeBinding              // view binding jet-pack
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var fragmentListViewModel: FragmentListViewModel
     private lateinit var appUpdateManager: AppUpdateManager
     private val installUpdateListener: InstallStateUpdatedListener =
         InstallStateUpdatedListener { state ->
