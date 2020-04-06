@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.FragmentMovieListBinding
 import com.intact.moviesbox.extension.observeLiveData
@@ -163,7 +164,12 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         Timber.d("${movieListType.name}: onError: $dto")
         when (movieListType) {
             MovieListType.UpcomingMovies ->
-                showCustomizedToast("Upcoming movies: ${dto.message}", Toast.LENGTH_LONG)
+                showCustomizedSnackBar(
+                    binding.parentLayout,
+                    "Upcoming movies: ${dto.message}",
+                    Snackbar.LENGTH_LONG,
+                    true
+                )
 
             MovieListType.NowPlayingMovies ->
                 showCustomizedToast(
