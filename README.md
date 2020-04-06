@@ -45,9 +45,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - latest dagger changes
 - make binder null in fragment
 - implementation of similar movies in movie detail screen
-- converting the recycler views at home screen into individual fragments
 - implementation of data binding into movie detail screen
-- setting up the progress bar
 - writing test cases for all the modules and having maximum code coverage 
 
 ## License
