@@ -32,8 +32,9 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Picasso](hhttps://github.com/square/picasso) - loading images
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) - Customized toast with Gravity
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
-- [CircleCI](https://circleci.com/) for continuous integration
+- [CircleCI](https://circleci.com/) - for continuous integration
 - [Mockito](https://site.mockito.org)
 
 ## TODOs

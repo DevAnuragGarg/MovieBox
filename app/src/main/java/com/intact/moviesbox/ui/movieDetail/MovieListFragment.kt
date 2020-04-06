@@ -2,11 +2,13 @@ package com.intact.moviesbox.ui.movieDetail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,8 +42,8 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
     private var pageNumber = "1"
     private lateinit var movieListType: MovieListType
-    private lateinit var fragmentListViewModel: FragmentListViewModel
     private lateinit var binding: FragmentMovieListBinding
+    private lateinit var fragmentListViewModel: FragmentListViewModel
 
     // creating new instance using static function
     companion object {
@@ -158,7 +160,25 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
     // on error received
     private fun onError(dto: ErrorDTO) {
-        Timber.d("onError: $dto")
+        Timber.d("${movieListType.name}: onError: $dto")
+        when (movieListType) {
+            MovieListType.UpcomingMovies ->
+                showCustomizedToast("Upcoming movies: ${dto.message}", Toast.LENGTH_LONG)
+
+            MovieListType.NowPlayingMovies ->
+                showCustomizedToast(
+                    "Now Playing movies: ${dto.message}",
+                    Toast.LENGTH_LONG,
+                    Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                )
+
+            MovieListType.TopRatedMovies ->
+                showCustomizedToast(
+                    "Top Rated movies: ${dto.message}",
+                    Toast.LENGTH_LONG,
+                    Gravity.CENTER
+                )
+        }
     }
 
     private fun updateProgressBar(showProgressBar: Boolean) {

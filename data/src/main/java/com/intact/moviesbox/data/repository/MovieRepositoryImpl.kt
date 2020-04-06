@@ -6,7 +6,6 @@ import com.intact.moviesbox.domain.repositories.MovieRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.SingleObserver
 import javax.inject.Inject
 
 /**
@@ -27,33 +26,33 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun getPlayingNowMovies(pageNumber: String): Observable<NowPlayingMoviesDomainDTO> {
         return remoteDataSource.getRunningNowMovies(pageNumber = pageNumber)
-            .map { nowPlayingDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { nowPlayingDomainDataMapper.from(it) }
     }
 
     override fun getUpcomingRatedMovies(pageNumber: String): Observable<UpcomingMoviesDomainDTO> {
         return remoteDataSource.getUpcomingMovies(pageNumber = pageNumber)
-            .map { upcomingDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { upcomingDomainDataMapper.from(it) }
     }
 
     override fun getPopularMovies(pageNumber: String): Observable<PopularMoviesDomainDTO> {
         return remoteDataSource.getPopularMovies(pageNumber = pageNumber)
-            .map { popularDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { popularDomainDataMapper.from(it) }
     }
 
     override fun getTopRatedMovies(pageNumber: String): Observable<TopRatedMoviesDomainDTO> {
         return remoteDataSource.getTopRatedMovies(pageNumber = pageNumber)
-            .map { topRatedDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { topRatedDomainDataMapper.from(it) }
     }
 
     override fun getTrendingMovies(pageNumber: String): Observable<TrendingMoviesDomainDTO> {
         return remoteDataSource.getTrendingMovies(pageNumber = pageNumber)
-            .map { trendingDomainDataMapper.from(it) }.onErrorResumeNext(Observable.empty())
+            .map { trendingDomainDataMapper.from(it) }
     }
 
     override fun getMovieDetail(movieId: Long): Single<MovieDomainDTO> {
         // TODO: need to check for single on error
         return localDataSource.getMovieDetail(movieId = movieId)
-            .map { movieDomainDataMapper.from(it) }.doOnError { }
+            .map { movieDomainDataMapper.from(it) }
     }
 
 //    override fun saveAllMovies(movieDetailList: List<MovieDomainDTO>): Completable {

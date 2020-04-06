@@ -10,4 +10,6 @@
     <color name="title_color">#DEE3E2</color>
     <color name="generic_bg">#212121</color>
     <color name="rating_yellow">#EF962D</color>
+    <color name="custom_toast_bg">#FB7B6B</color>
+    <color name="custom_toast_stroke">#DD2C00</color>
 </resources>
