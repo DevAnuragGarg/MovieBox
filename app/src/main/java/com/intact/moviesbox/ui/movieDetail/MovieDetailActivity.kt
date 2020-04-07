@@ -23,6 +23,13 @@ import javax.inject.Inject
  * Activity to show the movie details
  *
  * Created by Anurag Garg on 2019-04-24.
+ *
+ * Data binding: A binding class is generated for each layout file. By default,
+ * the name of the class is based on the name of the layout file, converting it to Pascal case
+ * and adding the Binding suffix to it. The above layout filename is activity_main.xml so the
+ * corresponding generated class is ActivityMainBinding.
+ *
+ * https://developer.android.com/topic/libraries/data-binding/expressions#kotlin
  */
 class MovieDetailActivity : BaseActivity() {
 
@@ -90,9 +97,11 @@ class MovieDetailActivity : BaseActivity() {
 
     // update UI
     private fun updateUI() {
+        // data binding
+        binding.movieDetailDTO = movieDTO
+
+        // view binding
         with(movieDTO) {
-            binding.movieTitleTV.text = title
-            binding.overViewTV.text = overview
             binding.collapsingToolbar.title = title
             binding.releaseDateTV.text = releaseDate
             picasso.load(IMAGE_BASE_URL_500 + backdropPath)

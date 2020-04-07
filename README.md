@@ -17,9 +17,10 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based
 - JetPack
+  - [Data binding](https://developer.android.com/topic/libraries/data-binding) 
   - LiveData - notify domain layer data to views.
   - ViewModel - UI related data holder, lifecycle aware.
-  - View Binding - removed butter knife, kotlin synthetic, findViewById
+  - [View Binding](https://developer.android.com/topic/libraries/view-binding) - removed butter knife, kotlin synthetic, findViewById
   - [Room](https://developer.android.com/topic/libraries/architecture/room) - persistence library, database  
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
@@ -43,7 +44,6 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - pagination for all the recycler views
 - Handling of error scenarios
 - latest dagger changes
-- make binder null in fragment
 - implementation of similar movies in movie detail screen
 - implementation of data binding into movie detail screen
 - writing test cases for all the modules and having maximum code coverage 

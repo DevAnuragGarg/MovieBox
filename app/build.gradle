@@ -34,6 +34,11 @@ android {
     viewBinding {
         enabled = true
     }
+
+    // data binding jetpack || ui || foundation
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
