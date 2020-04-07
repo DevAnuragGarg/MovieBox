@@ -42,8 +42,9 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
     lateinit var viewModelFactory: CustomViewModelFactory
 
     private var pageNumber = "1"
+    private val binding get() = _binding!!
     private lateinit var movieListType: MovieListType
-    private lateinit var binding: FragmentMovieListBinding
+    private var _binding: FragmentMovieListBinding? = null
     private lateinit var fragmentListViewModel: FragmentListViewModel
 
     // creating new instance using static function
@@ -114,14 +115,14 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         initializeVariables()
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
+        _binding = null
     }
 
     private fun initializeVariables() {
