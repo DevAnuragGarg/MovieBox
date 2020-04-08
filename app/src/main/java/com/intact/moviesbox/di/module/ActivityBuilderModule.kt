@@ -1,10 +1,9 @@
 package com.intact.moviesbox.di.module
 
 import com.intact.moviesbox.di.scope.ActivityScope
-import com.intact.moviesbox.ui.MoviesListActivity
-import com.intact.moviesbox.ui.home.HomeActivity
-import com.intact.moviesbox.ui.movieDetail.MovieDetailActivity
-import com.intact.moviesbox.ui.movieDetail.MovieListFragmentModule
+import com.intact.moviesbox.ui.activity.MoviesListActivity
+import com.intact.moviesbox.ui.activity.HomeActivity
+import com.intact.moviesbox.ui.activity.MovieDetailActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

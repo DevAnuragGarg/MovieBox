@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui.home
+package com.intact.moviesbox.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -17,10 +17,9 @@ import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
 import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
-import com.intact.moviesbox.ui.MoviesListActivity
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.ui.movieDetail.MovieListFragment
+import com.intact.moviesbox.ui.fragment.MovieListFragment
 import com.intact.moviesbox.util.MovieListType
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
 import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES

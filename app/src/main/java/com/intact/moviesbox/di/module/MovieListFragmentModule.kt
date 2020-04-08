@@ -1,5 +1,6 @@
-package com.intact.moviesbox.ui.movieDetail
+package com.intact.moviesbox.di.module
 
+import com.intact.moviesbox.ui.fragment.MovieListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

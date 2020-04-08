@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui.movieDetail
+package com.intact.moviesbox.ui.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -24,10 +24,27 @@ import javax.inject.Inject
  *
  * Created by Anurag Garg on 2019-04-24.
  *
+ * Using kotlinx.android.synthetic is no longer a recommended practice.
+ *
  * Data binding: A binding class is generated for each layout file. By default,
  * the name of the class is based on the name of the layout file, converting it to Pascal case
  * and adding the Binding suffix to it. The above layout filename is activity_main.xml so the
  * corresponding generated class is ActivityMainBinding.
+ *
+ * Binding adapters: For every layout expression, there is a binding adapter that makes the
+ * framework calls required to set the corresponding properties or listeners. For example,
+ * the binding adapter can take care of calling the setText() method to set the text property
+ * or call the setOnClickListener() method to add a listener to the click event.
+ *
+ * @BindingAdapter("imageUrl", "error")
+ * fun loadImage(view: ImageView, url: String, error: Drawable) {
+ *      Picasso.get().load(url).error(error).into(view)
+ * }
+ *
+ * <ImageView app:imageUrl="@{venue.imageUrl}" app:error="@{@drawable/venueError}" />
+ *
+ * We are not using binding adapter as in above example the code has to be written in the user class
+ * which is a pojo and we are not injecting picasso over there
  *
  * https://developer.android.com/topic/libraries/data-binding/expressions#kotlin
  */

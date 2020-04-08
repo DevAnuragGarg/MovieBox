@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui
+package com.intact.moviesbox.ui.activity
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders

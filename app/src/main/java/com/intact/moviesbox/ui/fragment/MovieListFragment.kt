@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui.movieDetail
+package com.intact.moviesbox.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,8 +21,9 @@ import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.base.BaseFragment
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.ui.base.MoviesAdapter
+import com.intact.moviesbox.ui.adapters.MoviesAdapter
 import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
+import com.intact.moviesbox.ui.activity.MovieDetailActivity
 import com.intact.moviesbox.util.MOVIE_ID
 import com.intact.moviesbox.util.MOVIE_LIST_TYPE
 import com.intact.moviesbox.util.MovieListType
@@ -50,7 +51,8 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
     // creating new instance using static function
     companion object {
 
-        fun newInstance(movieListType: String) = MovieListFragment().apply {
+        fun newInstance(movieListType: String) = MovieListFragment()
+            .apply {
             arguments = bundleOf(
                 MOVIE_LIST_TYPE to movieListType
             )

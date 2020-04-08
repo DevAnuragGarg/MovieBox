@@ -1,4 +1,4 @@
-package com.intact.moviesbox.ui.base
+package com.intact.moviesbox.ui.adapters
 
 import android.content.Context
 import android.text.Spannable
@@ -38,16 +38,22 @@ class MoviesAdapter @Inject constructor(
         return when (movieType) {
             MovieListType.NowPlayingMovies -> {
                 val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
-                MovieViewHolder(view)
+                MovieViewHolder(
+                    view
+                )
             }
             MovieListType.TopRatedMovies -> {
                 val view =
                     LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
-                PosterMovieViewHolder(view)
+                PosterMovieViewHolder(
+                    view
+                )
             }
             MovieListType.UpcomingMovies -> {
                 val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
-                MovieViewHolder(view)
+                MovieViewHolder(
+                    view
+                )
             }
         }
     }

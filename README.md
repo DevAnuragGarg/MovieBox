@@ -47,6 +47,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - implementation of similar movies in movie detail screen
 - implementation of data binding into movie detail screen
 - writing test cases for all the modules and having maximum code coverage 
+- https://www.androidhive.info/2020/01/viewpager2-pager-transformations-intro-slider-pager-animations-pager-transformations/
 
 ## License
 ```

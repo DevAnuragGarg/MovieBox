@@ -3,7 +3,7 @@ package com.intact.moviesbox.di.module
 import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
-import com.intact.moviesbox.ui.movieDetail.MovieListFragment
+import com.intact.moviesbox.ui.fragment.MovieListFragment
 import com.intact.moviesbox.util.MovieListType
 import dagger.Module
 import dagger.Provides

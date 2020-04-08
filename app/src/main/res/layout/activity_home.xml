@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/generic_bg"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".ui.activity.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.home.HomeActivity">
+        tools:context=".ui.activity.HomeActivity">
 
         <ImageView
             android:layout_width="0dp"

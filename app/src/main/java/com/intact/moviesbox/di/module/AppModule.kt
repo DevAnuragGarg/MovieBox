@@ -2,7 +2,7 @@ package com.intact.moviesbox.di.module
 
 import android.content.Context
 import com.intact.moviesbox.domain.schedulers.BaseSchedulerProvider
-import com.intact.moviesbox.ui.base.MoviesAdapter
+import com.intact.moviesbox.ui.adapters.MoviesAdapter
 import com.intact.moviesbox.util.SchedulerProvider
 import com.squareup.picasso.Picasso
 import dagger.Module
