@@ -44,6 +44,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - pagination for all the recycler views
 - Handling of error scenarios
 - latest dagger changes
+- sealed classes for checking data received and transfer to UI
 - implementation of similar movies in movie detail screen
 - implementation of data binding into movie detail screen
 - writing test cases for all the modules and having maximum code coverage 
