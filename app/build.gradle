@@ -110,7 +110,6 @@ dependencies {
 
     // Testing dependencies
     testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation 'android.arch.core:core-testing:1.1.1' // Test helpers for LiveData
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInlineVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
