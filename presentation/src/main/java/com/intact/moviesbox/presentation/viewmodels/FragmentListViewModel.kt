@@ -69,7 +69,9 @@ class FragmentListViewModel @Inject constructor(
                         loadingProgressLiveData.value = false
                     }
                 }
-                .map { nowPlayingMoviesMapper.to(it) }
+                .map {
+                    nowPlayingMoviesMapper.to(it)
+                }
                 .subscribe({ it ->
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
                     nowPlayingMoviesLiveData.value = it.movies

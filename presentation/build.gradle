@@ -51,4 +51,5 @@ dependencies {
     // Testing dependencies
     testImplementation "junit:junit:${rootProject.junitVersion}"
     testImplementation "org.mockito:mockito-core:$rootProject.mockito"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.testingCore"
 }
