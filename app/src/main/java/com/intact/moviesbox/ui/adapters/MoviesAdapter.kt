@@ -114,7 +114,7 @@ class MoviesAdapter @Inject constructor(
                                     R.color.rating_yellow
                                 )
                             ),
-                            12, 21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            12, spannableString.length - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                         binding.tvReleaseDate.text = spannableString
                         binding.tvReleaseDate.visibility = View.VISIBLE

@@ -18,6 +18,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - 100% [Kotlin](https://kotlinlang.org/) based
 - JetPack
   - [Data binding](https://developer.android.com/topic/libraries/data-binding) 
+  - [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of jetpack libraries
   - LiveData - notify domain layer data to views.
   - ViewModel - UI related data holder, lifecycle aware.
   - [View Binding](https://developer.android.com/topic/libraries/view-binding) - removed butter knife, kotlin synthetic, findViewById

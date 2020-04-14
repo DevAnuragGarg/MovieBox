@@ -1,0 +1,39 @@
+<!-- Localization documentation-->
+<!--Localisation in android for the India region-> Right click on res -> select New->
+Android Resource Directory -> In available qualifiers select locale -> Choose language
+and specific region. You can check the preview of the text in the layout preview, selecting
+another locale using dropsdown-->
+
+<!-- You can put the localization for the images also, we need to create the different folders
+for different regions. Create folder in resource with right click on the res package and select
+New ▸ Android resource directory-> create a new drawable folder for the en-GB locale.
+en:English as the language and GB:United Kingdom as the region. save all the images with same name-->
+
+<!-- There is also RTL right to left that has to be checked for the languages which are written
+from right to left. To test for this:  confirm the app has enabled RTL support by checking in
+AndroidManifest.xml that application contains android:supportsRtl=”true”. In the layout file select
+preview right to left. On real device, enable developer options. In the code for the debug builds:
+debug {
+  pseudoLocalesEnabled true
+}
+Find the pseudolocales in the Languages section of Settings. And select Arabic-->
+<resources>
+    <string name="app_name">MoviesBox</string>
+
+    <!--Home screen-->
+    <string name="popular_movies_title">लोकप्रिय फिल्में</string>
+    <string name="upcoming_movies_title">आगामी फिल्में</string>
+    <string name="trending_movies_title">ट्रेंडिंग मूवीज</string>
+    <string name="top_rated_movies_title">टॉप रेटेड फिल्में</string>
+    <string name="now_playing_movies_title">अब प्लेइंग मूवीज</string>
+
+    <!--Content description-->
+    <string name="movie_image">movieImage</string>
+
+    <!-- Movie detail screen -->
+    <string name="movie_overview_title">अवलोकन</string>
+    <string name="movie_release_date_title">रिलीज़ की तारीख</string>
+
+    <!-- Home screen item listing-->
+    <string name="release_on">पर जारी: %s</string>
+</resources>
