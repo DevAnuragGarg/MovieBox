@@ -17,4 +17,8 @@
 
     <!-- Home screen item listing-->
     <string name="release_on">Release on: %s</string>
+
+    <!-- Notification channel details-->
+    <string name="channel_name" translatable="false">MoviesBoxChannel</string>
+    <string name="channel_description" translatable="false">This channel is created having all the notifications related to MoviesBox</string>
 </resources>

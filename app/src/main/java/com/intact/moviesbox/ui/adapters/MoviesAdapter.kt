@@ -16,6 +16,7 @@ import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
 import com.intact.moviesbox.util.MovieListType
+import com.intact.moviesbox.util.createAndShowNotification
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import javax.inject.Inject
@@ -114,7 +115,7 @@ class MoviesAdapter @Inject constructor(
                                     R.color.rating_yellow
                                 )
                             ),
-                            12, spannableString.length - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            12, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                         binding.tvReleaseDate.text = spannableString
                         binding.tvReleaseDate.visibility = View.VISIBLE
@@ -122,6 +123,7 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
+                            createAndShowNotification(context, title, overview)
                             onClickListener.onMovieItemClicked(movie = moviesData[position])
                         }
                     }

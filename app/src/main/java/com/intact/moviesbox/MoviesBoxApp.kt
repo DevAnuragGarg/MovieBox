@@ -3,6 +3,7 @@ package com.intact.moviesbox
 import android.app.Application
 import com.intact.moviesbox.di.component.DaggerAppComponent
 import com.intact.moviesbox.util.ReleaseLogTree
+import com.intact.moviesbox.util.createNotificationChannel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -44,6 +45,9 @@ class MoviesBoxApp : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
+
+        // registering the notification channel
+        createNotificationChannel(this)
 
         // setting up the dagger
         DaggerAppComponent
