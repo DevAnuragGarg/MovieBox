@@ -16,24 +16,28 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 ## Contents
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based
-- JetPack
-  - [Data binding](https://developer.android.com/topic/libraries/data-binding) 
-  - [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of jetpack libraries
-  - LiveData - notify domain layer data to views.
-  - ViewModel - UI related data holder, lifecycle aware.
+- JetPack: BEHAVIOR
+  - [Notifications](https://developer.android.com/guide/topics/ui/notifiers/notifications) - added notifications for the application when clicked on upcoming movies
+- JetPack: FOUNDATION
+- JetPack: ARCHITECTURE
+  - [Data binding](https://developer.android.com/topic/libraries/data-binding) - used in detail screen and home screen
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - notify domain layer data to views.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - UI related data holder, lifecycle aware.
   - [View Binding](https://developer.android.com/topic/libraries/view-binding) - removed butter knife, kotlin synthetic, findViewById
   - [Room](https://developer.android.com/topic/libraries/architecture/room) - persistence library, database  
-- Architecture
+ 
+- DESIGN PATTERNS
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
   - Repository pattern
   - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) with SOLID principles
-  - [Dagger2](https://github.com/google/dagger) - dependency injection
 - Material Design & Animations
+- [Dagger2](https://github.com/google/dagger) - dependency injection
 - [Retrofit2 & Gson](https://github.com/square/retrofit) - constructing the REST API
 - [OkHttp3](https://github.com/square/okhttp) - implementing interceptor, logging and mocking web server
-- [Picasso](hhttps://github.com/square/picasso) - loading images
-- [Timber](https://github.com/JakeWharton/timber) - logging
+- [Picasso](hhttps://github.com/square/picasso) - loading images throughout the app
+- [Timber](https://github.com/JakeWharton/timber) - logging library added
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of jetpack libraries
 - [Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) - Customized toast with Gravity
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) - for continuous integration
@@ -47,7 +51,6 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - latest dagger changes
 - sealed classes for checking data received and transfer to UI
 - implementation of similar movies in movie detail screen
-- implementation of data binding into movie detail screen
 - writing test cases for all the modules and having maximum code coverage 
 - https://www.androidhive.info/2020/01/viewpager2-pager-transformations-intro-slider-pager-animations-pager-transformations/
 
