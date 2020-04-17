@@ -27,9 +27,9 @@ dependencies {
 
     // rx with room dependencies
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxAndroid"
-    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
-    implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
-    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.room"
+    implementation "androidx.room:room-rxjava2:$rootProject.room"
+    kapt "androidx.room:room-compiler:$rootProject.room"
 
     // for imports for the inject
     implementation "javax.inject:javax.inject:$rootProject.javaxInjectVersion"

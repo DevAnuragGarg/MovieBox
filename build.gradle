@@ -15,6 +15,7 @@ buildscript {
         googleServicesVersion = '4.3.3'
 
         // App dependencies
+        room = '2.2.5'
         dagger = '2.27'
         mockito = '2.22.0'
         rxAndroid = '2.1.1'
@@ -22,7 +23,7 @@ buildscript {
         testingCore = '2.1.0'
         junitVersion = '4.13'
         gsonVersion = '2.8.6'
-        roomVersion = '2.2.5'
+        workManager = '2.3.4'
         aacLifecycle = '1.1.1'
         rxjavaAdapter = '1.0.0'
         timberVersion = '4.7.1'
