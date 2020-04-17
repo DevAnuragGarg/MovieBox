@@ -25,6 +25,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - UI related data holder, lifecycle aware.
   - [View Binding](https://developer.android.com/topic/libraries/view-binding) - removed butter knife, kotlin synthetic, findViewById
   - [Room](https://developer.android.com/topic/libraries/architecture/room) - persistence library, database  
+  - [Work Manager](https://developer.android.com/topic/libraries/architecture/workmanager) - work manager to show notifications after fetching data from server
  
 - DESIGN PATTERNS
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
@@ -45,6 +46,8 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 
 ## TODOs
 - Work manager for cleaning up the database at particular time
+- Work manager fetch movies 
+- Work manager applying dagger
 - making the status bar transparent in movie detail screen
 - pagination for all the recycler views
 - Handling of error scenarios
