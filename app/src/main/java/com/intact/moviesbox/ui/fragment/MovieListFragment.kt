@@ -24,8 +24,8 @@ import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.adapters.MoviesAdapter
 import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
 import com.intact.moviesbox.ui.activity.MovieDetailActivity
-import com.intact.moviesbox.util.MOVIE_ID
-import com.intact.moviesbox.util.MOVIE_LIST_TYPE
+import com.intact.moviesbox.util.INTENT_KEY_MOVIE_ID
+import com.intact.moviesbox.util.INTENT_KEY_MOVIE_LIST_TYPE
 import com.intact.moviesbox.util.MovieListType
 import timber.log.Timber
 import javax.inject.Inject
@@ -54,14 +54,14 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         fun newInstance(movieListType: String) = MovieListFragment()
             .apply {
             arguments = bundleOf(
-                MOVIE_LIST_TYPE to movieListType
+                INTENT_KEY_MOVIE_LIST_TYPE to movieListType
             )
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieListType = MovieListType.valueOf(arguments?.getString(MOVIE_LIST_TYPE)!!)
+        movieListType = MovieListType.valueOf(arguments?.getString(INTENT_KEY_MOVIE_LIST_TYPE)!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -206,7 +206,7 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
         // starting movie detail activity
         val intent = Intent(activity, MovieDetailActivity::class.java)
-        intent.putExtra(MOVIE_ID, movie.id)
+        intent.putExtra(INTENT_KEY_MOVIE_ID, movie.id)
         startActivity(intent)
     }
 }

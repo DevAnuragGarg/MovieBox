@@ -16,14 +16,12 @@ import com.intact.moviesbox.databinding.ActivityHomeBinding
 import com.intact.moviesbox.di.qualifiers.NowPlayingQualifier
 import com.intact.moviesbox.di.qualifiers.TopRatedQualifier
 import com.intact.moviesbox.di.qualifiers.UpcomingQualifier
-import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
-import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.ui.fragment.MovieListFragment
+import com.intact.moviesbox.util.INTENT_KEY_SHOW_POPULAR_MOVIES
+import com.intact.moviesbox.util.INTENT_KEY_SHOW_TRENDING_MOVIES
 import com.intact.moviesbox.util.MovieListType
 import com.intact.moviesbox.util.REQUEST_CODE_UPDATE
-import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
-import com.intact.moviesbox.util.SHOW_TRENDING_MOVIES
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
@@ -44,11 +42,7 @@ class HomeActivity : BaseActivity() {
     @UpcomingQualifier
     lateinit var upcomingMoviesFragment: MovieListFragment
 
-    @Inject
-    lateinit var viewModelFactory: CustomViewModelFactory
-
     private lateinit var binding: ActivityHomeBinding              // view binding jet-pack
-    private lateinit var fragmentListViewModel: FragmentListViewModel
     private lateinit var appUpdateManager: AppUpdateManager
     private val installUpdateListener: InstallStateUpdatedListener =
         InstallStateUpdatedListener { state ->
@@ -185,13 +179,13 @@ class HomeActivity : BaseActivity() {
             R.id.popularMoviesCardView -> {
                 Timber.d("Popular movies clicked")
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
-                intent.putExtra(SHOW_POPULAR_MOVIES, true)
+                intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, true)
                 startActivity(intent)
             }
             R.id.trendingMoviesCardView -> {
                 Timber.d("Trending movies clicked")
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
-                intent.putExtra(SHOW_TRENDING_MOVIES, true)
+                intent.putExtra(INTENT_KEY_SHOW_TRENDING_MOVIES, true)
                 startActivity(intent)
             }
         }

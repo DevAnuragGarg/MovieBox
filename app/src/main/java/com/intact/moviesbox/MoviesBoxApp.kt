@@ -1,9 +1,16 @@
 package com.intact.moviesbox
 
 import android.app.Application
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.intact.moviesbox.di.component.DaggerAppComponent
 import com.intact.moviesbox.util.ReleaseLogTree
 import com.intact.moviesbox.util.createNotificationChannel
+import com.intact.moviesbox.util.worker.DAILY_NOTIFICATION_WORKER_TAG
+import com.intact.moviesbox.util.worker.PERIODIC_NOTIFICATION_WORKER_TAG
+import com.intact.moviesbox.util.worker.createDailyWorkRequest
+import com.intact.moviesbox.util.worker.createPeriodicWorkRequest
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -72,6 +79,20 @@ class MoviesBoxApp : Application(), HasAndroidInjector {
         } else {
             Timber.plant(ReleaseLogTree())
         }
+
+        // running the periodic work
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            PERIODIC_NOTIFICATION_WORKER_TAG,
+            ExistingPeriodicWorkPolicy.KEEP,
+            createPeriodicWorkRequest()
+        )
+
+        // running the daily work
+        WorkManager.getInstance(this).enqueueUniqueWork(
+            DAILY_NOTIFICATION_WORKER_TAG,
+            ExistingWorkPolicy.KEEP,
+            createDailyWorkRequest()
+        )
     }
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector

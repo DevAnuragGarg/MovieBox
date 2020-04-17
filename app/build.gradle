@@ -91,7 +91,7 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:$rootProject.appCenterVersion"
 
     // worker
-    implementation "androidx.work:work-rxjava2:$rootProject.workManager"
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workManager"
 
     // helper files
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"

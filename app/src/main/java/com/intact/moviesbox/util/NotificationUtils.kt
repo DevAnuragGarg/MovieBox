@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.intact.moviesbox.R
 import com.intact.moviesbox.ui.activity.HomeActivity
+import timber.log.Timber
 
 // class to create the notifications
 const val CHANNEL_ID = "primary_notification_channel"
@@ -42,6 +43,7 @@ fun createNotificationChannel(context: Context) {
 }
 
 fun createAndShowNotification(context: Context, textTitle: String, textContent: String) {
+    Timber.d("Creating and showing Notification")
     // Create an explicit intent for an Activity in your app
     val intent = Intent(context, HomeActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

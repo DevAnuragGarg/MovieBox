@@ -6,7 +6,7 @@ import com.intact.moviesbox.databinding.ActivityMoviesListBinding
 import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.util.SHOW_POPULAR_MOVIES
+import com.intact.moviesbox.util.INTENT_KEY_SHOW_POPULAR_MOVIES
 import javax.inject.Inject
 
 class MoviesListActivity : BaseActivity() {
@@ -24,8 +24,8 @@ class MoviesListActivity : BaseActivity() {
     }
 
     private fun initializeVariables() {
-        val showPopularMovies = intent?.extras?.getBoolean(SHOW_POPULAR_MOVIES, false) ?: false
-        val showTrendingMovies = intent?.extras?.getBoolean(SHOW_POPULAR_MOVIES, false) ?: false
+        val showPopularMovies = intent?.extras?.getBoolean(INTENT_KEY_SHOW_POPULAR_MOVIES, false) ?: false
+        val showTrendingMovies = intent?.extras?.getBoolean(INTENT_KEY_SHOW_POPULAR_MOVIES, false) ?: false
 
         // get the view model
         val homeViewModel = ViewModelProviders.of(this@MoviesListActivity, viewModelFactory)

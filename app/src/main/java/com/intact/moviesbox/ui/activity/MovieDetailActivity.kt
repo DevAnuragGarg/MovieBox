@@ -12,7 +12,7 @@ import com.intact.moviesbox.presentation.viewmodels.MovieDetailViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.IMAGE_BASE_URL_500
-import com.intact.moviesbox.util.MOVIE_ID
+import com.intact.moviesbox.util.INTENT_KEY_MOVIE_ID
 import com.squareup.picasso.Picasso
 import dagger.android.DispatchingAndroidInjector
 import timber.log.Timber
@@ -91,7 +91,7 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     private fun getMovieId() {
-        movieId = intent.extras!!.getLong(MOVIE_ID);
+        movieId = intent.extras!!.getLong(INTENT_KEY_MOVIE_ID);
     }
 
     // setting the observers
