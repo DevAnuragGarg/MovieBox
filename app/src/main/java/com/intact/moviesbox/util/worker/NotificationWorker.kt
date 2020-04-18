@@ -39,8 +39,8 @@ import java.util.concurrent.TimeUnit
  * Sending the notification using work manager
  */
 
-const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 15
-const val PERIODIC_NOTIFICATION_FLEX_INTERVAL: Long = 10
+const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 6
+const val PERIODIC_NOTIFICATION_FLEX_INTERVAL: Long = 4
 const val PERIODIC_NOTIFICATION_WORKER_TAG = "notification_worker_tag_periodic"
 const val DAILY_NOTIFICATION_WORKER_TAG = "notification_worker_tag_daily"
 
@@ -127,10 +127,9 @@ fun createPeriodicWorkRequest(): PeriodicWorkRequest {
     return PeriodicWorkRequest.Builder(
         NotificationWorker::class.java,
         PERIODIC_NOTIFICATION_REPEAT_TIME,
-        TimeUnit.MINUTES
-//        ,
-//        PERIODIC_NOTIFICATION_FLEX_INTERVAL,
-//        TimeUnit.MINUTES
+        TimeUnit.HOURS,
+        PERIODIC_NOTIFICATION_FLEX_INTERVAL,
+        TimeUnit.HOURS
     )
         .setInputData(notificationData)
         .setConstraints(constraints)
@@ -161,8 +160,8 @@ fun createDailyWorkRequest(): OneTimeWorkRequest {
     val dueDate = Calendar.getInstance()
 
     // Set Execution around 10:00:00 AM
-    dueDate.set(Calendar.HOUR_OF_DAY, 22)
-    dueDate.set(Calendar.MINUTE, 30)
+    dueDate.set(Calendar.HOUR_OF_DAY, 10)
+    dueDate.set(Calendar.MINUTE, 0)
     dueDate.set(Calendar.SECOND, 0)
 
     if (dueDate.before(currentDate)) {
