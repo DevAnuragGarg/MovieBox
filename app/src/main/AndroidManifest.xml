@@ -42,6 +42,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.MoviesListActivity" />
 
+        <!-- Removing the default work manager's configuration -->
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"

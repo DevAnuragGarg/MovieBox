@@ -44,6 +44,10 @@ import javax.inject.Inject
  * 5) If compiler gets confused about the same two dependencies use the @Named annotation which in
  * itself is Qualifier, which can be replaced by self declared custom Qualifier
  *
+ * Created the Configuration Provider for the work manager. Here we are providing the custom
+ * configuration while creating the factory for all the workers. We initialize the worker thread.
+ * Also in the Android manifest we have to stop using the default configuration for work manager
+ *
  * Created by Anurag Garg on 18-03-2019.
  */
 class MoviesBoxApp : Application(), HasAndroidInjector, Configuration.Provider {
