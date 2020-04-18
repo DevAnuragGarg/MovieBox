@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.intact.moviesbox">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -40,6 +41,12 @@
             android:name="com.intact.moviesbox.ui.activity.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.MoviesListActivity" />
+
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
     </application>
 
 </manifest>

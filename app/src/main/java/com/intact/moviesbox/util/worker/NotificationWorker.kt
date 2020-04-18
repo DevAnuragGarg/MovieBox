@@ -3,6 +3,7 @@ package com.intact.moviesbox.util.worker
 import android.content.Context
 import androidx.work.*
 import com.google.common.util.concurrent.ListenableFuture
+import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
 import com.intact.moviesbox.util.INTENT_KEY_DAILY_NOTIFICATION
 import com.intact.moviesbox.util.INTENT_KEY_NOTIFICATION_OVERVIEW
 import com.intact.moviesbox.util.INTENT_KEY_NOTIFICATION_TITLE
@@ -38,16 +39,22 @@ import java.util.concurrent.TimeUnit
  * Sending the notification using work manager
  */
 
-const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 6
-const val PERIODIC_NOTIFICATION_FLEX_INTERVAL: Long = 4
+const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 15
+const val PERIODIC_NOTIFICATION_FLEX_INTERVAL: Long = 10
 const val PERIODIC_NOTIFICATION_WORKER_TAG = "notification_worker_tag_periodic"
 const val DAILY_NOTIFICATION_WORKER_TAG = "notification_worker_tag_daily"
 
-class NotificationWorker(private val appContext: Context, workerParameters: WorkerParameters) :
+class NotificationWorker(
+    private val appContext: Context,
+    workerParameters: WorkerParameters,
+    private val nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
+) :
     Worker(appContext, workerParameters) {
 
     override fun doWork(): Result {
         Timber.d("NotificationWorker: doWork")
+        Timber.d("Now playing use case: $nowPlayingMoviesUseCase")
+
         val isDailyWorkerNotification = inputData.getBoolean(INTENT_KEY_DAILY_NOTIFICATION, false)
         val title = inputData.getString(INTENT_KEY_NOTIFICATION_TITLE) ?: "Title not found"
         val description =
@@ -120,9 +127,10 @@ fun createPeriodicWorkRequest(): PeriodicWorkRequest {
     return PeriodicWorkRequest.Builder(
         NotificationWorker::class.java,
         PERIODIC_NOTIFICATION_REPEAT_TIME,
-        TimeUnit.HOURS,
-        PERIODIC_NOTIFICATION_FLEX_INTERVAL,
-        TimeUnit.HOURS
+        TimeUnit.MINUTES
+//        ,
+//        PERIODIC_NOTIFICATION_FLEX_INTERVAL,
+//        TimeUnit.MINUTES
     )
         .setInputData(notificationData)
         .setConstraints(constraints)
@@ -153,8 +161,8 @@ fun createDailyWorkRequest(): OneTimeWorkRequest {
     val dueDate = Calendar.getInstance()
 
     // Set Execution around 10:00:00 AM
-    dueDate.set(Calendar.HOUR_OF_DAY, 10)
-    dueDate.set(Calendar.MINUTE, 0)
+    dueDate.set(Calendar.HOUR_OF_DAY, 22)
+    dueDate.set(Calendar.MINUTE, 30)
     dueDate.set(Calendar.SECOND, 0)
 
     if (dueDate.before(currentDate)) {

@@ -1,6 +1,7 @@
 package com.intact.moviesbox
 
 import android.app.Application
+import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
@@ -45,7 +46,10 @@ import javax.inject.Inject
  *
  * Created by Anurag Garg on 18-03-2019.
  */
-class MoviesBoxApp : Application(), HasAndroidInjector {
+class MoviesBoxApp : Application(), HasAndroidInjector, Configuration.Provider {
+
+    @Inject
+    lateinit var workerConfiguration: Configuration
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
@@ -96,4 +100,13 @@ class MoviesBoxApp : Application(), HasAndroidInjector {
     }
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
+
+    /**
+     * function that is to be implemented when extended with Configuration.Provider of WorkManager
+     * we set all the configurations of the worker here like DelegatingWorkerFactory in which we add
+     * factories for the workers we create. For each worker if we have customized parameterized worker
+     * we create the factory for it which is added to this delegating worker factory. This worker
+     * factory is then added to the configuration
+     */
+    override fun getWorkManagerConfiguration(): Configuration = workerConfiguration
 }
