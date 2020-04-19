@@ -50,7 +50,7 @@ import java.util.concurrent.TimeUnit
  * Sending the notification using work manager
  */
 
-const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 6
+const val PERIODIC_NOTIFICATION_REPEAT_TIME: Long = 15
 const val PERIODIC_NOTIFICATION_FLEX_INTERVAL: Long = 4
 const val PERIODIC_NOTIFICATION_WORKER_TAG = "notification_worker_tag_periodic"
 const val DAILY_NOTIFICATION_WORKER_TAG = "notification_worker_tag_daily"
@@ -73,7 +73,11 @@ class NotificationWorker(
         nowPlayingMoviesUseCase.buildUseCase(GetNowPlayingMoviesUseCase.Param("1"))
             .map { nowPlayingDomainPresentationMapper.to(it) }.subscribe({
                 val movieDTO = it.movies[0]
-                createAndShowNotification(appContext, movieDTO.title, movieDTO.overview)
+                createAndShowNotification(
+                    appContext,
+                    if (isDailyWorkerNotification) "Daily ${movieDTO.title}" else "Periodic ${movieDTO.title}",
+                    movieDTO.overview
+                )
             }, {
                 createAndShowNotification(
                     appContext,
@@ -146,7 +150,8 @@ fun createPeriodicWorkRequest(): PeriodicWorkRequest {
     return PeriodicWorkRequest.Builder(
         NotificationWorker::class.java,
         PERIODIC_NOTIFICATION_REPEAT_TIME,
-        TimeUnit.HOURS,
+        TimeUnit.HOURS
+        ,
         PERIODIC_NOTIFICATION_FLEX_INTERVAL,
         TimeUnit.HOURS
     )
