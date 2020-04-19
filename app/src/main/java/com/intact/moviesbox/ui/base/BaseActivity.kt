@@ -1,5 +1,8 @@
 package com.intact.moviesbox.ui.base
 
+import android.content.res.Configuration
+import android.os.Bundle
+import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 
 /**
@@ -11,9 +14,27 @@ import dagger.android.support.DaggerAppCompatActivity
  * Moreover you no need to extend the HasAndroidInjector,
  * @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
  * override fun androidInjector(): AndroidInjector<Any> = androidInjector
- *
  * This all is done in DaggerActivity
+ *
+ *  Here we are checking what kind of night mode is enabled or disabled according to which we
+ *  are showing the toast to the user
+ *
  */
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                Toast.makeText(this, "NIGHT MODE DISABLED", Toast.LENGTH_SHORT).show()
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                Toast.makeText(this, "NIGHT MODE ENABLED", Toast.LENGTH_SHORT).show()
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                Toast.makeText(this, "NIGHT MODE DISABLED", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }

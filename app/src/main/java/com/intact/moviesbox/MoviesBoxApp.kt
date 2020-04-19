@@ -1,6 +1,7 @@
 package com.intact.moviesbox
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
@@ -60,6 +61,9 @@ class MoviesBoxApp : Application(), HasAndroidInjector, Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+
+        // set the default theme of the app as night mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         // registering the notification channel
         createNotificationChannel(this)
