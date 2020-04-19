@@ -2,6 +2,7 @@ package com.intact.moviesbox.util.worker
 
 import androidx.work.DelegatingWorkerFactory
 import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
+import com.intact.moviesbox.presentation.mapper.NowPlayingDomainPresentationMapper
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,9 +16,15 @@ import javax.inject.Singleton
  */
 @Singleton
 class CustomWorkFactory @Inject constructor(
-    nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
+    nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
+    nowPlayingDomainPresentationMapper: NowPlayingDomainPresentationMapper
 ) : DelegatingWorkerFactory() {
     init {
-        addFactory(NotificationWorkerFactory(nowPlayingMoviesUseCase))
+        addFactory(
+            NotificationWorkerFactory(
+                nowPlayingMoviesUseCase,
+                nowPlayingDomainPresentationMapper
+            )
+        )
     }
 }

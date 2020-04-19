@@ -4,9 +4,8 @@ import android.content.Context
 import androidx.work.*
 import com.google.common.util.concurrent.ListenableFuture
 import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
+import com.intact.moviesbox.presentation.mapper.NowPlayingDomainPresentationMapper
 import com.intact.moviesbox.util.INTENT_KEY_DAILY_NOTIFICATION
-import com.intact.moviesbox.util.INTENT_KEY_NOTIFICATION_OVERVIEW
-import com.intact.moviesbox.util.INTENT_KEY_NOTIFICATION_TITLE
 import com.intact.moviesbox.util.createAndShowNotification
 import timber.log.Timber
 import java.util.*
@@ -47,19 +46,29 @@ const val DAILY_NOTIFICATION_WORKER_TAG = "notification_worker_tag_daily"
 class NotificationWorker(
     private val appContext: Context,
     workerParameters: WorkerParameters,
-    private val nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
+    private val nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
+    private val nowPlayingDomainPresentationMapper: NowPlayingDomainPresentationMapper
 ) :
     Worker(appContext, workerParameters) {
 
     override fun doWork(): Result {
         Timber.d("NotificationWorker: doWork")
-        Timber.d("Now playing use case: $nowPlayingMoviesUseCase")
 
+        // getting the boolean data
         val isDailyWorkerNotification = inputData.getBoolean(INTENT_KEY_DAILY_NOTIFICATION, false)
-        val title = inputData.getString(INTENT_KEY_NOTIFICATION_TITLE) ?: "Title not found"
-        val description =
-            inputData.getString(INTENT_KEY_NOTIFICATION_OVERVIEW) ?: "Description not found"
-        createAndShowNotification(appContext, title, description)
+
+        // fetch data from server
+        nowPlayingMoviesUseCase.buildUseCase(GetNowPlayingMoviesUseCase.Param("1"))
+            .map { nowPlayingDomainPresentationMapper.to(it) }.subscribe({
+                val movieDTO = it.movies[0]
+                createAndShowNotification(appContext, movieDTO.title, movieDTO.overview)
+            }, {
+                createAndShowNotification(
+                    appContext,
+                    "Error: ${if (isDailyWorkerNotification) "Daily" else "Periodic"}",
+                    it.localizedMessage
+                )
+            })
 
         // create the daily notification again
         if (isDailyWorkerNotification) {
@@ -119,9 +128,7 @@ fun createPeriodicWorkRequest(): PeriodicWorkRequest {
 
     // workDataOf (part of KTX) converts a list of pairs to a [Data] object.
     val notificationData = workDataOf(
-        INTENT_KEY_DAILY_NOTIFICATION to false,
-        INTENT_KEY_NOTIFICATION_TITLE to "Periodic Notification",
-        INTENT_KEY_NOTIFICATION_OVERVIEW to "This is a periodic notification description"
+        INTENT_KEY_DAILY_NOTIFICATION to false
     )
 
     return PeriodicWorkRequest.Builder(
@@ -151,9 +158,7 @@ fun createDailyWorkRequest(): OneTimeWorkRequest {
 
     // workDataOf (part of KTX) converts a list of pairs to a [Data] object.
     val notificationData = workDataOf(
-        INTENT_KEY_DAILY_NOTIFICATION to true,
-        INTENT_KEY_NOTIFICATION_TITLE to "Daily Notification",
-        INTENT_KEY_NOTIFICATION_OVERVIEW to "This is a daily notification description"
+        INTENT_KEY_DAILY_NOTIFICATION to true
     )
 
     val currentDate = Calendar.getInstance()

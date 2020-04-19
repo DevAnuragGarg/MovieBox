@@ -5,6 +5,7 @@ import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import com.intact.moviesbox.domain.usecases.GetNowPlayingMoviesUseCase
+import com.intact.moviesbox.presentation.mapper.NowPlayingDomainPresentationMapper
 import timber.log.Timber
 
 /**
@@ -15,7 +16,10 @@ import timber.log.Timber
  * here also we do not use the dagger inject, but we will create the DelegatingWorkerFactory
  * to coordinate all the single factories
  */
-class NotificationWorkerFactory(private val nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase) :
+class NotificationWorkerFactory(
+    private val nowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
+    private val nowPlayingDomainPresentationMapper: NowPlayingDomainPresentationMapper
+) :
     WorkerFactory() {
 
     override fun createWorker(
@@ -26,7 +30,12 @@ class NotificationWorkerFactory(private val nowPlayingMoviesUseCase: GetNowPlayi
         Timber.d("Create Worker")
         return when (workerClassName) {
             NotificationWorker::class.java.name ->
-                NotificationWorker(appContext, workerParameters, nowPlayingMoviesUseCase)
+                NotificationWorker(
+                    appContext,
+                    workerParameters,
+                    nowPlayingMoviesUseCase,
+                    nowPlayingDomainPresentationMapper
+                )
             else ->
                 // Return null, so that the base class can delegate to the default WorkerFactory.
                 null
