@@ -35,6 +35,18 @@ import java.util.concurrent.TimeUnit
  * <---15 min----><---15 min----><---15 min=---><---15 min---->
  * <--not work---><-----work----><--not work---><-----work---->
  *
+ * We should be using RxWorker her and run like this
+ * class MyRxWorker(context : Context, params : WorkerParameters) : RxWorker(context, params) {
+ * val remoteService = RemoteService()
+ * override fun createWork(): Single<Result> {
+ *      return remoteService.getMySingleResponse()
+ *          .doOnSuccess { /* process result somehow */ }
+ *          .map { Result.success() }
+ *          .onErrorReturn { Result.failure() }
+ *      }
+ * }
+ * But this is for fetching the data using Single observer
+ *
  * Sending the notification using work manager
  */
 
