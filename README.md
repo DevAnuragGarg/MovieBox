@@ -1,6 +1,6 @@
-<h1 align="center">MoviesBox</h1><br>
+<h1 align="center">MoviesBox :movie_camera:</h1><br>
 
-An android application showing movies related stuff. The main focus of the app is to design and integrate the latest new features/recommendations provided/changes released by Google. The app follows MVVM with Clean architecture. Follow me at [Anurag Garg](https://github.com/DevAnuragGarg) to get all the new updates.<br>
+An android phone application :iphone: showing movies :video_camera: related stuff. The main focus of the app is to design and integrate the latest new features/recommendations provided/changes released by Google. The app follows MVVM with Clean architecture. Follow me at [Anurag Garg](https://github.com/DevAnuragGarg) to get all the new updates.<br>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
