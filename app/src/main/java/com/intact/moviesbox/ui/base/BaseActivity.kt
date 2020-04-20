@@ -1,7 +1,6 @@
 package com.intact.moviesbox.ui.base
 
 import android.content.res.Configuration
-import android.os.Bundle
 import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 
@@ -18,13 +17,11 @@ import dagger.android.support.DaggerAppCompatActivity
  *
  *  Here we are checking what kind of night mode is enabled or disabled according to which we
  *  are showing the toast to the user
- *
  */
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    // show dark theme enabled or not using toast
+    fun showDarkThemeEnabled() {
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 Toast.makeText(this, "NIGHT MODE DISABLED", Toast.LENGTH_SHORT).show()

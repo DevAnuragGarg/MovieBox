@@ -36,4 +36,8 @@ Find the pseudolocales in the Languages section of Settings. And select Arabic--
 
     <!-- Home screen item listing-->
     <string name="release_on">पर जारी: %s</string>
+
+    <!-- Menu options-->
+    <string name="dark_mode_on">डार्क मोड चालू करें</string>
+    <string name="dark_mode_off">डार्क मोड बंद करें</string>
 </resources>

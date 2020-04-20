@@ -3,7 +3,10 @@ package com.intact.moviesbox.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -64,6 +67,10 @@ class HomeActivity : BaseActivity() {
     private fun initializeVariables() {
         // set the action bar
         setSupportActionBar(binding.toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false);
+
+        // show if dark theme is enabled or not
+        showDarkThemeEnabled()
 
         // Add now playing fragment to the activity's container layout
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -189,6 +196,26 @@ class HomeActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item!!.itemId == R.id.dark_mode_selection) {
+            if (item.title == getString(R.string.dark_mode_off)) {
+                item.title = getString(R.string.dark_mode_on)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                item.title = getString(R.string.dark_mode_off)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

@@ -11,7 +11,7 @@ An android phone application :iphone: showing movies :video_camera: related stuf
 </p><br>
 
 ## Releases
-Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the latest APK.
 
 ## Contents
 - Minimum SDK level 21
@@ -38,7 +38,8 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Picasso](hhttps://github.com/square/picasso) - loading images throughout the app
 - [Timber](https://github.com/JakeWharton/timber) - logging library added
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
-- [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of jetpack libraries
+- [Dark Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) - implemented dark theme at home page
+- [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of Jetpack libraries
 - [Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) - Customized toast with Gravity
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) - for continuous integration

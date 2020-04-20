@@ -68,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{movieDetailDTO.title}"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/size_30"
                     android:textStyle="bold|italic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{movieDetailDTO.overview}"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/size_17"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text1" />
@@ -106,6 +108,7 @@
                     android:id="@+id/releaseDateTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/size_17"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text2" />
