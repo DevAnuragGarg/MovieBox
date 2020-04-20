@@ -159,7 +159,7 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
     // updating the UI
     private fun updateUI(movieListData: ArrayList<MovieDTO>) {
-        movieListAdapter.addMovieData(movieListData)
+        movieListAdapter.submitList(movieListData)
     }
 
     // on error received

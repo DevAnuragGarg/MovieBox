@@ -38,8 +38,9 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Picasso](hhttps://github.com/square/picasso) - loading images throughout the app
 - [Timber](https://github.com/JakeWharton/timber) - logging library added
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - implemented DiffUtil for the data in the recyclerview
 - [Dark Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) - implemented dark theme at home page
-- [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of Jetpack libraries
+- [AndroidX](https://developer.android.com/jetpack/androidx) Using latest versions of JetPack libraries
 - [Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) - Customized toast with Gravity
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) - for continuous integration

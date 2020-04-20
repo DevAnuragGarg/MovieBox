@@ -7,7 +7,7 @@ buildscript {
         // Sdk and tools
         minSdkVersion = 21
         appVersionCode = 4
-        gradleVersion = '3.6.2'
+        gradleVersion = '3.6.3'
         targetSdkVersion = 28
         compileSdkVersion = 28
         appVersionName = "0.3"

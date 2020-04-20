@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.ItemMovieBinding
@@ -21,12 +23,18 @@ import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
+/**
+ * Using list adapter to input the diff util callback
+ * DiffUtil is a utility class that calculates the difference between two lists and outputs a list
+ * of update operations that converts the first list into the second one. It can be used to
+ * calculate updates for a RecyclerView Adapter. See ListAdapter and AsyncListDiffer which can
+ * simplify the use of DiffUtil on a background thread.
+ */
 class MoviesAdapter @Inject constructor(
     private val context: Context,
     private val picasso: Picasso
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<MovieDTO, RecyclerView.ViewHolder>(MoviesDiffCallback()) {
 
-    private var moviesData = ArrayList<MovieDTO>()
     private lateinit var movieType: MovieListType
     private lateinit var onClickListener: OnMovieItemClickListener
 
@@ -36,50 +44,33 @@ class MoviesAdapter @Inject constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
+        // as per the code lab the inflation should happen inside the view holder
         return when (movieType) {
-            MovieListType.NowPlayingMovies -> {
-                val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
-                MovieViewHolder(
-                    view
-                )
-            }
-            MovieListType.TopRatedMovies -> {
-                val view =
-                    LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
-                PosterMovieViewHolder(
-                    view
-                )
-            }
-            MovieListType.UpcomingMovies -> {
-                val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
-                MovieViewHolder(
-                    view
-                )
-            }
+            MovieListType.NowPlayingMovies -> MovieViewHolder.from(context, parent)
+            MovieListType.TopRatedMovies -> PosterMovieViewHolder.from(context, parent)
+            MovieListType.UpcomingMovies -> MovieViewHolder.from(context, parent)
         }
     }
-
-    override fun getItemCount() = moviesData.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (movieType) {
             MovieListType.NowPlayingMovies -> {
                 with(holder as MovieViewHolder) {
-                    with(moviesData[position]) {
+                    with(getItem(position)) {
                         binding.tvMovieName.text = title
                         picasso.load(IMAGE_BASE_URL_500 + posterPath)
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            onClickListener.onMovieItemClicked(movie = moviesData[position])
+                            onClickListener.onMovieItemClicked(movie = getItem(position))
                         }
                     }
                 }
             }
             MovieListType.TopRatedMovies -> {
                 with(holder as PosterMovieViewHolder) {
-                    with(moviesData[position]) {
+                    with(getItem(position)) {
                         binding.tvMovieName.text = title
                         binding.ratingBar.rating = voteAverage!!.div(2)
                         binding.tvRating.text = voteAverage.toString()
@@ -87,14 +78,14 @@ class MoviesAdapter @Inject constructor(
                             .placeholder(R.drawable.ic_video_camera).into(binding.bannerIV)
 
                         itemView.setOnClickListener {
-                            onClickListener.onMovieItemClicked(movie = moviesData[position])
+                            onClickListener.onMovieItemClicked(movie = getItem(position))
                         }
                     }
                 }
             }
             MovieListType.UpcomingMovies -> {
                 with(holder as MovieViewHolder) {
-                    with(moviesData[position]) {
+                    with(getItem(position)) {
                         binding.tvMovieName.text = title
                         binding.tvMovieName.maxLines = 1
 
@@ -124,7 +115,7 @@ class MoviesAdapter @Inject constructor(
 
                         itemView.setOnClickListener {
                             createAndShowNotification(context, title, overview)
-                            onClickListener.onMovieItemClicked(movie = moviesData[position])
+                            onClickListener.onMovieItemClicked(movie = getItem(position))
                         }
                     }
                 }
@@ -132,20 +123,47 @@ class MoviesAdapter @Inject constructor(
         }
     }
 
-    class MovieViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder private constructor(val view: View) : RecyclerView.ViewHolder(view) {
         val binding: ItemMovieBinding = ItemMovieBinding.bind(view)
+
+        companion object {
+            fun from(context: Context, parent: ViewGroup): MovieViewHolder {
+                val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
+                return MovieViewHolder(view)
+            }
+        }
     }
 
-    class PosterMovieViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class PosterMovieViewHolder private constructor(val view: View) :
+        RecyclerView.ViewHolder(view) {
         val binding: ItemPosterMovieBinding = ItemPosterMovieBinding.bind(view)
-    }
 
-    fun addMovieData(movies: ArrayList<MovieDTO>) {
-        moviesData.addAll(movies)
-        notifyDataSetChanged()
+        companion object {
+            fun from(context: Context, parent: ViewGroup): PosterMovieViewHolder {
+                val view =
+                    LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
+                return PosterMovieViewHolder(view)
+            }
+        }
     }
 
     fun setMovieItemClickListener(listener: OnMovieItemClickListener) {
         onClickListener = listener
     }
+}
+
+// Implementing diff util
+class MoviesDiffCallback : DiffUtil.ItemCallback<MovieDTO>() {
+
+    // tests whether the two passed-in MovieDTO items, oldItem and newItem, are the same. If the
+    // items have the same id, they are the same item, so return true. Otherwise, return false.
+    // DiffUtil uses this test to help discover if an item was added, removed, or moved.
+    override fun areItemsTheSame(oldItem: MovieDTO, newItem: MovieDTO) = oldItem.id == newItem.id
+
+    // check whether oldItem and newItem contain the same data; that is, whether they are equal.
+    // This equality check will check all the fields, because MovieDTO is a data class. Data classes
+    // automatically define equals and a few other methods for you. If there are differences between
+    // oldItem and newItem, this code tells DiffUtil that the item has been updated.
+    override fun areContentsTheSame(oldItem: MovieDTO, newItem: MovieDTO) = oldItem == newItem
+
 }
