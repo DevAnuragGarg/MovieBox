@@ -123,25 +123,26 @@ class MoviesAdapter @Inject constructor(
         }
     }
 
-    class MovieViewHolder private constructor(val view: View) : RecyclerView.ViewHolder(view) {
-        val binding: ItemMovieBinding = ItemMovieBinding.bind(view)
+    // view holder class for showing movie in tiles
+    class MovieViewHolder private constructor(val binding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(context: Context, parent: ViewGroup): MovieViewHolder {
-                val view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false)
+                val view = ItemMovieBinding.inflate(LayoutInflater.from(context), parent, false)
                 return MovieViewHolder(view)
             }
         }
     }
 
-    class PosterMovieViewHolder private constructor(val view: View) :
-        RecyclerView.ViewHolder(view) {
-        val binding: ItemPosterMovieBinding = ItemPosterMovieBinding.bind(view)
+    // view holder class for showing posters
+    class PosterMovieViewHolder private constructor(val binding: ItemPosterMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(context: Context, parent: ViewGroup): PosterMovieViewHolder {
                 val view =
-                    LayoutInflater.from(context).inflate(R.layout.item_poster_movie, parent, false)
+                    ItemPosterMovieBinding.inflate(LayoutInflater.from(context), parent, false)
                 return PosterMovieViewHolder(view)
             }
         }

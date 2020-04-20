@@ -110,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="@dimen/size_17"
+                    app:formattedReleaseDate="@{movieDetailDTO.releaseDate}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text2" />
             </androidx.constraintlayout.widget.ConstraintLayout>

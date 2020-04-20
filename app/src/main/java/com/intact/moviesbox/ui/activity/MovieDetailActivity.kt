@@ -116,11 +116,12 @@ class MovieDetailActivity : BaseActivity() {
     private fun updateUI() {
         // data binding
         binding.movieDetailDTO = movieDTO
+        // it speeds up the binding which are pending
+        //binding.executePendingBindings()
 
         // view binding
         with(movieDTO) {
             binding.collapsingToolbar.title = title
-            binding.releaseDateTV.text = releaseDate
             picasso.load(IMAGE_BASE_URL_500 + backdropPath)
                 .placeholder(R.drawable.ic_video_camera).into(binding.posterIV)
         }
