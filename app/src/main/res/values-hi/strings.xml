@@ -40,4 +40,12 @@ Find the pseudolocales in the Languages section of Settings. And select Arabic--
     <!-- Menu options-->
     <string name="dark_mode_on">डार्क मोड चालू करें</string>
     <string name="dark_mode_off">डार्क मोड बंद करें</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">घर</string>
+    <string name="nav_popular_movies">लोकप्रिय फिल्में</string>
+    <string name="nav_trending_movies">ट्रेंडिंग मूवीज</string>
+    <string name="nav_share">शेयर</string>
+    <string name="nav_about_us">हमारे बारे में</string>
+    <string name="nav_title_generic">सामान्य</string>
 </resources>

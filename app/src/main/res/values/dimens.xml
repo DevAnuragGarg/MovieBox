@@ -17,6 +17,7 @@
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_60">60dp</dimen>
     <dimen name="dimen_64">64dp</dimen>
+    <dimen name="dimen_75">75dp</dimen>
     <dimen name="dimen_80">80dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
     <dimen name="dimen_125">125dp</dimen>
@@ -49,4 +50,8 @@
     <dimen name="size_40">40sp</dimen>
     <dimen name="size_50">50sp</dimen>
     <dimen name="size_100">100sp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_popular_movies"
+            android:icon="@drawable/ic_popular_movie"
+            android:title="@string/nav_popular_movies" />
+        <item
+            android:id="@+id/nav_trending_movies"
+            android:icon="@drawable/ic_trending_movie"
+            android:title="@string/nav_trending_movies" />
+    </group>
+
+    <item android:title="@string/nav_title_generic">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/nav_share" />
+            <item
+                android:id="@+id/nav_about_us"
+                android:title="@string/nav_about_us" />
+        </menu>
+    </item>
+
+</menu>

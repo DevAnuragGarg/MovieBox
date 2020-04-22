@@ -51,7 +51,7 @@ fun createAndShowNotification(context: Context, textTitle: String, textContent: 
     val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_launcher)
+        .setSmallIcon(R.drawable.ic_notification)
         .setContentTitle(textTitle)
         .setContentText(textContent)
         .setContentIntent(pendingIntent)

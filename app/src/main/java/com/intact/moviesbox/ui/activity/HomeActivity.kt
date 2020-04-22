@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -31,7 +33,11 @@ import com.microsoft.appcenter.crashes.Crashes
 import timber.log.Timber
 import javax.inject.Inject
 
-class HomeActivity : BaseActivity() {
+/**
+ *  OnNavigationItemSelectedListener: interface offers the onNavigationItemSelected() method, which
+ *  is called when an item in the navigation drawer menu item is tapped.
+ */
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     @NowPlayingQualifier
@@ -71,6 +77,17 @@ class HomeActivity : BaseActivity() {
 
         // show if dark theme is enabled or not
         showDarkThemeEnabled()
+
+        // set the drawer layout with toggle
+        val toggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            R.string.action_bar_toggle_open,
+            R.string.action_bar_toggle_close
+        )
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        binding.navigationView.setNavigationItemSelectedListener(this)
 
         // Add now playing fragment to the activity's container layout
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -216,6 +233,10 @@ class HomeActivity : BaseActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        TODO("Not yet implemented")
     }
 }
 
