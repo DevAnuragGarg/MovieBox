@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -78,14 +79,20 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // show if dark theme is enabled or not
         showDarkThemeEnabled()
 
-        // set the drawer layout with toggle
+        // set the drawer layout with toggle. need to pass on the toolbar
+        // so that hamburger menu gets drawn on the toolbar not on action bar
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
+            binding.toolbar,
             R.string.action_bar_toggle_open,
             R.string.action_bar_toggle_close
         )
+
+        //Setting the actionbarToggle to drawer layout
         binding.drawerLayout.addDrawerListener(toggle)
+
+        //calling sync state is necessary or else your hamburger icon wont show up
         toggle.syncState()
         binding.navigationView.setNavigationItemSelectedListener(this)
 
@@ -236,7 +243,32 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        when (item.itemId) {
+            R.id.nav_home -> {
+                // Noting has to be done as we are on the same activity
+            }
+            R.id.nav_popular_movies -> {
+                val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
+                intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, true)
+                startActivity(intent)
+            }
+            R.id.nav_trending_movies -> {
+                val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
+                intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, false)
+                startActivity(intent)
+            }
+            R.id.nav_share -> {
+                // TODO
+            }
+            R.id.nav_about_us -> {
+                // TODO
+            }
+        }
+        //Closing drawer on item click
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
+
+        // return true for each case
+        return true
     }
 }
 
