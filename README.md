@@ -37,6 +37,7 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [OkHttp3](https://github.com/square/okhttp) - implementing interceptor, logging and mocking web server
 - [Picasso](hhttps://github.com/square/picasso) - loading images throughout the app
 - [Timber](https://github.com/JakeWharton/timber) - logging library added
+- [Navigation Drawer](https://developer.android.com/guide/navigation/navigation-ui) - Added the left navigation drawer menu
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [Binding Adapter](https://developer.android.com/topic/libraries/data-binding/binding-adapters) - functions to bind the customized value
 - [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) - implemented DiffUtil for the data in the recyclerview
