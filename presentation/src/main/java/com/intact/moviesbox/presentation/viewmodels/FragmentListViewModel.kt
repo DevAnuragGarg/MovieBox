@@ -1,5 +1,6 @@
 package com.intact.moviesbox.presentation.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.domain.entities.MovieDomainDTO
 import com.intact.moviesbox.domain.entities.NowPlayingMoviesDomainDTO
@@ -30,6 +31,10 @@ import javax.inject.Inject
  * https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators
  * doOnError, onErrorComplete, onErrorResumeNext, onErrorReturn, onErrorReturnItem
  * onExceptionResumeNext, retry, retryUntil, retryWhen
+ *
+ * To follow the encapsulation, we give the live data to views but only the getter
+ * instance. Kotlin backing property. A backing property allows you to return something
+ * from a getter other than the exact object.
  */
 
 class FragmentListViewModel @Inject constructor(
@@ -44,13 +49,25 @@ class FragmentListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val isLoading = MutableLiveData<Boolean>()
-    private val topRatedErrorLiveData = MutableLiveData<ErrorDTO>()
-    private val upcomingErrorLiveData = MutableLiveData<ErrorDTO>()
+    private val _topRatedErrorLiveData = MutableLiveData<ErrorDTO>()
+    val topRatedErrorLiveData: LiveData<ErrorDTO>
+        get() = _topRatedErrorLiveData
+    private val _upcomingErrorLiveData = MutableLiveData<ErrorDTO>()
+    val upcomingErrorLiveData: LiveData<ErrorDTO>
+        get() = _upcomingErrorLiveData
     private val loadingProgressLiveData = MutableLiveData<Boolean>()
-    private val nowPlayingErrorLiveData = MutableLiveData<ErrorDTO>()
+    private val _nowPlayingErrorLiveData = MutableLiveData<ErrorDTO>()
+    val nowPlayingErrorLiveData: LiveData<ErrorDTO>
+        get() = _nowPlayingErrorLiveData
     private val topRatedMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
-    private val upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
-    private val nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    private val _upcomingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    val upcomingMoviesLiveData: LiveData<ArrayList<MovieDTO>>
+        get() = _upcomingMoviesLiveData
+
+    private val _nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    val nowPlayingMoviesLiveData: LiveData<ArrayList<MovieDTO>>
+        get() = _nowPlayingMoviesLiveData
+
 
     // get now playing movies
     fun getNowPlayingMovies(pageNumber: String) {
@@ -74,9 +91,9 @@ class FragmentListViewModel @Inject constructor(
                 }
                 .subscribe({ it ->
                     Timber.d("Success: Now playing movies response received: ${it.movies}")
-                    nowPlayingMoviesLiveData.value = it.movies
+                    _nowPlayingMoviesLiveData.value = it.movies
                 }, {
-                    nowPlayingErrorLiveData.value =
+                    _nowPlayingErrorLiveData.value =
                         ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
@@ -104,7 +121,7 @@ class FragmentListViewModel @Inject constructor(
                     Timber.d("Success: Top rated movies response received: ${it.movies}")
                     topRatedMoviesLiveData.value = it.movies
                 }, {
-                    topRatedErrorLiveData.value =
+                    _topRatedErrorLiveData.value =
                         ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
@@ -130,9 +147,9 @@ class FragmentListViewModel @Inject constructor(
                 .map { upcomingMoviesMapper.to(it) }
                 .subscribe({
                     Timber.d("Success: Upcoming movies response received: ${it.movies}")
-                    upcomingMoviesLiveData.value = it.movies
+                    _upcomingMoviesLiveData.value = it.movies
                 }, {
-                    upcomingErrorLiveData.value =
+                    _upcomingErrorLiveData.value =
                         ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
@@ -152,9 +169,6 @@ class FragmentListViewModel @Inject constructor(
         )
     }
 
-    fun getTopRatedErrorLiveData() = topRatedErrorLiveData
-    fun getUpcomingErrorLiveData() = upcomingErrorLiveData
-    fun getNowPlayingErrorLiveData() = nowPlayingErrorLiveData
     fun getLoadingProgressLiveData() = loadingProgressLiveData
     fun getTopRatedMoviesListLiveData() = topRatedMoviesLiveData
     fun getUpcomingMoviesListLiveData() = upcomingMoviesLiveData

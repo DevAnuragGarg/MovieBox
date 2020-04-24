@@ -19,11 +19,11 @@ import com.intact.moviesbox.extension.observeLiveData
 import com.intact.moviesbox.presentation.model.ErrorDTO
 import com.intact.moviesbox.presentation.model.MovieDTO
 import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
+import com.intact.moviesbox.ui.activity.MovieDetailActivity
+import com.intact.moviesbox.ui.adapters.MoviesAdapter
 import com.intact.moviesbox.ui.base.BaseFragment
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
-import com.intact.moviesbox.ui.adapters.MoviesAdapter
 import com.intact.moviesbox.ui.listeners.OnMovieItemClickListener
-import com.intact.moviesbox.ui.activity.MovieDetailActivity
 import com.intact.moviesbox.util.INTENT_KEY_MOVIE_ID
 import com.intact.moviesbox.util.INTENT_KEY_MOVIE_LIST_TYPE
 import com.intact.moviesbox.util.MovieListType
@@ -53,10 +53,10 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
 
         fun newInstance(movieListType: String) = MovieListFragment()
             .apply {
-            arguments = bundleOf(
-                INTENT_KEY_MOVIE_LIST_TYPE to movieListType
-            )
-        }
+                arguments = bundleOf(
+                    INTENT_KEY_MOVIE_LIST_TYPE to movieListType
+                )
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,25 +84,25 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
                 observeLiveData(fragmentListViewModel.getTopRatedMoviesListLiveData()) {
                     updateUI(it)
                 }
-                observeLiveData(fragmentListViewModel.getTopRatedErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.topRatedErrorLiveData) {
                     onError(it)
                 }
             }
             MovieListType.NowPlayingMovies -> {
                 fragmentListViewModel.getNowPlayingMovies(pageNumber = pageNumber)
-                observeLiveData(fragmentListViewModel.getNowPlayingMoviesListLiveData()) {
+                observeLiveData(fragmentListViewModel.nowPlayingMoviesLiveData) {
                     updateUI(it)
                 }
-                observeLiveData(fragmentListViewModel.getNowPlayingErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.nowPlayingErrorLiveData) {
                     onError(it)
                 }
             }
             MovieListType.UpcomingMovies -> {
                 fragmentListViewModel.getUpcomingMovies(pageNumber = pageNumber)
-                observeLiveData(fragmentListViewModel.getUpcomingMoviesListLiveData()) {
+                observeLiveData(fragmentListViewModel.upcomingMoviesLiveData) {
                     updateUI(it)
                 }
-                observeLiveData(fragmentListViewModel.getUpcomingErrorLiveData()) {
+                observeLiveData(fragmentListViewModel.upcomingErrorLiveData) {
                     onError(it)
                 }
             }
