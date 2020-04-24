@@ -19,4 +19,7 @@ interface MovieDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveAllMovies(movieEntities: List<MovieEntity>): Completable
+
+    @Query("DELETE FROM movie")
+    fun deleteAllMovies()
 }

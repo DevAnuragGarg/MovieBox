@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
  */
 
 /**
- * The crossinline marker is used to mark lambdas that mustn’t
+ * The cross inline marker is used to mark lambdas that mustn’t
  * allow non-local returns, especially when such lambda is passed
  * to another execution context such as a higher order function
  * that is not inlined, a local object or a nested function.
