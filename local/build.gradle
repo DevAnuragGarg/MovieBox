@@ -26,7 +26,7 @@ dependencies {
     implementation project(':data')
 
     // rx with room dependencies
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
     implementation "androidx.room:room-runtime:$rootProject.room"
     implementation "androidx.room:room-rxjava2:$rootProject.room"
     kapt "androidx.room:room-compiler:$rootProject.room"

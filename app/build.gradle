@@ -1,3 +1,8 @@
+// Instrumentation is a set of control methods, or hooks, in the Android system.
+// These hooks control an Android component independently of the component's normal
+// lifecycle. They also control how Android loads apps. Using instrumentation makes
+// it possible for tests to invoke methods in the app, and modify and examine fields
+// in the app, independently of the app's normal lifecycle.
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -112,6 +117,10 @@ dependencies {
     implementation "com.google.android.play:core:$rootProject.googlePlayVersion"
 
     // Testing dependencies
+    // top three libraries are added to remove the boilerplate code
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInlineVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"

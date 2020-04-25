@@ -1,0 +1,2 @@
+Gradle commands
+- gradlew app:dependencies : To check the all the dependencies used in graphical format

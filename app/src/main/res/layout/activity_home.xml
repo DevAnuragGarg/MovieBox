@@ -59,6 +59,7 @@ layout for the main UI content and another view that contains the contents of th
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/homeNestedScrollView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -128,6 +129,7 @@ layout for the main UI content and another view that contains the contents of th
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
+                                android:id="@+id/tvPopularMovies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/popular_movies_title"
@@ -174,6 +176,7 @@ layout for the main UI content and another view that contains the contents of th
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
+                                android:id="@+id/tvTrendingMovies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/trending_movies_title"
