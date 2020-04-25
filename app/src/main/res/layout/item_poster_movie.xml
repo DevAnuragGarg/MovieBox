@@ -18,6 +18,7 @@
             android:layout_height="@dimen/dimen_180"
             android:contentDescription="@string/movie_image"
             android:scaleType="fitXY"
+            android:transitionName="imageMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

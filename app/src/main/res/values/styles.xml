@@ -24,6 +24,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="android:windowContentTransitions">true</item>
         <item name="fontFamily">@font/abeezee</item>
         <!--
         commenting due to day night(dark mode)

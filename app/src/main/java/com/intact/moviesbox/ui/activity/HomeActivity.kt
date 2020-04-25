@@ -254,7 +254,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             R.id.nav_trending_movies -> {
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
-                intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, false)
+                intent.putExtra(INTENT_KEY_SHOW_TRENDING_MOVIES, true)
                 startActivity(intent)
             }
             R.id.nav_share -> {

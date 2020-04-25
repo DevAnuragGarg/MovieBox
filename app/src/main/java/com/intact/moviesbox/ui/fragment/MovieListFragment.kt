@@ -8,8 +8,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -200,13 +203,18 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
         }
     }
 
-    override fun onMovieItemClicked(movie: MovieDTO) {
+    override fun onMovieItemClicked(movie: MovieDTO, imageView: ImageView) {
         // saving the movie details
         fragmentListViewModel.saveMovieDetail(movieDTO = movie)
 
         // starting movie detail activity
         val intent = Intent(activity, MovieDetailActivity::class.java)
+        val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity!!,
+            imageView,
+            ViewCompat.getTransitionName(imageView)!!
+        )
         intent.putExtra(INTENT_KEY_MOVIE_ID, movie.id)
-        startActivity(intent)
+        startActivity(intent, options.toBundle())
     }
 }
