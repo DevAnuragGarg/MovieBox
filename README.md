@@ -46,16 +46,18 @@ Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to down
 - [Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) - Customized toast with Gravity
 - [Support In-App Updates](https://developer.android.com/guide/app-bundle/in-app-updates)
 - [CircleCI](https://circleci.com/) - for continuous integration
-- [Mockito](https://site.mockito.org)
+- [Mockito](https://site.mockito.org) - writing test cases for all the modules by mocking the objects
+- [Espresso]
 
 ## TODOs
-- Work manager for cleaning up the database at particular time
-- Work manager fetch movies 
-- Work manager applying dagger
 - making the status bar transparent in movie detail screen
+- Work manager for cleaning up the database at particular time
+- showing image in the work manager notification
 - pagination for all the recycler views
 - Handling of error scenarios
 - latest dagger changes
+- implementing popular and trending movies section
+- left navigation item click implementation
 - sealed classes for checking data received and transfer to UI
 - implementation of similar movies in movie detail screen
 - writing test cases for all the modules and having maximum code coverage 

@@ -1,15 +1,19 @@
 package com.intact.moviesbox.ui.activity
 
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.intact.moviesbox.R
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.instanceOf
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 /**
  *  This tells JUnit to run the tests inside of AndroidJUnit4 instead of the
@@ -36,9 +40,8 @@ class HomeActivityTest {
     // When the view is outside the screen, it is not displayed, but it still exist in
     // the view hierarchy. When you scroll down, only then it is visible. To solve this
     // If at the bottom of the ScrollView you need to find a view and match something
-    // against it, then simply perform the scrollTo() action on it, before any other
+    // against it, then simply perform the scrollTo()/scroll down action on it, before any other
     // actions that require it to be displayed.
-
     @Test
     fun checkNowPlayingLayoutVisible() {
         // Launch the activity, same as before.
@@ -80,7 +83,7 @@ class HomeActivityTest {
         // Add a matcher for a view with the text
         onView(withId(R.id.homeNestedScrollView))
             // swiping down to make the view visible
-            .perform(ViewActions.swipeUp())
+            .perform(swipeUp())
 
         // Add a matcher for a view with the ID
         onView(withId(R.id.tvPopularMovies))
@@ -96,11 +99,51 @@ class HomeActivityTest {
         // Add a matcher for a view with the text
         onView(withId(R.id.homeNestedScrollView))
             // swiping down to make the view visible
-            .perform(ViewActions.swipeUp())
+            .perform(swipeUp())
 
         // Add a matcher for a view with the ID
         onView(withId(R.id.tvTrendingMovies))
             // verify that the matched view is displayed on screen.
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun clickTrendingMoviesButton() {
+        // Launch the activity, same as before.
+        ActivityScenario.launch(HomeActivity::class.java)
+
+        // Add a matcher for a view with the text
+        onView(withId(R.id.homeNestedScrollView))
+            // swiping down to make the view visible
+            .perform(swipeUp())
+
+        // perform click on the card view
+        onView(withId(R.id.tvTrendingMovies))
+            // swiping down to make the view visible
+            .perform(click())
+
+        //In case you have simple Toolbar without inner TextView.
+        onView(allOf(instanceOf(AppCompatTextView::class.java), withParent(withId(R.id.toolbar))))
+            .check(matches(withText(R.string.trending_movies_title)))
+    }
+
+    @Test
+    fun clickPopularMoviesButton() {
+        // Launch the activity, same as before.
+        ActivityScenario.launch(HomeActivity::class.java)
+
+        // Add a matcher for a view with the text
+        onView(withId(R.id.homeNestedScrollView))
+            // swiping down to make the view visible
+            .perform(swipeUp())
+
+        // perform click on the card view
+        onView(withId(R.id.tvPopularMovies))
+            // swiping down to make the view visible
+            .perform(click())
+
+        //In case you have simple Toolbar without inner TextView.
+        onView(allOf(instanceOf(AppCompatTextView::class.java), withParent(withId(R.id.toolbar))))
+            .check(matches(withText(R.string.popular_movies_title)))
     }
 }

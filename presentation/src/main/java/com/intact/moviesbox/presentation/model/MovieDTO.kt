@@ -13,7 +13,7 @@ data class MovieDTO(
     val tagLine: String?,
     val overview: String,
     val popularity: Float,
-    val posterPath: String,
+    val posterPath: String?,
     val voteAverage: Float?,
     val releaseDate: String,
     val backdropPath: String?,

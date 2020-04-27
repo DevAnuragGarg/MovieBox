@@ -18,7 +18,7 @@ data class MovieEntity(
     @ColumnInfo(name = "tag_line") val tagLine: String?,
     @ColumnInfo(name = "overview") val overview: String,
     @ColumnInfo(name = "popularity") val popularity: Float,
-    @ColumnInfo(name = "poster_path") val posterPath: String,
+    @ColumnInfo(name = "poster_path") val posterPath: String?,
     @ColumnInfo(name = "vote_average") val voteAverage: Float?,
     @ColumnInfo(name = "release_date") val releaseDate: String,
     @ColumnInfo(name = "backdrop_path") val backdropPath: String?,
