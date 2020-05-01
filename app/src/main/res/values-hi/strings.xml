@@ -19,6 +19,9 @@ debug {
   pseudoLocalesEnabled true
 }
 Find the pseudolocales in the Languages section of Settings. And select Arabic-->
+<!-- Localization checklist provided by android
+https://developer.android.com/distribute/best-practices/launch/localization-checklist
+-->
 <resources>
     <string name="app_name">MoviesBox</string>
 

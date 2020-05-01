@@ -2,12 +2,14 @@ package com.intact.moviesbox.ui.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.ConfigurationCompat
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -75,6 +77,12 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // set the action bar
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false);
+
+        // get the local language
+        // TODO: Make api calls as per the language
+        val language =
+            ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0].language
+        Timber.d("Language selected: $language")
 
         // show if dark theme is enabled or not
         showDarkThemeEnabled()
