@@ -6,13 +6,15 @@ another locale using dropsdown-->
 
 <!-- You can put the localization for the images also, we need to create the different folders
 for different regions. Create folder in resource with right click on the res package and select
-New ▸ Android resource directory-> create a new drawable folder for the en-GB locale.
-en:English as the language and GB:United Kingdom as the region. save all the images with same name-->
+New ▸ Android resource directory-> select drawable from the drop down and select locale. Select the
+langauge and region. it will create the folder accordingly. We have created drawable folder for
+hindi language any region. And by default drawable for english -->
 
 <!-- There is also RTL right to left that has to be checked for the languages which are written
 from right to left. To test for this:  confirm the app has enabled RTL support by checking in
 AndroidManifest.xml that application contains android:supportsRtl=”true”. In the layout file select
-preview right to left. On real device, enable developer options. In the code for the debug builds:
+preview right to left using dropdown. On real device, enable developer options. In the code for the
+debug builds:
 debug {
   pseudoLocalesEnabled true
 }
@@ -48,4 +50,7 @@ Find the pseudolocales in the Languages section of Settings. And select Arabic--
     <string name="nav_share">शेयर</string>
     <string name="nav_about_us">हमारे बारे में</string>
     <string name="nav_title_generic">सामान्य</string>
+
+    <!-- Language -->
+    <string name="language">हिन्दी</string>
 </resources>

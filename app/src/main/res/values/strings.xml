@@ -37,4 +37,7 @@
     <!-- Menu options-->
     <string name="dark_mode_on">Turn ON Dark mode</string>
     <string name="dark_mode_off">Turn OFF Dark mode</string>
+
+    <!-- Language -->
+    <string name="language">English</string>
 </resources>
