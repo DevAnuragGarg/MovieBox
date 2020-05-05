@@ -21,6 +21,8 @@ debug {
 Find the pseudolocales in the Languages section of Settings. And select Arabic-->
 <!-- Localization checklist provided by android
 https://developer.android.com/distribute/best-practices/launch/localization-checklist
+However, the user sees an error message and a Force Close button when this app is launched on a
+device set to a language other than English. The app doesn't load.
 -->
 <resources>
     <string name="app_name">MoviesBox</string>

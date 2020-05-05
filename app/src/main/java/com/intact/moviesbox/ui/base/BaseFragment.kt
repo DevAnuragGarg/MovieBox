@@ -14,8 +14,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.intact.moviesbox.R
 import dagger.android.support.AndroidSupportInjection
 
-
 /**
+ * Do not use the public constructor for a Toast unless you are going to define the layout with
+ * setView(View). If you do not have a custom layout to use, you must use
+ * makeText(Context, int, int) to create the Toast.
+ *
  * Created by Anurag Garg on 2019-04-24.
  */
 abstract class BaseFragment : Fragment() {
