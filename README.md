@@ -13,6 +13,9 @@ An android phone application :iphone: showing movies :video_camera: related stuf
 ## Releases
 Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the latest APK.
 
+## Architecture
+![](images/architecture.png)
+
 ## Contents
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based
