@@ -75,6 +75,8 @@ class MovieListFragment : BaseFragment(), OnMovieItemClickListener {
             ViewModelProviders.of(this@MovieListFragment, viewModelFactory)
                 .get(FragmentListViewModel::class.java)
 
+        Timber.d("HomeViewModel1: $fragmentListViewModel")
+
         // observe the loading live data
         observeLiveData(fragmentListViewModel.getLoadingProgressLiveData()) {
             updateProgressBar(showProgressBar = it)

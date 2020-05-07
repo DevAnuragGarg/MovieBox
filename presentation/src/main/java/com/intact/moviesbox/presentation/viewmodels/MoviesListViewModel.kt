@@ -1,5 +1,6 @@
 package com.intact.moviesbox.presentation.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.intact.moviesbox.domain.entities.PopularMoviesDomainDTO
 import com.intact.moviesbox.domain.entities.TrendingMoviesDomainDTO
@@ -41,8 +42,20 @@ class MoviesListViewModel @Inject constructor(
 
     private val isLoading = MutableLiveData<Boolean>()
     private val errorLiveData = MutableLiveData<ErrorDTO>()
-    private val popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
-    private val trendingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+
+    private val _popularMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    val popularMoviesLiveData: LiveData<ArrayList<MovieDTO>>
+        get() = _popularMoviesLiveData
+    private val _popularErrorLiveData = MutableLiveData<ErrorDTO>()
+    val popularErrorLiveData: LiveData<ErrorDTO>
+        get() = _popularErrorLiveData
+    private val _trendingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    val trendingMoviesLiveData: LiveData<ArrayList<MovieDTO>>
+        get() = _popularMoviesLiveData
+    private val _trendingErrorLiveData = MutableLiveData<ErrorDTO>()
+    val trendingErrorLiveData: LiveData<ErrorDTO>
+        get() = _popularErrorLiveData
+
 
     // get trending movies
     fun getTrendingMovies(pageNumber: String) {
@@ -52,7 +65,7 @@ class MoviesListViewModel @Inject constructor(
                 .map { trendingMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Trending movies response received: ${it.movies}")
-                    trendingMoviesLiveData.value = it.movies
+                    _trendingMoviesLiveData.value = it.movies
                 }, {
                     errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
                 })
@@ -67,16 +80,12 @@ class MoviesListViewModel @Inject constructor(
                 .map { popularMoviesMapper.to(it) }
                 .subscribe({ it ->
                     Timber.d("Success: Popular movies response received: ${it.movies}")
-                    popularMoviesLiveData.value = it.movies
+                    _popularMoviesLiveData.value = it.movies
                 }, {
                     errorLiveData.value = ErrorDTO(code = 400, message = it.localizedMessage)
                 })
         )
     }
-
-    fun getErrorLiveData() = errorLiveData
-    fun getPopularMoviesLiveData() = popularMoviesLiveData
-    fun getTrendingMoviesLiveData() = trendingMoviesLiveData
 
     override fun onCleared() {
         super.onCleared()

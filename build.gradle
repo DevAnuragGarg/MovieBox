@@ -17,6 +17,7 @@ buildscript {
         // App dependencies
         room = '2.2.5'
         dagger = '2.27'
+        paging = '2.1.2'
         rxJava = '2.2.9'
         mockito = '2.22.0'
         rxAndroid = '2.1.1'

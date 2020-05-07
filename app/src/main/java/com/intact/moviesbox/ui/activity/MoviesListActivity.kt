@@ -5,11 +5,13 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
 import com.intact.moviesbox.R
 import com.intact.moviesbox.databinding.ActivityMoviesListBinding
-import com.intact.moviesbox.presentation.viewmodels.FragmentListViewModel
+import com.intact.moviesbox.extension.observeLiveData
+import com.intact.moviesbox.presentation.viewmodels.MoviesListViewModel
 import com.intact.moviesbox.ui.base.BaseActivity
 import com.intact.moviesbox.ui.base.CustomViewModelFactory
 import com.intact.moviesbox.util.INTENT_KEY_SHOW_POPULAR_MOVIES
 import com.intact.moviesbox.util.INTENT_KEY_SHOW_TRENDING_MOVIES
+import timber.log.Timber
 import javax.inject.Inject
 
 class MoviesListActivity : BaseActivity() {
@@ -46,30 +48,37 @@ class MoviesListActivity : BaseActivity() {
             supportActionBar!!.title = getString(R.string.trending_movies_title)
 
         // get the view model
-        val homeViewModel = ViewModelProviders.of(this@MoviesListActivity, viewModelFactory)
-            .get(FragmentListViewModel::class.java)
-        //setObservers(homeViewModel)
+        val moviesListViewModel = ViewModelProviders.of(this@MoviesListActivity, viewModelFactory)
+            .get(MoviesListViewModel::class.java)
+        setObservers(moviesListViewModel)
+
         when {
             showPopularMovies -> {
-                homeViewModel.getNowPlayingMovies("1")
+                moviesListViewModel.getPopularMovies("1")
             }
             showTrendingMovies -> {
-                homeViewModel.getTopRatedMovies("1")
+                moviesListViewModel.getTrendingMovies("1")
             }
         }
     }
 
-    /*// setting the observers
-    private fun setObservers(viewModel: HomeViewModel) {
-        observeLiveData(viewModel.getNowPlayingMoviesLiveData()) {
-            Timber.d("Updating playing now movies data")
+    // setting the observers
+    private fun setObservers(viewModel: MoviesListViewModel) {
+        observeLiveData(viewModel.popularErrorLiveData) {
+            Timber.d("Error popular movies data")
             // nowPlayingMoviesAdapter.setMoviesData(it)
         }
-        observeLiveData(viewModel.getTopRatedMoviesLiveData()) {
-            Timber.d("Updating top rated movies data")
+        observeLiveData(viewModel.trendingErrorLiveData) {
+            Timber.d("Error trending movies data")
             // topRatedMoviesAdapter.setMoviesData(it)
         }
-    }*/
+        observeLiveData(viewModel.popularMoviesLiveData) {
+            Timber.d("Updating Popular movies data")
+        }
+        observeLiveData(viewModel.trendingMoviesLiveData) {
+            Timber.d("Updating Trending movies data")
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {

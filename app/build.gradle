@@ -77,6 +77,9 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.rxjavaAdapter"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpIntercepterVersion"
 
+    // paging library
+    implementation "androidx.paging:paging-runtime:$rootProject.paging"
+
     // picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
