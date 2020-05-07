@@ -7,6 +7,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.firebase.crashlytics' // Apply the Crashlytics Gradle plugin
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -110,8 +111,9 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
     // firebase
-    implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
-    implementation "com.google.firebase:firebase-analytics:$rootProject.firebaseVersion"
+    implementation "com.google.firebase:firebase-core:$rootProject.firebaseCore"
+    implementation "com.google.firebase:firebase-analytics:$rootProject.analytics"
+    implementation "com.google.firebase:firebase-crashlytics:$rootProject.crashlytics"
 
     // google play
     implementation "com.google.android.play:core:$rootProject.googlePlayVersion"

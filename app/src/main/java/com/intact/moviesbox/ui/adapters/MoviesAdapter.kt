@@ -21,6 +21,7 @@ import com.intact.moviesbox.util.MovieListType
 import com.intact.moviesbox.util.createAndShowNotification
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -96,8 +97,10 @@ class MoviesAdapter @Inject constructor(
                         binding.tvMovieName.maxLines = 1
 
                         // converting and setting date
-                        val dateInstance = SimpleDateFormat("yyyy-MM-dd").parse(releaseDate)
-                        val releaseDateFormat = SimpleDateFormat("dd MMM yy").format(dateInstance)
+                        val dateInstance =
+                            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(releaseDate)
+                        val releaseDateFormat =
+                            SimpleDateFormat("dd MMM yy", Locale.getDefault()).format(dateInstance!!)
 
                         val spannableString = SpannableString(
                             String.format(
