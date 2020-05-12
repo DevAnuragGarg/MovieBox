@@ -19,13 +19,19 @@
     <!--Currently using the day night theme -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!--  color for the app bar and other primary UI elements -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <!--  a darker variant of the primary color, used for
+           the status bar (on Android 5.0+) and contextual app bars -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--  a secondary color for controls like checkboxes and text fields -->
         <item name="colorAccent">@color/colorAccent</item>
+        <!--  A general-purpose icon color. It contains a disabled state -->
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="fontFamily">@font/abeezee</item>
+        <item name="android:fontFamily">@font/abeezee</item>
         <!--
         commenting due to day night(dark mode)
         <item name="android:textColor">@color/white</item>

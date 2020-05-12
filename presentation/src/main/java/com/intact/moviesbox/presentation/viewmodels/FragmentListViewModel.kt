@@ -64,7 +64,10 @@ class FragmentListViewModel @Inject constructor(
     val upcomingMoviesLiveData: LiveData<ArrayList<MovieDTO>>
         get() = _upcomingMoviesLiveData
 
-    private val _nowPlayingMoviesLiveData = MutableLiveData<ArrayList<MovieDTO>>()
+    // lazy loading of live data
+    private val _nowPlayingMoviesLiveData: MutableLiveData<ArrayList<MovieDTO>> by lazy {
+        MutableLiveData<ArrayList<MovieDTO>>()
+    }
     val nowPlayingMoviesLiveData: LiveData<ArrayList<MovieDTO>>
         get() = _nowPlayingMoviesLiveData
 

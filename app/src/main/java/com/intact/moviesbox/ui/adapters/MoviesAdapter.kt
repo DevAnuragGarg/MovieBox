@@ -47,9 +47,9 @@ class MoviesAdapter @Inject constructor(
 
         // as per the code lab the inflation should happen inside the view holder
         return when (movieType) {
-            MovieListType.NowPlayingMovies -> MovieViewHolder.from(context, parent)
-            MovieListType.TopRatedMovies -> PosterMovieViewHolder.from(context, parent)
-            MovieListType.UpcomingMovies -> MovieViewHolder.from(context, parent)
+            MovieListType.NowPlayingMovies -> MovieViewHolder.from(parent)
+            MovieListType.TopRatedMovies -> PosterMovieViewHolder.from(parent)
+            MovieListType.UpcomingMovies -> MovieViewHolder.from(parent)
         }
     }
 
@@ -100,7 +100,10 @@ class MoviesAdapter @Inject constructor(
                         val dateInstance =
                             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(releaseDate)
                         val releaseDateFormat =
-                            SimpleDateFormat("dd MMM yy", Locale.getDefault()).format(dateInstance!!)
+                            SimpleDateFormat(
+                                "dd MMM yy",
+                                Locale.getDefault()
+                            ).format(dateInstance!!)
 
                         val spannableString = SpannableString(
                             String.format(
@@ -140,8 +143,9 @@ class MoviesAdapter @Inject constructor(
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
-            fun from(context: Context, parent: ViewGroup): MovieViewHolder {
-                val view = ItemMovieBinding.inflate(LayoutInflater.from(context), parent, false)
+            fun from(parent: ViewGroup): MovieViewHolder {
+                val view =
+                    ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return MovieViewHolder(view)
             }
         }
@@ -152,9 +156,13 @@ class MoviesAdapter @Inject constructor(
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
-            fun from(context: Context, parent: ViewGroup): PosterMovieViewHolder {
+            fun from(parent: ViewGroup): PosterMovieViewHolder {
                 val view =
-                    ItemPosterMovieBinding.inflate(LayoutInflater.from(context), parent, false)
+                    ItemPosterMovieBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 return PosterMovieViewHolder(view)
             }
         }

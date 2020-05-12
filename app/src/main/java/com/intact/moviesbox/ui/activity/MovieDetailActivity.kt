@@ -97,13 +97,17 @@ class MovieDetailActivity : BaseActivity() {
     // setting the observers
     private fun setObservers(viewModel: MovieDetailViewModel) {
         observeLiveData(viewModel.getMovieDetailLiveData()) {
-            Timber.d("Received the movie detail data, $it")
-            movieDTO = it
-            updateUI()
+            it?.let {
+                Timber.d("Received the movie detail data, $it")
+                movieDTO = it
+                updateUI()
+            }
         }
         observeLiveData(viewModel.getErrorLiveData()) {
-            Timber.d("Error for the movie detail data ${it.message}")
-            onError(it)
+            it?.let {
+                Timber.d("Error for the movie detail data ${it.message}")
+                onError(it)
+            }
         }
     }
 

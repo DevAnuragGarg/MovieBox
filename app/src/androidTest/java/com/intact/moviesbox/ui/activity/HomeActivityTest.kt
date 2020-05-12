@@ -21,6 +21,8 @@ import org.junit.runner.RunWith
  *  style tests on Android devices.
  *
  *  as we are using helper dependencies for android x we no need to write the activity rule.
+ *  if not added need to write the rule
+ *  @Rule val mActivityRule : ActivityTestRule<OrderActivity> = ActivityTestRule<>(OrderActivity.class)
  *
  *  scroll to is not working for the recycler view or scroll view. In place perform an action
  *  to swipe up which works in most of the cases.

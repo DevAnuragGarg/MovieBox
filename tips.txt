@@ -1,2 +1,8 @@
 Gradle commands
 - gradlew app:dependencies : To check the all the dependencies used in graphical format
+
+- gradlew lint: to check all the lint issues related to:
+    correctness, security, performance, accessibility, usability
+    For specific variant: gradlew lintDebug (debug variant)
+
+- ?attr: is a way to look up a theme attribute
