@@ -101,7 +101,6 @@ fun checkTrendingMoviesButtonVisible() {
 
 @Test
 fun clickTrendingMoviesButton() {
-    )
 
     // Add a matcher for a view with the text
     onView(withId(R.id.homeNestedScrollView))
@@ -134,5 +133,4 @@ fun clickPopularMoviesButton() {
     //In case you have simple Toolbar without inner TextView.
     onView(allOf(instanceOf(AppCompatTextView::class.java), withParent(withId(R.id.toolbar))))
         .check(matches(withText(R.string.popular_movies_title)))
-}
 }
