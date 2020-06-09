@@ -10,6 +10,9 @@ An android phone application :iphone: showing movies :video_camera: related stuf
   <a href="https://app.codacy.com/manual/DevAnuragGarg/MovieBox?utm_source=github.com&utm_medium=referral&utm_content=DevAnuragGarg/MovieBox&utm_campaign=Badge_Grade_Dashboard"><img alt="Code Quality" src="https://api.codacy.com/project/badge/Grade/f001fda745ed4f918e16f27b9594c9fa"/></a> 
 </p><br>
 
+## Screenshots
+
+
 ## Releases
 Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the latest APK.
 
