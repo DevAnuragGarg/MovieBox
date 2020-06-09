@@ -11,7 +11,7 @@ An android phone application :iphone: showing movies :video_camera: related stuf
 </p><br>
 
 ## Screenshots
-![](images/1st.png)![](images/2nd.png)
+![](images/1st.png)![](images/2nd.png)![](images/3rd.png)
 
 ## Releases
 Go to the [Releases](https://github.com/DevAnuragGarg/MovieBox/releases) to download the latest APK.
