@@ -81,7 +81,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // get the local language
         // TODO: Make api calls as per the language
         val language =
-            ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0].language
+            ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0]?.language
         Timber.d("Language selected: $language")
 
         // show if dark theme is enabled or not
@@ -196,9 +196,11 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 Activity.RESULT_OK -> {
                     Timber.d("Update flow ok")
                 }
+
                 Activity.RESULT_CANCELED -> {
                     Timber.d("Update flow cancelled: $resultCode")
                 }
+
                 ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
                     Timber.d("Update flow failed: $resultCode")
                 }
@@ -221,6 +223,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, true)
                 startActivity(intent)
             }
+
             R.id.trendingMoviesCardView -> {
                 Timber.d("Trending movies clicked")
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
@@ -235,9 +238,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
-        if (item!!.itemId == R.id.dark_mode_selection) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.dark_mode_selection) {
             if (item.title == getString(R.string.dark_mode_off)) {
                 item.title = getString(R.string.dark_mode_on)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -250,24 +252,29 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return super.onOptionsItemSelected(item)
     }
 
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
                 // Noting has to be done as we are on the same activity
             }
+
             R.id.nav_popular_movies -> {
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
                 intent.putExtra(INTENT_KEY_SHOW_POPULAR_MOVIES, true)
                 startActivity(intent)
             }
+
             R.id.nav_trending_movies -> {
                 val intent = Intent(this@HomeActivity, MoviesListActivity::class.java)
                 intent.putExtra(INTENT_KEY_SHOW_TRENDING_MOVIES, true)
                 startActivity(intent)
             }
+
             R.id.nav_share -> {
                 // TODO
             }
+
             R.id.nav_about_us -> {
                 // TODO
             }

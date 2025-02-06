@@ -5,7 +5,6 @@
 // in the app, independently of the app's normal lifecycle.
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics' // Apply the Crashlytics Gradle plugin
 
@@ -37,32 +36,20 @@ android {
     }
 
     // lint options
-    lintOptions {
-        // Turns off checks for the issue IDs you specify.
-        disable 'TypographyFractions', 'TypographyQuotes'
-        // Turns on checks for the issue IDs you specify. These checks are in
-        // addition to the default lint checks.
-        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
-        // To enable checks for only a subset of issue IDs and ignore all others,
-        // list the issue IDs with the 'check' property instead. This property overrides
-        // any issue IDs you enable or disable using the properties above.
-        check 'NewApi', 'InlinedApi'
-        // If set to true, turns off analysis progress reporting by lint.
-        quiet true
-        // if set to true (default), stops the build if errors are found.
+
+    // view binding and data binding jetpack || ui || foundation
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
+    }
+    namespace 'com.intact.moviesbox'
+    lint {
         abortOnError false
-        // if true, only report errors.
+        checkOnly 'NewApi', 'InlinedApi'
+        disable 'TypographyFractions', 'TypographyQuotes'
+        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
         ignoreWarnings true
-    }
-
-    // view binding jetpack || ui || foundation
-    viewBinding {
-        enabled = true
-    }
-
-    // data binding jetpack || ui || foundation
-    dataBinding {
-        enabled = true
+        quiet true
     }
 }
 
