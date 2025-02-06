@@ -26,7 +26,7 @@ buildscript {
         testingCore = '2.1.0'
         junitVersion = '4.13'
         gsonVersion = '2.8.6'
-        workManager = '2.3.4'
+        workManager = '2.7.0'
         crashlytics = '17.0.0'
         aacLifecycle = '1.1.1'
         rxjavaAdapter = '1.0.0'

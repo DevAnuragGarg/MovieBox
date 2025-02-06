@@ -13,7 +13,6 @@ layout for the main UI content and another view that contains the contents of th
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/generic_bg"
         tools:context=".ui.activity.HomeActivity">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -51,7 +50,6 @@ layout for the main UI content and another view that contains the contents of th
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:alpha="0.4"
-                android:background="@drawable/background"
                 android:contentDescription="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,142 +65,137 @@ layout for the main UI content and another view that contains the contents of th
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <FrameLayout
+                    android:id="@+id/nowPlayingFrameLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:id="@+id/topRatedFrameLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nowPlayingFrameLayout" />
+
+                <FrameLayout
+                    android:id="@+id/upcomingFrameLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/topRatedFrameLayout" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/popularMoviesCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_60"
+                    android:layout_margin="@dimen/dimen_10"
+                android:foreground="?selectableItemBackground"
+                android:onClick="onViewClicked"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="@dimen/dimen_5"
+                app:layout_constraintEnd_toStartOf="@+id/trendingMoviesCardView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dimen_5">
 
-                    <FrameLayout
-                        android:id="@+id/nowPlayingFrameLayout"
+                    <ImageView
                         android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:alpha="0.4"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPopularMovies"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/popular_movies_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_18"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trendingMoviesCardView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_60"
+                android:layout_margin="@dimen/dimen_10"
+                android:background="@drawable/popular_movie_bg"
+                android:foreground="?selectableItemBackground"
+                android:onClick="onViewClicked"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="@dimen/dimen_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/popularMoviesCardView"
+                app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dimen_5">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:alpha="0.4"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <FrameLayout
-                        android:id="@+id/topRatedFrameLayout"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvTrendingMovies"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/trending_movies_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size_18"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/nowPlayingFrameLayout" />
-
-                    <FrameLayout
-                        android:id="@+id/upcomingFrameLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/topRatedFrameLayout" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/popularMoviesCardView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dimen_60"
-                        android:layout_margin="@dimen/dimen_10"
-                        android:background="@drawable/popular_movie_bg"
-                        android:foreground="?selectableItemBackground"
-                        android:onClick="onViewClicked"
-                        app:cardBackgroundColor="@color/card_bg"
-                        app:cardCornerRadius="@dimen/dimen_5"
-                        app:layout_constraintEnd_toStartOf="@+id/trendingMoviesCardView"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="@dimen/dimen_5">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:alpha="0.4"
-                                android:contentDescription="@null"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/popular_movie_bg"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/tvPopularMovies"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/popular_movies_title"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/size_18"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/trendingMoviesCardView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dimen_60"
-                        android:layout_margin="@dimen/dimen_10"
-                        android:background="@drawable/popular_movie_bg"
-                        android:foreground="?selectableItemBackground"
-                        android:onClick="onViewClicked"
-                        app:cardBackgroundColor="@color/card_bg"
-                        app:cardCornerRadius="@dimen/dimen_5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/popularMoviesCardView"
-                        app:layout_constraintTop_toBottomOf="@+id/upcomingFrameLayout">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="@dimen/dimen_5">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:alpha="0.4"
-                                android:contentDescription="@null"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/trending_movie_bg"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/tvTrendingMovies"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/trending_movies_title"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/size_18"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.core.widget.NestedScrollView>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout></androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Navigation view has two main attributes: header layout and menu layout
     header layout will show the top portion of the navigation view containing the name,
     profile image and menu contains the items listed below the header layout-->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
-</androidx.drawerlayout.widget.DrawerLayout>
+<com.google.android.material.navigation.NavigationView
+android:fitsSystemWindows="true"
+android:id="@+id/navigationView"
+android:layout_gravity="start"
+android:layout_height="match_parent"
+android:layout_width="wrap_content"
+app:headerLayout="@layout/nav_header_main"
+app:menu="@menu/activity_main_drawer" /></androidx.drawerlayout.widget.DrawerLayout>

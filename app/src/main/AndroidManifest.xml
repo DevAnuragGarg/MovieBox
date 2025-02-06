@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.intact.moviesbox.ui.activity.HomeActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

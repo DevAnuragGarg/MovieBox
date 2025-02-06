@@ -73,17 +73,17 @@ class NotificationWorker(
         nowPlayingMoviesUseCase.buildUseCase(GetNowPlayingMoviesUseCase.Param("1"))
             .map { nowPlayingDomainPresentationMapper.to(it) }.subscribe({
                 val movieDTO = it.movies[0]
-                createAndShowNotification(
-                    appContext,
-                    if (isDailyWorkerNotification) "Daily ${movieDTO.title}" else "Periodic ${movieDTO.title}",
-                    movieDTO.overview
-                )
+//                createAndShowNotification(
+//                    appContext,
+//                    if (isDailyWorkerNotification) "Daily ${movieDTO.title}" else "Periodic ${movieDTO.title}",
+//                    movieDTO.overview
+//                )
             }, {
-                createAndShowNotification(
-                    appContext,
-                    "Error: ${if (isDailyWorkerNotification) "Daily" else "Periodic"}",
-                    it.localizedMessage
-                )
+//                createAndShowNotification(
+//                    appContext,
+//                    "Error: ${if (isDailyWorkerNotification) "Daily" else "Periodic"}",
+//                    it.localizedMessage
+//                )
             })
 
         // create the daily notification again

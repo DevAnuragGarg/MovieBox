@@ -66,7 +66,8 @@ class MoviesBoxApp : Application(), HasAndroidInjector, Configuration.Provider {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         // registering the notification channel
-        createNotificationChannel(this)
+        // TODO to check later
+        //createNotificationChannel(this)
 
         // setting up the dagger
         DaggerAppComponent

@@ -48,19 +48,29 @@ fun createAndShowNotification(context: Context, textTitle: String, textContent: 
     val intent = Intent(context, HomeActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
     }
-    val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-
-    val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_notification)
-        .setContentTitle(textTitle)
-        .setContentText(textContent)
-        .setContentIntent(pendingIntent)
-        .setStyle(NotificationCompat.BigTextStyle().bigText(textContent))
-
-    builder.priority = NotificationCompat.PRIORITY_HIGH
-
-    // show the notification
-    val notificationManager: NotificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    notificationManager.notify(System.currentTimeMillis().toInt(), builder.build())
+//    val pendingIntent: PendingIntent =
+//        PendingIntent.getActivity(
+//            context,
+//            0,
+//            intent,
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+//            } else {
+//                PendingIntent.FLAG_UPDATE_CURRENT
+//            }
+//        )
+//
+//    val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+//        .setSmallIcon(R.drawable.ic_notification)
+//        .setContentTitle(textTitle)
+//        .setContentText(textContent)
+//        .setContentIntent(pendingIntent)
+//        .setStyle(NotificationCompat.BigTextStyle().bigText(textContent))
+//
+//    builder.priority = NotificationCompat.PRIORITY_HIGH
+//
+//    // show the notification
+//    val notificationManager: NotificationManager =
+//        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//    notificationManager.notify(System.currentTimeMillis().toInt(), builder.build())
 }
